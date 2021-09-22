@@ -23,7 +23,7 @@
   <meta name="description" content="在Misc领域中，关于压缩包的知识是很基本的，近几年被考烂的；但同时也是每位Misc手，乃至每位CTFer都应该了解的重要知识点。在Misc领域，关于压缩包分析的知识可以说占了一大部分。而其中又包括了像文件数据结构的识别、 CRC数据校验算法等等知识点。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Misc-压缩包类分析">
-<meta property="og:url" content="https://randark.site/2021/09/20/Misc-%E5%8E%8B%E7%BC%A9%E5%8C%85%E7%B1%BB%E5%88%86%E6%9E%90/index.html">
+<meta property="og:url" content="https://randark.site/2021/09/22/Misc-%E5%8E%8B%E7%BC%A9%E5%8C%85%E7%B1%BB%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="橘墨的摸鱼现场">
 <meta property="og:description" content="在Misc领域中，关于压缩包的知识是很基本的，近几年被考烂的；但同时也是每位Misc手，乃至每位CTFer都应该了解的重要知识点。在Misc领域，关于压缩包分析的知识可以说占了一大部分。而其中又包括了像文件数据结构的识别、 CRC数据校验算法等等知识点。">
 <meta property="og:locale" content="zh_CN">
@@ -44,13 +44,13 @@
 <meta property="og:image" content="https://randark.site/special/Misc-%E5%8E%8B%E7%BC%A9%E5%8C%85%E7%B1%BB%E5%88%86%E6%9E%90.assets/image-20210920161339563.png">
 <meta property="og:image" content="https://randark.site/special/Misc-%E5%8E%8B%E7%BC%A9%E5%8C%85%E7%B1%BB%E5%88%86%E6%9E%90.assets/image-20210920163100855.png">
 <meta property="og:image" content="https://randark.site/special/Misc-%E5%8E%8B%E7%BC%A9%E5%8C%85%E7%B1%BB%E5%88%86%E6%9E%90.assets/6.png">
-<meta property="article:published_time" content="2021-09-19T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-09-20T09:01:34.932Z">
+<meta property="article:published_time" content="2021-09-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-09-22T00:25:51.677Z">
 <meta property="article:author" content="Randark">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://randark.site/special/Misc-%E5%8E%8B%E7%BC%A9%E5%8C%85%E7%B1%BB%E5%88%86%E6%9E%90.assets/image-20210918210114460.png">
 
-<link rel="canonical" href="https://randark.site/2021/09/20/Misc-%E5%8E%8B%E7%BC%A9%E5%8C%85%E7%B1%BB%E5%88%86%E6%9E%90/">
+<link rel="canonical" href="https://randark.site/2021/09/22/Misc-%E5%8E%8B%E7%BC%A9%E5%8C%85%E7%B1%BB%E5%88%86%E6%9E%90/">
 
 
 <script id="page-configurations">
@@ -208,7 +208,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/09/20/Misc-%E5%8E%8B%E7%BC%A9%E5%8C%85%E7%B1%BB%E5%88%86%E6%9E%90/">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/09/22/Misc-%E5%8E%8B%E7%BC%A9%E5%8C%85%E7%B1%BB%E5%88%86%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
@@ -232,7 +232,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-09-20 00:00:00 / 修改时间：17:01:34" itemprop="dateCreated datePublished" datetime="2021-09-20T00:00:00+08:00">2021-09-20</time>
+              <time title="创建时间：2021-09-22 00:00:00 / 修改时间：08:25:51" itemprop="dateCreated datePublished" datetime="2021-09-22T00:00:00+08:00">2021-09-22</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -266,7 +266,8 @@
 
 <h1 id="常见压缩包格式和文件结构"><a href="#常见压缩包格式和文件结构" class="headerlink" title="常见压缩包格式和文件结构"></a>常见压缩包格式和文件结构</h1><p>虽说平时大家看文件类型都是靠文件后缀，但是这里是CTF，什么情况都有可能出来，所以拿到题目附件之后，应当先准确判断文件类型，确认是压缩包类后再考虑接下来的做法。</p>
 <h2 id="ZIP文件"><a href="#ZIP文件" class="headerlink" title="ZIP文件"></a>ZIP文件</h2><p>ZIP文件格式是一种数据压缩和文档储存的文件格式，原名Deflate，发明者为菲尔·卡茨（Phil Katz），他于1989年1月公布了该格式的资料。ZIP通常使用后缀名“.zip”，它的<code>MIME</code>格式为<code>application/zip</code>。</p>
-<h3 id="zip文件结构"><a href="#zip文件结构" class="headerlink" title="zip文件结构"></a>zip文件结构</h3><p>这里拿一个小的测试用zip文件举例：</p>
+<h3 id="zip文件结构"><a href="#zip文件结构" class="headerlink" title="zip文件结构"></a>zip文件结构</h3><p>一个 ZIP 文件由三个部分组成：<code>压缩源文件数据区</code>+<code>压缩源文件目录区</code>+<code>压缩源文件目录结束标志</code></p>
+<p>这里拿一个小的测试用zip文件举例：</p>
 <h4 id="zip文件源数据区"><a href="#zip文件源数据区" class="headerlink" title="zip文件源数据区"></a>zip文件源数据区</h4><p><img src="/special/Misc-%E5%8E%8B%E7%BC%A9%E5%8C%85%E7%B1%BB%E5%88%86%E6%9E%90.assets/image-20210918210114460.png" alt="image-20210918210114460"></p>
 <p><img src="/special/Misc-%E5%8E%8B%E7%BC%A9%E5%8C%85%E7%B1%BB%E5%88%86%E6%9E%90.assets/image-20210919105714632.png" alt="image-20210919105714632"></p>
 <blockquote>
@@ -402,7 +403,7 @@
 <p><img src="/special/Misc-%E5%8E%8B%E7%BC%A9%E5%8C%85%E7%B1%BB%E5%88%86%E6%9E%90.assets/image-20210918213503251.png" alt="image-20210918213503251"></p>
 </blockquote>
 <h3 id="zip文件常见考点"><a href="#zip文件常见考点" class="headerlink" title="zip文件常见考点"></a>zip文件常见考点</h3><h4 id="zip伪加密"><a href="#zip伪加密" class="headerlink" title="zip伪加密"></a>zip伪加密</h4><p>zip文件的伪加密，正如他的名字，即虽然zip文件本身没有加密，但是通过修改zip文件中的标记数据，让解压软件认为文件存在加密，故达到了伪加密的效果。而标记zip文件是否加密的标记，则是上文中<code>zip文件源数据区</code>中的<code>ushort frFlags</code>（全局标记文件是否加密）和<code>zip文件源数据目录区</code>中的<code>ushort frFlags</code>（全局标记文件是否加密，伪加密的关键点）两个位置。</p>
-<p>在正常加密的情况下，两个（多个）的加密标志点应当是同一个数据，然而在一般的zip伪加密中，往往<code>zip文件源数据区</code>中的<code>ushort frFlags</code>数据点为0，即标志着文件不存在加密，但是<code>zip文件源数据目录区</code>中的<code>ushort frFlags</code>数据点不为0，标志着文件存在加密。这样前后标志冲突，软件会认为zip文件存在加密，但是无论用什么密码都无法解压，因为文件数据根本没有加密。</p>
+<p>在正常加密的情况下，<code>源数据区</code>的加密标记和<code>源文件目录区</code>的加密标志点应当是同一个数据，然而在一般的zip伪加密中，往往<code>zip文件源数据区</code>中的<code>ushort frFlags</code>数据点为0，偶数即标志着文件不存在加密，但是<code>zip文件源数据目录区</code>中的<code>ushort frFlags</code>数据点不为偶数，标志着文件存在加密。这样前后标志冲突，软件会认为zip文件存在加密，但是无论用什么密码都无法解压，因为文件数据根本没有加密。</p>
 <p>在这种情况下，可以选择使用16进制编辑工具（推荐<code>010 Editor</code>，用模板功能可以方便地定位标志数据的位置）来手动编辑文件数据，通过将<code>zip文件源数据目录区</code>中的<code>ushort frFlags</code>数据点中的数据全部改为0，即可让文件认为文件不存在加密方式，就可以顺利解出数据。</p>
 <h5 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h5><p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#zip%E4%BC%AA%E5%8A%A0%E5%AF%86">BUUCTF-zip伪加密</a></p>
 <p>这道题的zip附件下载下来直接解压，会发现解压出的flag.txt文件为空白，并提示输入密码。用十六进制编辑器看一下zip文件的数据：</p>
@@ -432,7 +433,8 @@
 
 <p>那么问号中的字符就需要选手枚举破解。</p>
 <h5 id="自动脚本-1"><a href="#自动脚本-1" class="headerlink" title="自动脚本"></a>自动脚本</h5><p><del><em>有工具还要脚本干嘛</em></del></p>
-<h4 id="CRC32爆破"><a href="#CRC32爆破" class="headerlink" title="CRC32爆破"></a>CRC32爆破</h4><p><code>CRC</code> 本身是「冗余校验码」的意思，<code>CRC32</code> 则表示会产生一个 <code>32 bit</code> ( <code>8</code> 位十六进制数) 的校验值。由于 <code>CRC32</code> 产生校验值时源数据块的每一个 <code>bit</code> (位) 都参与了计算，所以数据块中即使只有一位发生了变化，也会得到不同的 <code>CRC32</code> 值。</p>
+<h4 id="CRC32爆破"><a href="#CRC32爆破" class="headerlink" title="CRC32爆破"></a>CRC32爆破</h4><p><code>CRC</code> 本身是「冗余校验码」的意思，全称是循环冗余校验。<code>CRC32</code> 则表示会产生一个 <code>32 bit</code> ( <code>8</code> 位十六进制数) 的校验值。由于 <code>CRC32</code> 产生校验值时源数据块的每一个 <code>bit</code> (位) 都参与了计算，所以数据块中即使只有一位发生了变化，也会得到不同的 <code>CRC32</code> 值，利用这个原理我们可以直接爆破出加密文件的内容。由于CPU能力，CRC碰撞只能用于压缩文件较小的情况（≤7bytes）</p>
+<p>常见的题型大致可分为两种：一是只给出含有一个文件的压缩包；二是给出多个含有一个文件的压缩包，或给出一个含有多个文件的压缩包</p>
 <p>值得注意的是 ，<code>zip</code> 中的 <code>CRC32</code> 是未加密文件的校验值。也就意味着可以对小文件直接进行CRC32碰撞，从而得到文件的真实内容。这也就导致了基于 <code>CRC32爆破</code> 的攻击手法。<br>以下为<code>CRC32爆破</code>的特征</p>
 <ul>
 <li>文件内内容很少 (一般比赛中大多为 <code>4</code> 字节左右)</li>
@@ -450,11 +452,15 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zipfile</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">CrackCrc</span>(<span class="params">crc</span>):</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> dic:</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> dic:</span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> dic:</span><br><span class="line">                <span class="keyword">for</span> h <span class="keyword">in</span> dic:</span><br><span class="line">                    s = i + j + k + h</span><br><span class="line">                    <span class="keyword">if</span> crc == (binascii.crc32(s.encode())):</span><br><span class="line">                        f.write(s)</span><br><span class="line">                        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">CrackZip</span>():</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">68</span>):</span><br><span class="line">        file = <span class="string">&quot;D:\\Downloads\\b2ca8799-13d7-45df-a707-94373bf2800c\\&quot;</span>+<span class="string">&#x27;out&#x27;</span> + <span class="built_in">str</span>(i) + <span class="string">&#x27;.zip&#x27;</span></span><br><span class="line">        crc = zipfile.ZipFile(file, <span class="string">&#x27;r&#x27;</span>).getinfo(<span class="string">&#x27;data.txt&#x27;</span>).CRC</span><br><span class="line">        CrackCrc(crc)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;\r&#x27;</span> + <span class="string">&quot;loading：&#123;:%&#125;&quot;</span>.<span class="built_in">format</span>(<span class="built_in">float</span>((i + <span class="number">1</span>) / <span class="number">68</span>)), end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line">dic = string.ascii_letters + string.digits + <span class="string">&#x27;+/=&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;D:\\Downloads\\b2ca8799-13d7-45df-a707-94373bf2800c\\out.txt&#x27;</span>, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;CRC32 begin&quot;</span>)</span><br><span class="line">    CrackZip()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;CRC32 finished&quot;</span>)</span><br><span class="line">    f.close()</span><br></pre></td></tr></table></figure>
 
 <p>运行脚本，便可以得到zip文件解密后的数据。</p>
+<p>另外，也有现成的Github项目：<a target="_blank" rel="noopener" href="https://github.com/kmyk/zip-crc-cracker">https://github.com/kmyk/zip-crc-cracker</a></p>
 <h5 id="自动脚本-2"><a href="#自动脚本-2" class="headerlink" title="自动脚本"></a>自动脚本</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zipfile</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">CrackCrc</span>(<span class="params">crc</span>):</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> dic:</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> dic:</span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> dic:</span><br><span class="line">                <span class="keyword">for</span> h <span class="keyword">in</span> dic: <span class="comment"># 循环个数取决于CRC32破解的目标文件大小</span></span><br><span class="line">                    s = i + j + k + h</span><br><span class="line">                    <span class="keyword">if</span> crc == (binascii.crc32(s.encode())):</span><br><span class="line">                        f.write(s)</span><br><span class="line">                        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">dic = string.ascii_letters + string.digits + <span class="string">&#x27;+/=&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;out.txt&#x27;</span>, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;CRC32begin&quot;</span>)</span><br><span class="line">    file = <span class="string">&quot;res.zip&#x27;</span></span><br><span class="line"><span class="string">    crc = zipfile.ZipFile(file, &#x27;r&#x27;).getinfo(&#x27;data.txt&#x27;).CRC</span></span><br><span class="line"><span class="string">    CrackCrc(crc)</span></span><br><span class="line"><span class="string">    print(&quot;</span>CRC32finished<span class="string">&quot;)</span></span><br></pre></td></tr></table></figure>
 
+<p>另外，还有针对多文件的CRC32碰撞脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zipfile</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"></span><br><span class="line">dic = string.printable</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">CrackCrc</span>(<span class="params">crc, f</span>):</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> dic:</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> dic:</span><br><span class="line">            <span class="keyword">for</span> p <span class="keyword">in</span> dic:</span><br><span class="line">                s = i+j+p <span class="comment"># 3bytesCRC32碰撞</span></span><br><span class="line">                <span class="keyword">if</span> crc == (binascii.crc32(s.encode())):</span><br><span class="line">                    f.write(s+<span class="string">&quot;\n&quot;</span>)</span><br><span class="line">                    <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">CrackZip</span>(<span class="params">f</span>):</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">36</span>):</span><br><span class="line">        file = <span class="string">&#x27;flag&#x27;</span>+<span class="built_in">str</span>(i)+<span class="string">&#x27;.zip&#x27;</span></span><br><span class="line">        f = zipfile.ZipFile(file, <span class="string">&#x27;r&#x27;</span>) <span class="comment"># 文件名</span></span><br><span class="line">        GetCrc = f.getinfo(<span class="string">&#x27;flag.txt&#x27;</span>)</span><br><span class="line">        crc = GetCrc.CRC <span class="comment"># 提取文件CRC值</span></span><br><span class="line">        CrackCrc(crc, f)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;out.txt&#x27;</span>, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> f_:</span><br><span class="line">    CrackZip(f_)</span><br></pre></td></tr></table></figure>
 
 
-<h4 id="明文攻击"><a href="#明文攻击" class="headerlink" title="明文攻击"></a>明文攻击</h4><p>类似于<code>CRC32破解</code>，但是明文攻击针对的是较大的文件（至少不能CRC32碰撞），并且已知其中一个文件的真实内容。</p>
+
+<h4 id="明文攻击"><a href="#明文攻击" class="headerlink" title="明文攻击"></a>明文攻击</h4><p>明文攻击类似于<code>CRC32破解</code>，但是明文攻击针对的是较大的文件（至少不能CRC32碰撞），并且已知其中一个文件的真实内容。明文攻击是一种较为高效的攻击手段，当我们为ZIP压缩文件设定密码时，先被转换成了3个4字节key，再使用这3个key加密所有文件。当能拿到加密压缩包的一个文件时，以同样的方式压缩（选择相同的压缩算法，确保压缩后明文文件的CRC32与加密文件中的一致），此时两个压缩包中明文压缩后的大小会相差12字节，使用APCHPR进行对比筛选后，就可以获得key，继而解压加密压缩包。</p>
 <ul>
 <li> 一个加密的压缩文件</li>
 <li>知道压缩文件的压缩工具，比如 <code>2345</code> 好压， <code>WinRAR</code> ， <code>7z</code>，<code>zip</code> 等，可以通过文件属性了解。如果是 <code>Linux</code> 平台，用 <code>zipinfo -v</code> 可以查看一个 <code>zip</code> 包的详细信息，包括加密算法等</li>
@@ -685,14 +691,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">66</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
