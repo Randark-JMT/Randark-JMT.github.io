@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo/IMG_0004.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo/IMG_0004.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo/IMG_0004.jpg">
+  <link rel="mask-icon" href="/images/logo/IMG_0004.jpg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"randark.site","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="easy_wasm 新生赛一上来就出wasm逆向，真的好吗。。 参考链接： https:&#x2F;&#x2F;xz.aliyun.com&#x2F;t&#x2F;5170https:&#x2F;&#x2F;www.anquanke.com&#x2F;post&#x2F;id&#x2F;179556https:&#x2F;&#x2F;xz.aliyun.com&#x2F;t&#x2F;2854  附件下载解压，得到的是这三个文件：  对wasm文件进行重构，得到可逆向的程序文件逆向出.c文件（可读性较差）对于wasm文件，采">
+<meta property="og:type" content="article">
+<meta property="og:title" content="easy_wasm">
+<meta property="og:url" content="https://randark.site/2021/11/07/easy_wasm/index.html">
+<meta property="og:site_name" content="橘墨的摸鱼现场">
+<meta property="og:description" content="easy_wasm 新生赛一上来就出wasm逆向，真的好吗。。 参考链接： https:&#x2F;&#x2F;xz.aliyun.com&#x2F;t&#x2F;5170https:&#x2F;&#x2F;www.anquanke.com&#x2F;post&#x2F;id&#x2F;179556https:&#x2F;&#x2F;xz.aliyun.com&#x2F;t&#x2F;2854  附件下载解压，得到的是这三个文件：  对wasm文件进行重构，得到可逆向的程序文件逆向出.c文件（可读性较差）对于wasm文件，采">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://randark.site/images/Writeup/image-20211107221920133.png">
+<meta property="og:image" content="https://randark.site/images/Writeup/image-20211107222640639.png">
+<meta property="og:image" content="https://randark.site/images/Writeup/image-20211107224126240.png">
+<meta property="og:image" content="https://randark.site/images/Writeup/image-20211107224237205.png">
+<meta property="article:published_time" content="2021-11-07T14:10:52.000Z">
+<meta property="article:modified_time" content="2021-11-07T14:45:29.555Z">
+<meta property="article:author" content="Randark">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://randark.site/images/Writeup/image-20211107221920133.png">
+
+<link rel="canonical" href="https://randark.site/2021/11/07/easy_wasm/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>easy_wasm | 橘墨的摸鱼现场</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <link rel="stylesheet" href="/dist/APlayer.min.css">
+  <div id="aplayer"></div>
+  <script type="text/javascript" src="/dist/APlayer.min.js"></script>
+  <script type="text/javascript" src="/dist/music.js"></script>
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "e20b9b29cbae410185a1a53f56445a60"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">橘墨的摸鱼现场</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/11/07/easy_wasm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
+      <meta itemprop="name" content="Randark">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橘墨的摸鱼现场">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          easy_wasm
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-11-07 22:10:52 / 修改时间：22:45:29" itemprop="dateCreated datePublished" datetime="2021-11-07T22:10:52+08:00">2021-11-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Reserve/" itemprop="url" rel="index"><span itemprop="name">Reserve</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Reserve/wasm/" itemprop="url" rel="index"><span itemprop="name">wasm</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Reserve/CRC32/" itemprop="url" rel="index"><span itemprop="name">CRC32</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Challenge/" itemprop="url" rel="index"><span itemprop="name">Challenge</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Challenge/ISCTF-2021/" itemprop="url" rel="index"><span itemprop="name">ISCTF-2021</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="easy-wasm"><a href="#easy-wasm" class="headerlink" title="easy_wasm"></a>easy_wasm</h1><blockquote>
+<p>新生赛一上来就出wasm逆向，真的好吗。。</p>
+<p>参考链接：</p>
+<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/5170">https://xz.aliyun.com/t/5170</a><br><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/179556">https://www.anquanke.com/post/id/179556</a><br><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/2854">https://xz.aliyun.com/t/2854</a></p>
+</blockquote>
+<p>附件下载解压，得到的是这三个文件：</p>
+<p><img src="/images/Writeup/image-20211107221920133.png" alt="image-20211107221920133"></p>
+<h2 id="对wasm文件进行重构，得到可逆向的程序文件"><a href="#对wasm文件进行重构，得到可逆向的程序文件" class="headerlink" title="对wasm文件进行重构，得到可逆向的程序文件"></a>对wasm文件进行重构，得到可逆向的程序文件</h2><h3 id="逆向出-c文件（可读性较差）"><a href="#逆向出-c文件（可读性较差）" class="headerlink" title="逆向出.c文件（可读性较差）"></a>逆向出.c文件（可读性较差）</h3><p>对于wasm文件，采用<a target="_blank" rel="noopener" href="https://github.com/WebAssembly/wabt">wabt</a>来逆向，得到一份C文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wasm2c main.wasm -o main.c</span><br></pre></td></tr></table></figure>
+
+<p>这是摘要：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Automically generated by wasm2c */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;main.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> UNLIKELY(x) __builtin_expect(!!(x), 0)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LIKELY(x) __builtin_expect(!!(x), 1)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TRAP(x) (wasm_rt_trap(WASM_RT_TRAP_##x), 0)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FUNC_PROLOGUE                                            \</span></span><br><span class="line"><span class="meta">  <span class="meta-keyword">if</span> (++wasm_rt_call_stack_depth &gt; WASM_RT_MAX_CALL_STACK_DEPTH) \</span></span><br><span class="line"><span class="meta">    TRAP(EXHAUSTION)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FUNC_EPILOGUE --wasm_rt_call_stack_depth</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> UNREACHABLE TRAP(UNREACHABLE)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CALL_INDIRECT(table, t, ft, x, ...)          \</span></span><br><span class="line"><span class="meta">  (LIKELY((x) &lt; table.size &amp;&amp; table.data[x].func &amp;&amp;  \</span></span><br><span class="line"><span class="meta">          table.data[x].func_type == func_types[ft]) \</span></span><br><span class="line"><span class="meta">       ? ((t)table.data[x].func)(__VA_ARGS__)        \</span></span><br><span class="line"><span class="meta">       : TRAP(CALL_INDIRECT))</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> WASM_RT_MEMCHECK_SIGNAL_HANDLER</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MEMCHECK(mem, a, t)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MEMCHECK(mem, a, t)  \</span></span><br><span class="line"><span class="meta">  <span class="meta-keyword">if</span> (UNLIKELY((a) + sizeof(t) &gt; mem-&gt;size)) TRAP(OOB)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEFINE_LOAD(name, t1, t2, t3)                        \</span></span><br><span class="line"><span class="meta">  static inline t3 name(wasm_rt_memory_t* mem, u64 addr) &#123;   \</span></span><br><span class="line"><span class="meta">    MEMCHECK(mem, addr, t1);                                 \</span></span><br><span class="line"><span class="meta">    t1 result;                                               \</span></span><br><span class="line"><span class="meta">    __builtin_memcpy(&amp;result, &amp;mem-&gt;data[addr], sizeof(t1)); \</span></span><br><span class="line"><span class="meta">    return (t3)(t2)result;                                   \</span></span><br><span class="line"><span class="meta">  &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEFINE_STORE(name, t1, t2)                                     \</span></span><br><span class="line"><span class="meta">  static inline void name(wasm_rt_memory_t* mem, u64 addr, t2 value) &#123; \</span></span><br><span class="line"><span class="meta">    MEMCHECK(mem, addr, t1);                                           \</span></span><br><span class="line"><span class="meta">    t1 wrapped = (t1)value;                                            \</span></span><br><span class="line"><span class="meta">    __builtin_memcpy(&amp;mem-&gt;data[addr], &amp;wrapped, sizeof(t1));          \</span></span><br><span class="line"><span class="meta">  &#125;</span></span><br><span class="line"></span><br><span class="line">DEFINE_LOAD(i32_load, u32, u32, u32);</span><br><span class="line">DEFINE_LOAD(i64_load, u64, u64, u64);</span><br><span class="line">DEFINE_LOAD(f32_load, f32, f32, f32);</span><br><span class="line">DEFINE_LOAD(f64_load, f64, f64, f64);</span><br><span class="line">DEFINE_LOAD(i32_load8_s, s8, s32, u32);</span><br><span class="line">DEFINE_LOAD(i64_load8_s, s8, s64, u64);</span><br><span class="line">DEFINE_LOAD(i32_load8_u, u8, u32, u32);</span><br><span class="line">DEFINE_LOAD(i64_load8_u, u8, u64, u64);</span><br><span class="line">DEFINE_LOAD(i32_load16_s, s16, s32, u32);</span><br><span class="line">DEFINE_LOAD(i64_load16_s, s16, s64, u64);</span><br><span class="line">DEFINE_LOAD(i32_load16_u, u16, u32, u32);</span><br><span class="line">DEFINE_LOAD(i64_load16_u, u16, u64, u64);</span><br><span class="line">DEFINE_LOAD(i64_load32_s, s32, s64, u64);</span><br><span class="line">DEFINE_LOAD(i64_load32_u, u32, u64, u64);</span><br><span class="line">DEFINE_STORE(i32_store, u32, u32);</span><br><span class="line">DEFINE_STORE(i64_store, u64, u64);</span><br><span class="line">DEFINE_STORE(f32_store, f32, f32);</span><br><span class="line">DEFINE_STORE(f64_store, f64, f64);</span><br><span class="line">DEFINE_STORE(i32_store8, u8, u32);</span><br><span class="line">DEFINE_STORE(i32_store16, u16, u32);</span><br><span class="line">DEFINE_STORE(i64_store8, u8, u64);</span><br><span class="line">DEFINE_STORE(i64_store16, u16, u64);</span><br><span class="line">DEFINE_STORE(i64_store32, u32, u64);</span><br></pre></td></tr></table></figure>
+
+<h3 id="对逆向出的-c文件，编译成-o文件，使其可以用IDA反汇编出C代码"><a href="#对逆向出的-c文件，编译成-o文件，使其可以用IDA反汇编出C代码" class="headerlink" title="对逆向出的.c文件，编译成.o文件，使其可以用IDA反汇编出C代码"></a>对逆向出的.c文件，编译成.o文件，使其可以用IDA反汇编出C代码</h3><p>可以看到，这份逆向出的代码，可读性非常差，于是考虑编译成.o链接文件，便可以在IDA里面直接分析：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -c main.c -o main.o</span><br></pre></td></tr></table></figure>
+
+<p>得到的.o文件，便可以直接用IDA进行反汇编分析：</p>
+<p><img src="/images/Writeup/image-20211107222640639.png" alt="image-20211107222640639"></p>
+<h2 id="对程序结构进行分析"><a href="#对程序结构进行分析" class="headerlink" title="对程序结构进行分析"></a>对程序结构进行分析</h2><h3 id="定位wasm的函数"><a href="#定位wasm的函数" class="headerlink" title="定位wasm的函数"></a>定位wasm的函数</h3><p>首先，定位<code>w2c_main_main</code>主函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__int64 __fastcall <span class="title">w2c_main_main</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> a1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> ( ++wasm_rt_call_stack_depth &gt; <span class="number">0x1F4</span>u )</span><br><span class="line">    wasm_rt_trap(<span class="number">7LL</span>);</span><br><span class="line">  <span class="keyword">if</span> ( a1 &lt;= <span class="number">6</span> )</span><br><span class="line">    __asm &#123; jmp     rax &#125;</span><br><span class="line">  wasm_rt_trap(<span class="number">5LL</span>);</span><br><span class="line">  --wasm_rt_call_stack_depth;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1LL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>还有<code>w2c_main_fib</code>和<code>w2c_main_fibFunc</code>两个函数，由于<code>w2c_main_fibFunc</code>使用了函数<code>w2c_mainfib</code>，所以猜测这里处理事件的函数为<code>w2c_main_fib</code>:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__int64 __fastcall <span class="title">w2c_main_fibFunc</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> a1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> v1; <span class="comment">// eax</span></span><br><span class="line">  __int64 v2; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">int</span> v3; <span class="comment">// eax</span></span><br><span class="line">  __int64 v4; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">int</span> v5; <span class="comment">// eax</span></span><br><span class="line">  __int64 v6; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">int</span> v7; <span class="comment">// eax</span></span><br><span class="line">  <span class="keyword">int</span> v8; <span class="comment">// eax</span></span><br><span class="line">  __int64 v9; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">int</span> v10; <span class="comment">// eax</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v13; <span class="comment">// [rsp+14h] [rbp-2Ch]</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v14; <span class="comment">// [rsp+14h] [rbp-2Ch]</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v15; <span class="comment">// [rsp+14h] [rbp-2Ch]</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v16; <span class="comment">// [rsp+14h] [rbp-2Ch]</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v17; <span class="comment">// [rsp+14h] [rbp-2Ch]</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v18; <span class="comment">// [rsp+14h] [rbp-2Ch]</span></span><br><span class="line">  __int64 v19; <span class="comment">// [rsp+20h] [rbp-20h]</span></span><br><span class="line">  __int64 v20; <span class="comment">// [rsp+28h] [rbp-18h]</span></span><br><span class="line">  __int64 v21; <span class="comment">// [rsp+28h] [rbp-18h]</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> ( ++wasm_rt_call_stack_depth &gt; <span class="number">0x1F4</span>u )</span><br><span class="line">    wasm_rt_trap(<span class="number">7LL</span>);</span><br><span class="line">  v13 = w2c_g0;</span><br><span class="line">  <span class="keyword">while</span> ( a1 &lt;= <span class="number">8</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( v13 &lt;= (<span class="keyword">unsigned</span> <span class="keyword">int</span>)i32_load(&amp;w2c_mem, (<span class="keyword">unsigned</span> <span class="keyword">int</span>)w2c_g2 + <span class="number">16LL</span>) )</span><br><span class="line">    &#123;</span><br><span class="line">      w2c_g0 = v13 - <span class="number">8</span>;</span><br><span class="line">      i64_store(&amp;w2c_mem, v13 - <span class="number">8</span>, <span class="number">0x16C80000</span>LL);</span><br><span class="line">      v1 = w2c_runtime_morestack_noctxt(<span class="number">0LL</span>);</span><br><span class="line">      v13 = w2c_g0;</span><br><span class="line">      <span class="keyword">if</span> ( v1 )</span><br><span class="line">        <span class="keyword">goto</span> LABEL_16;</span><br><span class="line">    &#125;</span><br><span class="line">    v14 = v13 - <span class="number">40</span>;</span><br><span class="line">    w2c_g0 = v14;</span><br><span class="line">    v2 = i64_load(&amp;w2c_mem, <span class="number">0x15DD58</span>LL);</span><br><span class="line">    i64_store(&amp;w2c_mem, v14, v2);</span><br><span class="line">    i64_store(&amp;w2c_mem, v14 + <span class="number">8LL</span>, &amp;loc_342F7);</span><br><span class="line">    i64_store(&amp;w2c_mem, v14 + <span class="number">16LL</span>, <span class="number">5LL</span>);</span><br><span class="line">    w2c_g0 = v14 - <span class="number">8</span>;</span><br><span class="line">    i64_store(&amp;w2c_mem, v14 - <span class="number">8</span>, <span class="number">0x16C80002</span>LL);</span><br><span class="line">    v3 = w2c_syscall_js_Value_Get(<span class="number">0LL</span>);</span><br><span class="line">    v15 = w2c_g0;</span><br><span class="line">    <span class="keyword">if</span> ( v3 )</span><br><span class="line">      <span class="keyword">goto</span> LABEL_16;</span><br><span class="line">    v4 = i64_load(&amp;w2c_mem, (<span class="keyword">unsigned</span> <span class="keyword">int</span>)w2c_g0 + <span class="number">24LL</span>);</span><br><span class="line">    i64_store(&amp;w2c_mem, v15, v4);</span><br><span class="line">    w2c_g0 = v15 - <span class="number">8</span>;</span><br><span class="line">    i64_store(&amp;w2c_mem, v15 - <span class="number">8</span>, <span class="number">0x16C80003</span>LL);</span><br><span class="line">    v5 = w2c_syscall_js_Value_String(<span class="number">0LL</span>);</span><br><span class="line">    v16 = w2c_g0;</span><br><span class="line">    <span class="keyword">if</span> ( v5 )</span><br><span class="line">      <span class="keyword">goto</span> LABEL_16;</span><br><span class="line">    v20 = i64_load(&amp;w2c_mem, (<span class="keyword">unsigned</span> <span class="keyword">int</span>)w2c_g0 + <span class="number">16LL</span>);</span><br><span class="line">    v6 = i64_load(&amp;w2c_mem, v16 + <span class="number">8LL</span>);</span><br><span class="line">    i64_store(&amp;w2c_mem, v16, v6);</span><br><span class="line">    i64_store(&amp;w2c_mem, v16 + <span class="number">8LL</span>, v20);</span><br><span class="line">    w2c_g0 = v16 - <span class="number">8</span>;</span><br><span class="line">    i64_store(&amp;w2c_mem, v16 - <span class="number">8</span>, <span class="number">0x16C80004</span>LL);</span><br><span class="line">    v7 = w2c_strconv_Atoi(<span class="number">0LL</span>);</span><br><span class="line">    v13 = w2c_g0;</span><br><span class="line">    <span class="keyword">if</span> ( v7 )</span><br><span class="line">      <span class="keyword">goto</span> LABEL_16;</span><br><span class="line">    v21 = i64_load(&amp;w2c_mem, (<span class="keyword">unsigned</span> <span class="keyword">int</span>)w2c_g0 + <span class="number">24LL</span>);</span><br><span class="line">    v19 = i64_load(&amp;w2c_mem, v13 + <span class="number">16LL</span>);</span><br><span class="line">    <span class="keyword">if</span> ( v21 )</span><br><span class="line">    &#123;</span><br><span class="line">      i64_store(&amp;w2c_mem, v13 + <span class="number">80</span>, <span class="number">0LL</span>);</span><br><span class="line">      i64_store(&amp;w2c_mem, v13 + <span class="number">80</span> + <span class="number">8LL</span>, <span class="number">0LL</span>);</span><br><span class="line">      v17 = v13 + <span class="number">48</span>;</span><br><span class="line">      w2c_g0 = v17;</span><br><span class="line">      i64_store(&amp;w2c_mem, v17, v19);</span><br><span class="line">      w2c_g0 = v17 - <span class="number">8</span>;</span><br><span class="line">      i64_store(&amp;w2c_mem, v17 - <span class="number">8</span>, <span class="number">0x16C80007</span>LL);</span><br><span class="line">      v8 = w2c_main_fib(<span class="number">0</span>);</span><br><span class="line">      v18 = w2c_g0;</span><br><span class="line">      <span class="keyword">if</span> ( v8 )</span><br><span class="line">        <span class="keyword">goto</span> LABEL_16;</span><br><span class="line">      v9 = i64_load(&amp;w2c_mem, <span class="number">0x15DD40</span>LL);</span><br><span class="line">      i64_store(&amp;w2c_mem, v18, v9);</span><br><span class="line">      i64_store(&amp;w2c_mem, v18 + <span class="number">8LL</span>, <span class="number">0x34C24</span>LL);</span><br><span class="line">      i64_store(&amp;w2c_mem, v18 + <span class="number">16LL</span>, <span class="number">9LL</span>);</span><br><span class="line">      i64_store(&amp;w2c_mem, v18 + <span class="number">24LL</span>, <span class="number">0x154E0</span>LL);</span><br><span class="line">      i64_store(&amp;w2c_mem, v18 + <span class="number">32LL</span>, <span class="number">0x49B60</span>LL);</span><br><span class="line">      w2c_g0 = v18 - <span class="number">8</span>;</span><br><span class="line">      i64_store(&amp;w2c_mem, v18 - <span class="number">8</span>, <span class="number">0x16C80008</span>LL);</span><br><span class="line">      v10 = w2c_syscall_js_Value_Set(<span class="number">0LL</span>);</span><br><span class="line">      v13 = w2c_g0;</span><br><span class="line">      <span class="keyword">if</span> ( v10 )</span><br><span class="line">        <span class="keyword">goto</span> LABEL_16;</span><br><span class="line">      a1 = <span class="number">5</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      a1 = <span class="number">6</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  wasm_rt_trap(<span class="number">5LL</span>);</span><br><span class="line">LABEL_16:</span><br><span class="line">  --wasm_rt_call_stack_depth;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1LL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__int64 __fastcall <span class="title">w2c_main_fib</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> a1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> v1; <span class="comment">// eax</span></span><br><span class="line">  __int64 v2; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">int</span> v3; <span class="comment">// eax</span></span><br><span class="line">  <span class="keyword">int</span> v4; <span class="comment">// eax</span></span><br><span class="line">  <span class="keyword">int</span> v5; <span class="comment">// eax</span></span><br><span class="line">  __int64 v6; <span class="comment">// rax</span></span><br><span class="line">  __int64 v7; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">int</span> v8; <span class="comment">// eax</span></span><br><span class="line">  __int64 v9; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">int</span> v10; <span class="comment">// eax</span></span><br><span class="line">  __int64 v11; <span class="comment">// rax</span></span><br><span class="line">  __int64 v12; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">int</span> v13; <span class="comment">// eax</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v16; <span class="comment">// [rsp+18h] [rbp-88h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v17; <span class="comment">// [rsp+18h] [rbp-88h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v18; <span class="comment">// [rsp+18h] [rbp-88h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v19; <span class="comment">// [rsp+18h] [rbp-88h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v20; <span class="comment">// [rsp+18h] [rbp-88h]</span></span><br><span class="line">  <span class="keyword">int</span> v21; <span class="comment">// [rsp+18h] [rbp-88h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> v22; <span class="comment">// [rsp+1Ch] [rbp-84h]</span></span><br><span class="line">  __int64 v23; <span class="comment">// [rsp+30h] [rbp-70h]</span></span><br><span class="line">  __int64 v24; <span class="comment">// [rsp+30h] [rbp-70h]</span></span><br><span class="line">  __int64 v25; <span class="comment">// [rsp+30h] [rbp-70h]</span></span><br><span class="line">  __int64 v26; <span class="comment">// [rsp+30h] [rbp-70h]</span></span><br><span class="line">  __int64 v27; <span class="comment">// [rsp+30h] [rbp-70h]</span></span><br><span class="line">  __int64 v28; <span class="comment">// [rsp+30h] [rbp-70h]</span></span><br><span class="line">  __int64 v29; <span class="comment">// [rsp+30h] [rbp-70h]</span></span><br><span class="line">  __int64 v30; <span class="comment">// [rsp+38h] [rbp-68h]</span></span><br><span class="line">  __int64 v31; <span class="comment">// [rsp+38h] [rbp-68h]</span></span><br><span class="line">  __int64 v32; <span class="comment">// [rsp+38h] [rbp-68h]</span></span><br><span class="line">  <span class="keyword">int</span> v33; <span class="comment">// [rsp+38h] [rbp-68h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v34; <span class="comment">// [rsp+40h] [rbp-60h]</span></span><br><span class="line">  __int64 v35; <span class="comment">// [rsp+48h] [rbp-58h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v36; <span class="comment">// [rsp+50h] [rbp-50h]</span></span><br><span class="line">  <span class="keyword">int</span> v37; <span class="comment">// [rsp+58h] [rbp-48h]</span></span><br><span class="line">  <span class="keyword">int</span> v38; <span class="comment">// [rsp+68h] [rbp-38h]</span></span><br><span class="line">  __int64 v39; <span class="comment">// [rsp+68h] [rbp-38h]</span></span><br><span class="line">  __int64 v40; <span class="comment">// [rsp+70h] [rbp-30h]</span></span><br><span class="line">  __int64 v41; <span class="comment">// [rsp+70h] [rbp-30h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v42; <span class="comment">// [rsp+70h] [rbp-30h]</span></span><br><span class="line">  <span class="keyword">int</span> v43; <span class="comment">// [rsp+78h] [rbp-28h]</span></span><br><span class="line"></span><br><span class="line">  LODWORD(v36) = <span class="number">0</span>;</span><br><span class="line">  v37 = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> ( ++wasm_rt_call_stack_depth &gt; <span class="number">0x1F4</span>u )</span><br><span class="line">    wasm_rt_trap(<span class="number">7LL</span>);</span><br><span class="line">  v16 = w2c_g0;</span><br><span class="line">  <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">while</span> ( <span class="number">1</span> )                               <span class="comment">// 循环次数为v4数组的长度</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">while</span> ( <span class="number">1</span> )                             <span class="comment">// a</span></span><br><span class="line">                                                <span class="comment">// </span></span><br><span class="line">        &#123;</span><br><span class="line">          <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">            &#123;</span><br><span class="line">              <span class="keyword">if</span> ( a1 &gt; <span class="number">0x2C</span> )</span><br><span class="line">              &#123;</span><br><span class="line">                wasm_rt_trap(<span class="number">5LL</span>);</span><br><span class="line">                <span class="keyword">goto</span> LABEL_27;</span><br><span class="line">              &#125;</span><br><span class="line">              <span class="keyword">if</span> ( v16 &lt;= (<span class="keyword">unsigned</span> <span class="keyword">int</span>)i32_load(&amp;w2c_mem, (<span class="keyword">unsigned</span> <span class="keyword">int</span>)w2c_g2 + <span class="number">16LL</span>) + <span class="number">192</span> )</span><br><span class="line">              &#123;</span><br><span class="line">                w2c_g0 = v16 - <span class="number">8</span>;</span><br><span class="line">                i64_store(&amp;w2c_mem, v16 - <span class="number">8</span>, <span class="number">382140416LL</span>);</span><br><span class="line">                v1 = w2c_runtime_morestack_noctxt(<span class="number">0LL</span>);</span><br><span class="line">                v16 = w2c_g0;</span><br><span class="line">                <span class="keyword">if</span> ( v1 )</span><br><span class="line">                  <span class="keyword">goto</span> LABEL_27;</span><br><span class="line">              &#125;</span><br><span class="line">              v17 = v16 - <span class="number">320</span>;</span><br><span class="line">              w2c_g0 = v17;</span><br><span class="line">              v2 = i64_load(&amp;w2c_mem, v17 + <span class="number">328LL</span>);</span><br><span class="line">              i64_store(&amp;w2c_mem, v17, v2);</span><br><span class="line">              i64_store(&amp;w2c_mem, v17 + <span class="number">8LL</span>, <span class="number">10LL</span>);</span><br><span class="line">              w2c_g0 = v17 - <span class="number">8</span>;</span><br><span class="line">              i64_store(&amp;w2c_mem, v17 - <span class="number">8</span>, <span class="number">382140420LL</span>);</span><br><span class="line">              v3 = w2c_strconv_FormatInt(<span class="number">0LL</span>);</span><br><span class="line">              v18 = w2c_g0;</span><br><span class="line">              <span class="keyword">if</span> ( v3 )</span><br><span class="line">                <span class="keyword">goto</span> LABEL_27;</span><br><span class="line">              v23 = i64_load(&amp;w2c_mem, (<span class="keyword">unsigned</span> <span class="keyword">int</span>)w2c_g0 + <span class="number">24LL</span>);</span><br><span class="line">              i64_store(&amp;w2c_mem, v18 + <span class="number">112LL</span>, v23);</span><br><span class="line">              v30 = i64_load(&amp;w2c_mem, v18 + <span class="number">16LL</span>);</span><br><span class="line">              i64_store(&amp;w2c_mem, v18 + <span class="number">184LL</span>, v30);</span><br><span class="line">              i64_store(&amp;w2c_mem, v18, v18 + <span class="number">136LL</span>);</span><br><span class="line">              i64_store(&amp;w2c_mem, v18 + <span class="number">8LL</span>, v30);</span><br><span class="line">              i64_store(&amp;w2c_mem, v18 + <span class="number">16LL</span>, v23);</span><br><span class="line">              w2c_g0 = v18 - <span class="number">8</span>;</span><br><span class="line">              i64_store(&amp;w2c_mem, v18 - <span class="number">8</span>, <span class="number">0x16C70006</span>LL);</span><br><span class="line">              v4 = w2c_runtime_stringtoslicebyte(<span class="number">0</span>);<span class="comment">// 转换为byte数组, v4</span></span><br><span class="line">              v16 = w2c_g0;</span><br><span class="line">              <span class="keyword">if</span> ( v4 )</span><br><span class="line">                <span class="keyword">goto</span> LABEL_27;</span><br><span class="line">              v24 = i64_load(&amp;w2c_mem, (<span class="keyword">unsigned</span> <span class="keyword">int</span>)w2c_g0 + <span class="number">32LL</span>);</span><br><span class="line">              v31 = i64_load(&amp;w2c_mem, v16 + <span class="number">24LL</span>);</span><br><span class="line">              <span class="keyword">if</span> ( v24 )</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">              a1 = <span class="number">43</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            i64_store(&amp;w2c_mem, v16 + <span class="number">104LL</span>, v24);</span><br><span class="line">            i64_store(&amp;w2c_mem, v16 + <span class="number">176LL</span>, v31);</span><br><span class="line">            v25 = i64_load8_u(&amp;w2c_mem, (<span class="keyword">unsigned</span> <span class="keyword">int</span>)v31) - <span class="number">48</span>;<span class="comment">// v25 = v4[0] - 48</span></span><br><span class="line">            i64_store32(&amp;w2c_mem, v16 + <span class="number">80LL</span>, v25);</span><br><span class="line">            i64_store32(&amp;w2c_mem, v16, v25);</span><br><span class="line">            w2c_g0 = v16 - <span class="number">8</span>;</span><br><span class="line">            i64_store(&amp;w2c_mem, v16 - <span class="number">8</span>, <span class="number">0x16C70008</span>LL);</span><br><span class="line">            v5 = w2c_runtime_convT32(<span class="number">0LL</span>);</span><br><span class="line">            v19 = w2c_g0;</span><br><span class="line">            <span class="keyword">if</span> ( v5 )</span><br><span class="line">              <span class="keyword">goto</span> LABEL_27;</span><br><span class="line">            v26 = i64_load(&amp;w2c_mem, (<span class="keyword">unsigned</span> <span class="keyword">int</span>)w2c_g0 + <span class="number">8LL</span>);</span><br><span class="line">            i64_store(&amp;w2c_mem, v19 + <span class="number">192</span>, <span class="number">0LL</span>);</span><br><span class="line">            i64_store(&amp;w2c_mem, v19 + <span class="number">192</span> + <span class="number">8LL</span>, <span class="number">0LL</span>);</span><br><span class="line">            i64_store(&amp;w2c_mem, v19 + <span class="number">192</span>, &amp;loc_155E0);</span><br><span class="line">            i64_store(&amp;w2c_mem, v19 + <span class="number">192</span> + <span class="number">8LL</span>, v26);</span><br><span class="line">            v27 = i64_load(&amp;w2c_mem, <span class="number">1328488LL</span>);</span><br><span class="line">            i64_store(&amp;w2c_mem, v19, <span class="number">307520LL</span>);</span><br><span class="line">            i64_store(&amp;w2c_mem, v19 + <span class="number">8LL</span>, v27);</span><br><span class="line">            i64_store(&amp;w2c_mem, v19 + <span class="number">16LL</span>, &amp;loc_3403D);</span><br><span class="line">            i64_store(&amp;w2c_mem, v19 + <span class="number">24LL</span>, <span class="number">3LL</span>);</span><br><span class="line">            i64_store(&amp;w2c_mem, v19 + <span class="number">32LL</span>, v19 + <span class="number">192LL</span>);</span><br><span class="line">            i64_store(&amp;w2c_mem, v19 + <span class="number">40LL</span>, <span class="number">1LL</span>);</span><br><span class="line">            i64_store(&amp;w2c_mem, v19 + <span class="number">48LL</span>, <span class="number">1LL</span>);</span><br><span class="line">            w2c_g0 = v19 - <span class="number">8</span>;</span><br><span class="line">            i64_store(&amp;w2c_mem, v19 - <span class="number">8</span>, <span class="number">0x16C7000B</span>LL);</span><br><span class="line">            w2c_fmt_Fprintf(<span class="number">0LL</span>);</span><br><span class="line">            v20 = w2c_g0;</span><br><span class="line">            i64_load32_u(&amp;w2c_mem, (<span class="keyword">unsigned</span> <span class="keyword">int</span>)w2c_g0 + <span class="number">80LL</span>);</span><br><span class="line">            v28 = i64_load(&amp;w2c_mem, v20 + <span class="number">96LL</span>) + <span class="number">1</span>;</span><br><span class="line">            v40 = <span class="number">12</span> * i64_load32_u(&amp;w2c_mem, v20 + <span class="number">80LL</span>);<span class="comment">// v40 = v25 * 12</span></span><br><span class="line">            v38 = i64_load(&amp;w2c_mem, v20 + <span class="number">176LL</span>);</span><br><span class="line">            v43 = i64_load(&amp;w2c_mem, v20 + <span class="number">96LL</span>);</span><br><span class="line">            v32 = i64_load8_u(&amp;w2c_mem, (<span class="keyword">unsigned</span> <span class="keyword">int</span>)(v43 + v38)) + v40 - <span class="number">48</span>;<span class="comment">// v32 = v40 + v4[1] - 48</span></span><br><span class="line">            i64_store(&amp;w2c_mem, v20 + <span class="number">96LL</span>, v28);</span><br><span class="line">            i64_store32(&amp;w2c_mem, v20 + <span class="number">80LL</span>, v32);</span><br><span class="line">            v6 = i64_load(&amp;w2c_mem, v20 + <span class="number">184LL</span>);</span><br><span class="line">            i64_store(&amp;w2c_mem, v20, v6);</span><br><span class="line">            v7 = i64_load(&amp;w2c_mem, v20 + <span class="number">112LL</span>);</span><br><span class="line">            i64_store(&amp;w2c_mem, v20 + <span class="number">8LL</span>, v7);</span><br><span class="line">            w2c_g0 = v20 - <span class="number">8</span>;</span><br><span class="line">            i64_store(&amp;w2c_mem, v20 - <span class="number">8</span>, <span class="number">0x16C7000F</span>LL);</span><br><span class="line">            v8 = w2c_runtime_countrunes(<span class="number">0LL</span>);</span><br><span class="line">            v16 = w2c_g0;</span><br><span class="line">            <span class="keyword">if</span> ( v8 )</span><br><span class="line">              <span class="keyword">goto</span> LABEL_27;</span><br><span class="line">            v41 = i64_load(&amp;w2c_mem, (<span class="keyword">unsigned</span> <span class="keyword">int</span>)w2c_g0 + <span class="number">96LL</span>);</span><br><span class="line">            <span class="keyword">if</span> ( v41 &lt; i64_load(&amp;w2c_mem, v16 + <span class="number">16LL</span>) )</span><br><span class="line">              <span class="keyword">break</span>;                            <span class="comment">// 循环次数为v4数组的长度</span></span><br><span class="line">            a1 = <span class="number">17</span>;</span><br><span class="line">          &#125;</span><br><span class="line">          v42 = i64_load(&amp;w2c_mem, v16 + <span class="number">96LL</span>);</span><br><span class="line">          <span class="keyword">if</span> ( v42 &lt; i64_load(&amp;w2c_mem, v16 + <span class="number">0x68</span>LL) )</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">          a1 = <span class="number">41</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        v9 = i64_load(&amp;w2c_mem, <span class="number">0x15DEE8</span>LL);</span><br><span class="line">        i64_store(&amp;w2c_mem, v16, v9);</span><br><span class="line">        i64_store(&amp;w2c_mem, v16 + <span class="number">8LL</span>, <span class="number">0x342AC</span>LL);</span><br><span class="line">        i64_store(&amp;w2c_mem, v16 + <span class="number">16LL</span>, <span class="number">5LL</span>);</span><br><span class="line">        w2c_g0 = v16 - <span class="number">8</span>;</span><br><span class="line">        i64_store(&amp;w2c_mem, v16 - <span class="number">8</span>, <span class="number">0x16C70012</span>LL);</span><br><span class="line">        v10 = w2c_syscall_js_Value_Get(<span class="number">0LL</span>);</span><br><span class="line">        v16 = w2c_g0;</span><br><span class="line">        <span class="keyword">if</span> ( v10 )</span><br><span class="line">          <span class="keyword">goto</span> LABEL_27;</span><br><span class="line">        v29 = i64_load(&amp;w2c_mem, (<span class="keyword">unsigned</span> <span class="keyword">int</span>)w2c_g0 + <span class="number">24LL</span>);</span><br><span class="line">        i64_store32(&amp;w2c_mem, v16 + <span class="number">84</span>, <span class="number">0LL</span>);</span><br><span class="line">        v11 = i64_load(&amp;w2c_mem, v16 + <span class="number">328LL</span>);</span><br><span class="line">        i64_store8(&amp;w2c_mem, v16 + <span class="number">87</span>, v11);</span><br><span class="line">        v34 = (<span class="keyword">unsigned</span> <span class="keyword">int</span>)i64_load(&amp;w2c_mem, v16 + <span class="number">328LL</span>);</span><br><span class="line">        i64_store8(&amp;w2c_mem, v16 + <span class="number">86</span>, v34 &gt;&gt; <span class="number">8</span>);<span class="comment">// 对输入数据进行切片</span></span><br><span class="line">        i64_store8(&amp;w2c_mem, v16 + <span class="number">85</span>, v34 &gt;&gt; <span class="number">16</span>);</span><br><span class="line">        i64_store8(&amp;w2c_mem, v16 + <span class="number">84</span>, v34 &gt;&gt; <span class="number">24</span>);</span><br><span class="line">        v35 = i64_load32_u(&amp;w2c_mem, (<span class="keyword">unsigned</span> <span class="keyword">int</span>)(<span class="number">4</span> * v36 + v37)) ^ <span class="number">0xFFFFFF</span>;</span><br><span class="line">        v36 = (<span class="keyword">unsigned</span> __int8)(i64_load8_u(&amp;w2c_mem, v16 + <span class="number">85</span>) ^ v35);</span><br><span class="line">        v37 = i64_load(&amp;w2c_mem, <span class="number">1273040LL</span>);</span><br><span class="line">        <span class="keyword">if</span> ( v36 &lt; i64_load(&amp;w2c_mem, <span class="number">1273048LL</span>) )</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        a1 = <span class="number">39</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      v12 = w2c_runtime_wasmTruncS(<span class="built_in">fabs</span>((<span class="keyword">double</span>)~(_DWORD)v35));</span><br><span class="line">      v16 = w2c_g0;</span><br><span class="line">      v33 = v12;</span><br><span class="line">      i64_store(&amp;w2c_mem, (<span class="keyword">unsigned</span> <span class="keyword">int</span>)w2c_g0 + <span class="number">128LL</span>, v12);</span><br><span class="line">      <span class="keyword">if</span> ( (<span class="keyword">unsigned</span> <span class="keyword">int</span>)i64_load32_u(&amp;w2c_mem, v16 + <span class="number">80LL</span>) == <span class="number">0x6C1540EE</span>LL )</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      a1 = <span class="number">24</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ( v33 == <span class="number">1963701148LL</span> )</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    a1 = <span class="number">24</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  i64_store(&amp;w2c_mem, v16 + <span class="number">208</span>, <span class="number">0LL</span>);</span><br><span class="line">  i64_store(&amp;w2c_mem, v16 + <span class="number">208</span> + <span class="number">8LL</span>, <span class="number">0LL</span>);</span><br><span class="line">  i64_store(&amp;w2c_mem, v16 + <span class="number">208</span>, <span class="number">87264LL</span>);</span><br><span class="line">  i64_store(&amp;w2c_mem, v16 + <span class="number">208</span> + <span class="number">8LL</span>, <span class="number">301904LL</span>);</span><br><span class="line">  i64_store(&amp;w2c_mem, v16, v29);</span><br><span class="line">  i64_store(&amp;w2c_mem, v16 + <span class="number">8LL</span>, v16 + <span class="number">208LL</span>);</span><br><span class="line">  i64_store(&amp;w2c_mem, v16 + <span class="number">16LL</span>, <span class="number">1LL</span>);</span><br><span class="line">  i64_store(&amp;w2c_mem, v16 + <span class="number">24LL</span>, <span class="number">1LL</span>);</span><br><span class="line">  w2c_g0 = v16 - <span class="number">8</span>;</span><br><span class="line">  i64_store(&amp;w2c_mem, v16 - <span class="number">8</span>, <span class="number">382140441LL</span>);</span><br><span class="line">  v13 = w2c_syscall_js_Value_Invoke(<span class="number">0LL</span>);</span><br><span class="line">  v21 = w2c_g0;</span><br><span class="line">  <span class="keyword">if</span> ( !v13 )</span><br><span class="line">  &#123;</span><br><span class="line">    v39 = i64_load(&amp;w2c_mem, (<span class="keyword">unsigned</span> <span class="keyword">int</span>)w2c_g0 + <span class="number">128LL</span>);</span><br><span class="line">    i64_store32(&amp;w2c_mem, (<span class="keyword">unsigned</span> <span class="keyword">int</span>)(v21 + <span class="number">336</span>), v39);</span><br><span class="line">    w2c_g0 = v21 + <span class="number">328</span>;</span><br><span class="line">    v22 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">goto</span> LABEL_28;</span><br><span class="line">  &#125;</span><br><span class="line">LABEL_27:</span><br><span class="line">  v22 = <span class="number">1</span>;</span><br><span class="line">LABEL_28:</span><br><span class="line">  --wasm_rt_call_stack_depth;</span><br><span class="line">  <span class="keyword">return</span> v22;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="找到编码算法的特征，并逆向解出数据"><a href="#找到编码算法的特征，并逆向解出数据" class="headerlink" title="找到编码算法的特征，并逆向解出数据"></a>找到编码算法的特征，并逆向解出数据</h3><p>在<code>w2c_main_fib</code>函数中，看到了这个语句：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( v33 == <span class="number">1963701148LL</span> )</span><br></pre></td></tr></table></figure>
+
+<p>根据算法特征，可以分析出这个是CRC32算法。于是结合代码逻辑，编写逆向解密脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">num = <span class="string">&#x27;&#x27;</span></span><br><span class="line">f = <span class="number">0x6C1540EE</span></span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">    f += <span class="number">48</span></span><br><span class="line">    num += <span class="built_in">str</span>(f%<span class="number">12</span>)[<span class="number">0</span>:<span class="number">1</span>]</span><br><span class="line">    f -= f%<span class="number">12</span> + <span class="number">48</span></span><br><span class="line">    f /= <span class="number">12</span></span><br><span class="line">    <span class="keyword">if</span> f &lt; <span class="number">10</span>:</span><br><span class="line">      num += <span class="built_in">str</span>(f)[<span class="number">0</span>:<span class="number">1</span>]</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line"><span class="built_in">print</span>(num[::-<span class="number">1</span>])</span><br><span class="line"><span class="comment"># 427346092</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="搭建本地环境，运行wasm文件"><a href="#搭建本地环境，运行wasm文件" class="headerlink" title="搭建本地环境，运行wasm文件"></a>搭建本地环境，运行wasm文件</h2><h3 id="利用Python搭建本地http环境"><a href="#利用Python搭建本地http环境" class="headerlink" title="利用Python搭建本地http环境"></a>利用Python搭建本地http环境</h3><p>在存放index.html和main.wasm的文件夹下，命令行执行（前提是已安装Python3）:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m http.server 8000</span><br></pre></td></tr></table></figure>
+
+<p>这样子就可以在本地的8000端口打开本地环境，如果端口冲突的话，可以考虑换一个端口。</p>
+<h3 id="本地验证数据正确性"><a href="#本地验证数据正确性" class="headerlink" title="本地验证数据正确性"></a>本地验证数据正确性</h3><p>打开：localhost:8000：</p>
+<p><img src="/images/Writeup/image-20211107224126240.png" alt="image-20211107224126240"></p>
+<p>输入<code>427346092</code>验证计算结果是否正确：</p>
+<p><img src="/images/Writeup/image-20211107224237205.png" alt="image-20211107224237205"></p>
+<p>就可以成功得到flag:<del>ISCTF{427346092+CRC_1963701148_}</del></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/09/24/GXYCTF2019-CheckIn/" rel="prev" title="GXYCTF2019-CheckIn">
+      <i class="fa fa-chevron-left"></i> GXYCTF2019-CheckIn
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#easy-wasm"><span class="nav-number">1.</span> <span class="nav-text">easy_wasm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9wasm%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8C%E9%87%8D%E6%9E%84%EF%BC%8C%E5%BE%97%E5%88%B0%E5%8F%AF%E9%80%86%E5%90%91%E7%9A%84%E7%A8%8B%E5%BA%8F%E6%96%87%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">对wasm文件进行重构，得到可逆向的程序文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%86%E5%90%91%E5%87%BA-c%E6%96%87%E4%BB%B6%EF%BC%88%E5%8F%AF%E8%AF%BB%E6%80%A7%E8%BE%83%E5%B7%AE%EF%BC%89"><span class="nav-number">1.1.1.</span> <span class="nav-text">逆向出.c文件（可读性较差）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E9%80%86%E5%90%91%E5%87%BA%E7%9A%84-c%E6%96%87%E4%BB%B6%EF%BC%8C%E7%BC%96%E8%AF%91%E6%88%90-o%E6%96%87%E4%BB%B6%EF%BC%8C%E4%BD%BF%E5%85%B6%E5%8F%AF%E4%BB%A5%E7%94%A8IDA%E5%8F%8D%E6%B1%87%E7%BC%96%E5%87%BAC%E4%BB%A3%E7%A0%81"><span class="nav-number">1.1.2.</span> <span class="nav-text">对逆向出的.c文件，编译成.o文件，使其可以用IDA反汇编出C代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84%E8%BF%9B%E8%A1%8C%E5%88%86%E6%9E%90"><span class="nav-number">1.2.</span> <span class="nav-text">对程序结构进行分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%BD%8Dwasm%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.1.</span> <span class="nav-text">定位wasm的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%BE%E5%88%B0%E7%BC%96%E7%A0%81%E7%AE%97%E6%B3%95%E7%9A%84%E7%89%B9%E5%BE%81%EF%BC%8C%E5%B9%B6%E9%80%86%E5%90%91%E8%A7%A3%E5%87%BA%E6%95%B0%E6%8D%AE"><span class="nav-number">1.2.2.</span> <span class="nav-text">找到编码算法的特征，并逆向解出数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%8E%AF%E5%A2%83%EF%BC%8C%E8%BF%90%E8%A1%8Cwasm%E6%96%87%E4%BB%B6"><span class="nav-number">1.3.</span> <span class="nav-text">搭建本地环境，运行wasm文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8Python%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0http%E7%8E%AF%E5%A2%83"><span class="nav-number">1.3.1.</span> <span class="nav-text">利用Python搭建本地http环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E9%AA%8C%E8%AF%81%E6%95%B0%E6%8D%AE%E6%AD%A3%E7%A1%AE%E6%80%A7"><span class="nav-number">1.3.2.</span> <span class="nav-text">本地验证数据正确性</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Randark"
+      src="/images/logo/IMG_0004.jpg">
+  <p class="site-author-name" itemprop="name">Randark</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Randark-JMT" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Randark-JMT" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cc-by-nc-sa</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+    </div>
+</body>
+</html>
