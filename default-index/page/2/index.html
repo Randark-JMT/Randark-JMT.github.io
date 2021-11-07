@@ -795,7 +795,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-26 23:17:15" itemprop="dateModified" datetime="2021-10-26T23:17:15+08:00">2021-10-26</time>
+                <time title="修改时间：2021-11-07 21:52:22" itemprop="dateModified" datetime="2021-11-07T21:52:22+08:00">2021-11-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -834,13 +834,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E5%96%B5%E5%96%B5%E5%96%B5">题目链接</a><br>附件下载解压，得到一张png文件：<br>![](/images/Writeup/20210907094245.png]<br>![](/images/Writeup/20210907094304.png]<br>文件属性里面没有东西，用[[Stegsolve]看一下：<br>![](/images/Writeup/20210907094411.png]<br>在plane 0里面发现特殊数据，导出来看一下头：<br>![](/images/Writeup/20210907094750.png]<br>导出，顺便[[010Editor]修一下文件头：<br>![](/images/Writeup/20210907094854.png]<br>![](/images/Writeup/20210907095251.png]<br>发现还是无法正常打开，尝试CRC校验重新计算一下，得到正确的照片高度：</p>
+          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E5%96%B5%E5%96%B5%E5%96%B5">题目链接</a><br>附件下载解压，得到一张png文件：<br><img src="/images/Writeup/20210907094245.png"><br><img src="/images/Writeup/20210907094304.png"><br>文件属性里面没有东西，用[[Stegsolve]看一下：<br><img src="/images/Writeup/20210907094411.png"><br>在plane 0里面发现特殊数据，导出来看一下头：<br><img src="/images/Writeup/20210907094750.png"><br>导出，顺便[[010Editor]修一下文件头：<br><img src="/images/Writeup/20210907094854.png"><br><img src="/images/Writeup/20210907095251.png"><br>发现还是无法正常打开，尝试CRC校验重新计算一下，得到正确的照片高度：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">misc = <span class="built_in">open</span>(<span class="string">&quot;D:\\Downloads\\3057c969-4df0-45d9-af85-e58b58647059\\无标题1.png&quot;</span>,<span class="string">&quot;rb&quot;</span>).read()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1024</span>):</span><br><span class="line">    data = misc[<span class="number">12</span>:<span class="number">20</span>] +struct.pack(<span class="string">&#x27;&gt;i&#x27;</span>,i)+ misc[<span class="number">24</span>:<span class="number">29</span>]</span><br><span class="line">    crc32 = binascii.crc32(data) &amp; <span class="number">0xffffffff</span></span><br><span class="line">    <span class="keyword">if</span> crc32 == <span class="number">0x08ec7edb</span>:</span><br><span class="line">        <span class="built_in">print</span> (i)</span><br></pre></td></tr></table></figure>
 <p>得到输出：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">280</span><br></pre></td></tr></table></figure>
-<p>![](/images/Writeup/20210907095642.png]<br>二维码识别一下：<br>![](/images/Writeup/20210907095724.png]<br>得到一个链接：</p>
+<p><img src="/images/Writeup/20210907095642.png"><br>二维码识别一下：<br><img src="/images/Writeup/20210907095724.png"><br>得到一个链接：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://pan.baidu.com/s/1pLT2J4f</span><br></pre></td></tr></table></figure>
-<p>![](/images/Writeup/20210907095848.png]<br>下载附件，NTFS流读取，pyc逆向，得到flag<br><em>我是实在不想用百度网盘，慢死人</em><br>flag:<del>flag{Y@e_Cl3veR_C1Ever!}</del></p>
+<p><img src="/images/Writeup/20210907095848.png"><br>下载附件，NTFS流读取，pyc逆向，得到flag<br><em>我是实在不想用百度网盘，慢死人</em><br>flag:<del>flag{Y@e_Cl3veR_C1Ever!}</del></p>
 <hr>
 <p>参考：<br>1.<a target="_blank" rel="noopener" href="https://blog.csdn.net/mochu7777777/article/details/109368451">BUUCTF：喵喵喵</a></p>
 
@@ -893,7 +893,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-26 23:20:44" itemprop="dateModified" datetime="2021-10-26T23:20:44+08:00">2021-10-26</time>
+                <time title="修改时间：2021-11-07 21:52:01" itemprop="dateModified" datetime="2021-11-07T21:52:01+08:00">2021-11-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -920,9 +920,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E6%88%91%E5%90%83%E4%B8%89%E6%98%8E%E6%B2%BB">题目链接</a><br>附件下载解压，得到一张jpg文件：<br>![](/images/Writeup/20210907114234.png]<br>尝试使用[[Binwalk]分析一下结构：</p>
+          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E6%88%91%E5%90%83%E4%B8%89%E6%98%8E%E6%B2%BB">题目链接</a><br>附件下载解压，得到一张jpg文件：<br><img src="/images/Writeup/20210907114234.png"><br>尝试使用[[Binwalk]分析一下结构：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">randark@randark-VirtualBox:~/shared$ binwalk flag.jpg</span><br><span class="line"></span><br><span class="line">DECIMAL       HEXADECIMAL     DESCRIPTION</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">0             0x0             JPEG image data, JFIF standard 1.01</span><br><span class="line">37475         0x9263          JPEG image data, JFIF standard 1.01</span><br></pre></td></tr></table></figure>
-<p>用[[010Editor]看一下文件，看看在两个文件的连接处有没有信息（毕竟题目都提示说三明治了）：<br>![](/images/Writeup/20210907114746.png]<br>base解码看一下：</p>
+<p>用[[010Editor]看一下文件，看看在两个文件的连接处有没有信息（毕竟题目都提示说三明治了）：<br><img src="/images/Writeup/20210907114746.png"><br>base解码看一下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MZWGCZ33GZTDCNZZG5SDIMBYGBRDEOLCGY2GIYJVHA4TONZYGA2DMM3FGMYH2</span><br></pre></td></tr></table></figure>
 <p>base32解码一下，得到flag。<br>flag:<del>flag{6f1797d4080b29b64da5897780463e30}</del></p>
 
