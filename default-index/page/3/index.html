@@ -842,9 +842,95 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var rotFlag = flag.replace(/[a-zA-Z]/g, function (c) &#123; return String.fromCharCode((c &lt;= &quot;Z&quot; ? 90 : 122)&gt;= (c = c.charCodeAt(0) + 13) ? c : c - 26); &#125;);</span><br></pre></td></tr></table></figure>
 <p>借用网上大佬的脚本：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">enc = <span class="string">&#x27;PyvragFvqrYbtvafNerRnfl@syner-ba.pbz&#x27;</span></span><br><span class="line">flag = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> enc:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">ord</span>(i) &gt;= <span class="number">65</span> <span class="keyword">and</span> <span class="built_in">ord</span>(i) &lt;= <span class="number">90</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">ord</span>(i) - <span class="number">13</span> &lt; <span class="number">65</span> :</span><br><span class="line">            flag += <span class="built_in">chr</span>(<span class="built_in">ord</span>(i) + <span class="number">13</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            flag += <span class="built_in">chr</span>(<span class="built_in">ord</span>(i) - <span class="number">13</span>)</span><br><span class="line">    <span class="keyword">elif</span> <span class="built_in">ord</span>(i) &gt;= <span class="number">97</span> <span class="keyword">and</span> <span class="built_in">ord</span>(i) &lt;= <span class="number">122</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">ord</span>(i) - <span class="number">13</span> &lt; <span class="number">97</span> :</span><br><span class="line">            flag += <span class="built_in">chr</span>(<span class="built_in">ord</span>(i) + <span class="number">13</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            flag += <span class="built_in">chr</span>(<span class="built_in">ord</span>(i) - <span class="number">13</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        flag += i</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ClientSideLoginsAreEasy@flare-on.com</span></span><br></pre></td></tr></table></figure>
-<p>flag:<del>flag{<a href="mailto:&#67;&#x6c;&#105;&#101;&#x6e;&#116;&#83;&#105;&#100;&#101;&#76;&#111;&#103;&#105;&#x6e;&#x73;&#65;&#114;&#x65;&#69;&#x61;&#115;&#121;&#x40;&#x66;&#x6c;&#x61;&#114;&#101;&#45;&#111;&#x6e;&#x2e;&#x63;&#x6f;&#109;">&#67;&#x6c;&#105;&#101;&#x6e;&#116;&#83;&#105;&#100;&#101;&#76;&#111;&#103;&#105;&#x6e;&#x73;&#65;&#114;&#x65;&#69;&#x61;&#115;&#121;&#x40;&#x66;&#x6c;&#x61;&#114;&#101;&#45;&#111;&#x6e;&#x2e;&#x63;&#x6f;&#109;</a>}</del></p>
+<p>flag:<del>flag{<a href="mailto:&#x43;&#108;&#105;&#101;&#110;&#x74;&#x53;&#x69;&#100;&#x65;&#76;&#x6f;&#103;&#105;&#x6e;&#x73;&#x41;&#x72;&#101;&#x45;&#x61;&#x73;&#121;&#64;&#102;&#108;&#97;&#x72;&#101;&#45;&#111;&#x6e;&#46;&#x63;&#x6f;&#x6d;">&#x43;&#108;&#105;&#101;&#110;&#x74;&#x53;&#x69;&#100;&#x65;&#76;&#x6f;&#103;&#105;&#x6e;&#x73;&#x41;&#x72;&#101;&#x45;&#x61;&#x73;&#121;&#64;&#102;&#108;&#97;&#x72;&#101;&#45;&#111;&#x6e;&#46;&#x63;&#x6f;&#x6d;</a>}</del></p>
 <hr>
 <p>参考：<br>1.<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43859686/article/details/112627046">[FlareOn4]login</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/09/04/GWCTF%202019-pyre/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
+      <meta itemprop="name" content="Randark">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橘墨的摸鱼现场">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/04/GWCTF%202019-pyre/" class="post-title-link" itemprop="url">GWCTF 2019-pyre</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-09-04 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-04T00:00:00+08:00">2021-09-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-09-22 17:16:28" itemprop="dateModified" datetime="2021-09-22T17:16:28+08:00">2021-09-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Reserve/" itemprop="url" rel="index"><span itemprop="name">Reserve</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Reserve/Pyc/" itemprop="url" rel="index"><span itemprop="name">Pyc</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#[GWCTF%202019]pyre">题目链接</a><br>附件是一个pyc文件，尝试使用<a target="_blank" rel="noopener" href="https://tool.lu/pyc/">在线工具</a>来解码一下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># visit https://tool.lu/pyc/ for more information</span></span><br><span class="line"><span class="built_in">print</span> <span class="string">&#x27;Welcome to Re World!&#x27;</span></span><br><span class="line"><span class="built_in">print</span> <span class="string">&#x27;Your input1 is your flag~&#x27;</span></span><br><span class="line">l = <span class="built_in">len</span>(input1)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(l):</span><br><span class="line">    num = ((input1[i] + i) % <span class="number">128</span> + <span class="number">128</span>) % <span class="number">128</span></span><br><span class="line">    code += num</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(l - <span class="number">1</span>):</span><br><span class="line">    code[i] = code[i] ^ code[i + <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> code</span><br><span class="line">code = [</span><br><span class="line">    <span class="string">&#x27;\x1f&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\x12&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\x1d&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;(&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;0&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;4&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\x01&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\x06&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\x14&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;4&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;,&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\x1b&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;U&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;?&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;o&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;6&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;*&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;:&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\x01&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;D&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;%&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\x13&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<p>看了一下，不是很复杂，写一个还原脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">code = [<span class="string">&#x27;\x1f&#x27;</span>,<span class="string">&#x27;\x12&#x27;</span>,<span class="string">&#x27;\x1d&#x27;</span>,<span class="string">&#x27;(&#x27;</span>,<span class="string">&#x27;0&#x27;</span>,<span class="string">&#x27;4&#x27;</span>,<span class="string">&#x27;\x01&#x27;</span>,<span class="string">&#x27;\x06&#x27;</span>,<span class="string">&#x27;\x14&#x27;</span>,<span class="string">&#x27;4&#x27;</span>,<span class="string">&#x27;,&#x27;</span>,<span class="string">&#x27;\x1b&#x27;</span>,<span class="string">&#x27;U&#x27;</span>,<span class="string">&#x27;?&#x27;</span>,<span class="string">&#x27;o&#x27;</span>,<span class="string">&#x27;6&#x27;</span>,<span class="string">&#x27;*&#x27;</span>,<span class="string">&#x27;:&#x27;</span>,<span class="string">&#x27;\x01&#x27;</span>,<span class="string">&#x27;D&#x27;</span>,<span class="string">&#x27;;&#x27;</span>,<span class="string">&#x27;%&#x27;</span>,<span class="string">&#x27;\x13&#x27;</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(code)-<span class="number">2</span>,-<span class="number">1</span>,-<span class="number">1</span>):</span><br><span class="line">    code[i] = <span class="built_in">chr</span>(<span class="built_in">ord</span>(code[i])^<span class="built_in">ord</span>(code[i+<span class="number">1</span>]))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(code)):</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">chr</span>((<span class="built_in">ord</span>(code[i])-i)%<span class="number">128</span>),end=<span class="string">&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>得到输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GWHT&#123;Just_Re_1s_Ha66y!&#125;</span><br></pre></td></tr></table></figure>
+<p>flag:<del>GWHT{Just_Re_1s_Ha66y!}</del></p>
+<hr>
+<p>参考：<br>1.<a target="_blank" rel="noopener" href="https://blog.csdn.net/Palmer9/article/details/105031115/">re学习笔记（52）BUUCTF-re-[GWCTF 2019]pyre</a></p>
 
       
     </div>
@@ -941,92 +1027,6 @@
 
 <hr>
 <p>参考：<br>1.<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Mayfly-nymph/p/12655622.html">BUUCTF–[GUET-CTF2019]re</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/09/04/GWCTF%202019-pyre/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
-      <meta itemprop="name" content="Randark">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橘墨的摸鱼现场">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/04/GWCTF%202019-pyre/" class="post-title-link" itemprop="url">GWCTF 2019-pyre</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-09-04 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-04T00:00:00+08:00">2021-09-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-22 17:16:28" itemprop="dateModified" datetime="2021-09-22T17:16:28+08:00">2021-09-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Reserve/" itemprop="url" rel="index"><span itemprop="name">Reserve</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Reserve/Pyc/" itemprop="url" rel="index"><span itemprop="name">Pyc</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#[GWCTF%202019]pyre">题目链接</a><br>附件是一个pyc文件，尝试使用<a target="_blank" rel="noopener" href="https://tool.lu/pyc/">在线工具</a>来解码一下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># visit https://tool.lu/pyc/ for more information</span></span><br><span class="line"><span class="built_in">print</span> <span class="string">&#x27;Welcome to Re World!&#x27;</span></span><br><span class="line"><span class="built_in">print</span> <span class="string">&#x27;Your input1 is your flag~&#x27;</span></span><br><span class="line">l = <span class="built_in">len</span>(input1)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(l):</span><br><span class="line">    num = ((input1[i] + i) % <span class="number">128</span> + <span class="number">128</span>) % <span class="number">128</span></span><br><span class="line">    code += num</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(l - <span class="number">1</span>):</span><br><span class="line">    code[i] = code[i] ^ code[i + <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> code</span><br><span class="line">code = [</span><br><span class="line">    <span class="string">&#x27;\x1f&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\x12&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\x1d&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;(&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;0&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;4&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\x01&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\x06&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\x14&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;4&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;,&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\x1b&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;U&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;?&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;o&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;6&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;*&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;:&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\x01&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;D&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;%&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;\x13&#x27;</span>]</span><br></pre></td></tr></table></figure>
-<p>看了一下，不是很复杂，写一个还原脚本：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">code = [<span class="string">&#x27;\x1f&#x27;</span>,<span class="string">&#x27;\x12&#x27;</span>,<span class="string">&#x27;\x1d&#x27;</span>,<span class="string">&#x27;(&#x27;</span>,<span class="string">&#x27;0&#x27;</span>,<span class="string">&#x27;4&#x27;</span>,<span class="string">&#x27;\x01&#x27;</span>,<span class="string">&#x27;\x06&#x27;</span>,<span class="string">&#x27;\x14&#x27;</span>,<span class="string">&#x27;4&#x27;</span>,<span class="string">&#x27;,&#x27;</span>,<span class="string">&#x27;\x1b&#x27;</span>,<span class="string">&#x27;U&#x27;</span>,<span class="string">&#x27;?&#x27;</span>,<span class="string">&#x27;o&#x27;</span>,<span class="string">&#x27;6&#x27;</span>,<span class="string">&#x27;*&#x27;</span>,<span class="string">&#x27;:&#x27;</span>,<span class="string">&#x27;\x01&#x27;</span>,<span class="string">&#x27;D&#x27;</span>,<span class="string">&#x27;;&#x27;</span>,<span class="string">&#x27;%&#x27;</span>,<span class="string">&#x27;\x13&#x27;</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(code)-<span class="number">2</span>,-<span class="number">1</span>,-<span class="number">1</span>):</span><br><span class="line">    code[i] = <span class="built_in">chr</span>(<span class="built_in">ord</span>(code[i])^<span class="built_in">ord</span>(code[i+<span class="number">1</span>]))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(code)):</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">chr</span>((<span class="built_in">ord</span>(code[i])-i)%<span class="number">128</span>),end=<span class="string">&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>得到输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GWHT&#123;Just_Re_1s_Ha66y!&#125;</span><br></pre></td></tr></table></figure>
-<p>flag:<del>GWHT{Just_Re_1s_Ha66y!}</del></p>
-<hr>
-<p>参考：<br>1.<a target="_blank" rel="noopener" href="https://blog.csdn.net/Palmer9/article/details/105031115/">re学习笔记（52）BUUCTF-re-[GWCTF 2019]pyre</a></p>
 
       
     </div>
