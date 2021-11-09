@@ -185,7 +185,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/26/easyre/">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/30/%E5%B0%8F%E6%98%8E%E7%9A%84%E4%BF%9D%E9%99%A9%E7%AE%B1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
@@ -199,7 +199,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/08/26/easyre/" class="post-title-link" itemprop="url">easyre</a>
+            <a href="/2021/08/30/%E5%B0%8F%E6%98%8E%E7%9A%84%E4%BF%9D%E9%99%A9%E7%AE%B1/" class="post-title-link" itemprop="url">小明的保险箱</a>
         </h2>
 
         <div class="post-meta">
@@ -209,14 +209,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-26T00:00:00+08:00">2021-08-26</time>
+              <time title="创建时间：2021-08-30 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-30T00:00:00+08:00">2021-08-30</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-22 17:17:00" itemprop="dateModified" datetime="2021-09-22T17:17:00+08:00">2021-09-22</time>
+                <time title="修改时间：2021-11-07 21:51:56" itemprop="dateModified" datetime="2021-11-07T21:51:56+08:00">2021-11-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -224,248 +224,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Reserve/" itemprop="url" rel="index"><span itemprop="name">Reserve</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#easyre">题目链接</a><br>拖进IDA分析一下：<br><img src="/images/Writeup/20210826162227.png"><br>其实这时候就能看到flag了，但是仍然要研究一下程序逻辑：<br><img src="/images/Writeup/20210826162324.png"></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;a, &amp;b);</span><br><span class="line"><span class="keyword">if</span> ( a == b )</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;flag&#123;this_Is_a_EaSyRe&#125;&quot;</span>);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;sorry,you can&#x27;t get flag&quot;</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
-<p>由此可以看出只要输入两个相等的值就可以输出flag：<br><img src="/images/Writeup/20210826162504.png"><br>flag:<del>flag{this_Is_a_EaSyRe}</del></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/26/reverse1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
-      <meta itemprop="name" content="Randark">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橘墨的摸鱼现场">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/26/reverse1/" class="post-title-link" itemprop="url">reverse1</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-26T00:00:00+08:00">2021-08-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-22 17:16:30" itemprop="dateModified" datetime="2021-09-22T17:16:30+08:00">2021-09-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Reserve/" itemprop="url" rel="index"><span itemprop="name">Reserve</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#reverse1">题目链接</a><br>拖进IDA分析一下，看一下主函数：<br><img src="/images/Writeup/20210826162729.png"><br>一路跟进下去，发现难度实在太大，换一下，看一下字符列表：<br><img src="/images/Writeup/20210826163344.png"><br>发现了存在flag数据的痕迹，跟进一下：<br><img src="/images/Writeup/20210826163526.png"><br>跟进一下sub_1400118C0函数：<br><img src="/images/Writeup/20210826163557.png"><br><img src="/images/Writeup/20210826163622.png"><br>可以看到这里有一个字符串比较函数，看来是拿输入字符串与Str2作了比较：<br><img src="/images/Writeup/20210826163904.png"><br>跟踪Str2的数据，看见了flag：<br><img src="/images/Writeup/20210826163939.png"><br>flag:<del>flag{hello_world}</del><br>但是，真的结束了吗？将flag数据提交上去，发现系统返回flag不对，再返回看一下Str2的处理过程，发现做了字符替换：<br><img src="/images/Writeup/20210826164134.png"></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ( j = <span class="number">0</span>; ; ++j )</span><br><span class="line">&#123;</span><br><span class="line">	v8 = j;</span><br><span class="line">	v2 = j_strlen(Str2);</span><br><span class="line">	<span class="keyword">if</span> ( v8 &gt; v2 )</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">if</span> ( Str2[j] == <span class="number">111</span> )</span><br><span class="line">		Str2[j] = <span class="number">48</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>转换一下ASCII编码显示一下字符：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ( j = <span class="number">0</span>; ; ++j )</span><br><span class="line">&#123;</span><br><span class="line">	v8 = j;</span><br><span class="line">	v2 = j_strlen(Str2);</span><br><span class="line">	<span class="keyword">if</span> ( v8 &gt; v2 )</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">if</span> ( Str2[j] == <span class="string">&#x27;o&#x27;</span> )</span><br><span class="line">		Str2[j] = <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>看来是将Str2里面的“o”替换成了”0”，于是得到了最终flag<br>flag:<del>flag{hell0_w0rld}</del></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/26/reverse2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
-      <meta itemprop="name" content="Randark">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橘墨的摸鱼现场">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/26/reverse2/" class="post-title-link" itemprop="url">reverse2</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-26T00:00:00+08:00">2021-08-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-22 17:16:30" itemprop="dateModified" datetime="2021-09-22T17:16:30+08:00">2021-09-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Reserve/" itemprop="url" rel="index"><span itemprop="name">Reserve</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#reverse2">题目链接</a><br>拖进IDA分析一下：<br><img src="/images/Writeup/20210826204912.png"><br>吐槽一下，这个还比[[reverse1)简单，这个在主函数就看到了flag的影子，[[reverse1)还要去字符库里面找。。<br>逆向编译一下，看看有关flag的操作：<br><img src="/images/Writeup/20210826205058.png"></p>
-<p>核心代码： ^199370</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( pid )</span><br><span class="line">&#123;</span><br><span class="line">	waitpid(pid, &amp;stat_loc, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="built_in">strlen</span>(&amp;flag); ++i )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> ( *(&amp;flag + i) == <span class="number">105</span> || *(&amp;flag + i) == <span class="number">114</span> )</span><br><span class="line">			*(&amp;flag + i) = <span class="number">49</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;input the flag:&quot;</span>);</span><br><span class="line">__isoc99_scanf(<span class="string">&quot;%20s&quot;</span>, s2);</span><br><span class="line"><span class="keyword">if</span> ( !<span class="built_in">strcmp</span>(&amp;flag, s2) )</span><br><span class="line">	result = <span class="built_in">puts</span>(<span class="string">&quot;this is the right flag!&quot;</span>);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	result = <span class="built_in">puts</span>(<span class="string">&quot;wrong flag!&quot;</span>);</span><br><span class="line"><span class="keyword">return</span> result;</span><br></pre></td></tr></table></figure>
-<p>看来是用户输入了s2，然后比较$flag的值与s2。那么s2就代表着flag，即去追踪&amp;flag的数据：<br><img src="/images/Writeup/20210826205424.png"><br>找到了，ASCII码转换一下：<br><img src="/images/Writeup/20210826205454.png"><br>那么<del>flag{hacking_for_fun}</del>就是最终flag的数据？并不是，在[[reverse2#^199370|核心代码)里面可以看见&amp;flag的数值做出了改变，ASCII转换一下看一下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( pid )</span><br><span class="line">&#123;</span><br><span class="line">	waitpid(pid, &amp;stat_loc, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="built_in">strlen</span>(&amp;flag); ++i )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> ( *(&amp;flag + i) == <span class="string">&quot;i&quot;</span> || *(&amp;flag + i) == <span class="string">&quot;r&quot;</span> )</span><br><span class="line">			*(&amp;flag + i) = <span class="string">&quot;1&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;input the flag:&quot;</span>);</span><br><span class="line">__isoc99_scanf(<span class="string">&quot;%20s&quot;</span>, s2);</span><br><span class="line"><span class="keyword">if</span> ( !<span class="built_in">strcmp</span>(&amp;flag, s2) )</span><br><span class="line">	result = <span class="built_in">puts</span>(<span class="string">&quot;this is the right flag!&quot;</span>);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	result = <span class="built_in">puts</span>(<span class="string">&quot;wrong flag!&quot;</span>);</span><br><span class="line"><span class="keyword">return</span> result;</span><br></pre></td></tr></table></figure>
-<p>替换一下字符，便得到了最终正确的flag。<br>flag:<del>flag{hack1ng_fo1_fun}</del></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/26/rip/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
-      <meta itemprop="name" content="Randark">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橘墨的摸鱼现场">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/26/rip/" class="post-title-link" itemprop="url">rip</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-26T00:00:00+08:00">2021-08-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-18 21:23:50" itemprop="dateModified" datetime="2021-09-18T21:23:50+08:00">2021-09-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Crypto/" itemprop="url" rel="index"><span itemprop="name">Crypto</span></a>
+                  <a href="/categories/Misc/" itemprop="url" rel="index"><span itemprop="name">Misc</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Crypto/%E6%91%A9%E6%96%AF%E5%AF%86%E7%A0%81/" itemprop="url" rel="index"><span itemprop="name">摩斯密码</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Crypto/ASCII/" itemprop="url" rel="index"><span itemprop="name">ASCII</span></a>
+                  <a href="/categories/Misc/%E5%8E%8B%E7%BC%A9%E5%8C%85%E7%A0%B4%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">压缩包破解</span></a>
                 </span>
             </span>
 
@@ -480,10 +243,98 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#rip">题目链接</a></p>
+          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E5%B0%8F%E6%98%8E%E7%9A%84%E4%BF%9D%E9%99%A9%E7%AE%B1">题目链接</a><br>附件是一张jpg，用Stegsolve看了一下，文件信息里面带有rar的特征，用Binwalk或者Foremost提取一下看看：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">randark@randark-VirtualBox:~/CTF$ binwalk -e 2.jpg</span><br><span class="line"></span><br><span class="line">DECIMAL       HEXADECIMAL     DESCRIPTION</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">0             0x0             JPEG image data, JFIF standard 1.01</span><br><span class="line">30            0x1E            TIFF image data, big-endian, offset of first image directory: 8</span><br><span class="line"></span><br><span class="line">WARNING: Extractor.execute failed to run external extractor &#x27;unrar e &#x27;%e&#x27;&#x27;: [Errno 2] No such file or directory: &#x27;unrar&#x27;, &#x27;unrar e &#x27;%e&#x27;&#x27; might not be installed correctly</span><br><span class="line"></span><br><span class="line">WARNING: Extractor.execute failed to run external extractor &#x27;unrar -x &#x27;%e&#x27;&#x27;: [Errno 2] No such file or directory: &#x27;unrar&#x27;, &#x27;unrar -x &#x27;%e&#x27;&#x27; might not be installed correctly</span><br><span class="line">79903         0x1381F         RAR archive data, version 4.x, first volume type: MAIN_HEAD</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>便得到了一个rar，结合题干，用[[ARCHPR]暴力一下，得到文件：<br><img src="/images/Writeup/20210825173849.png"><br>flag:    <del>flag{75a3d68bf071ee188c418ea6cf0bb043}</del></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/30/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019-Http/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
+      <meta itemprop="name" content="Randark">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橘墨的摸鱼现场">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/30/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019-Http/" class="post-title-link" itemprop="url">Http</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-30 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-30T00:00:00+08:00">2021-08-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-09 11:25:00" itemprop="dateModified" datetime="2021-11-09T11:25:00+08:00">2021-11-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0/" itemprop="url" rel="index"><span itemprop="name">请求伪造</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Challenge/" itemprop="url" rel="index"><span itemprop="name">Challenge</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Challenge/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019/" itemprop="url" rel="index"><span itemprop="name">极客大挑战 2019</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#[%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019]Http">题目链接</a></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/08/26/rip/#more" rel="contents">
+              <a class="btn" href="/2021/08/30/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019-Http/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -507,7 +358,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/26/%E4%B8%96%E4%B8%8A%E6%97%A0%E9%9A%BE%E4%BA%8B/">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/29/ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020-rome/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
@@ -521,7 +372,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/08/26/%E4%B8%96%E4%B8%8A%E6%97%A0%E9%9A%BE%E4%BA%8B/" class="post-title-link" itemprop="url">世上无难事</a>
+            <a href="/2021/08/29/ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020-rome/" class="post-title-link" itemprop="url">rome</a>
         </h2>
 
         <div class="post-meta">
@@ -531,14 +382,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-26T00:00:00+08:00">2021-08-26</time>
+              <time title="创建时间：2021-08-29 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-29T00:00:00+08:00">2021-08-29</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-17 20:55:08" itemprop="dateModified" datetime="2021-09-17T20:55:08+08:00">2021-09-17</time>
+                <time title="修改时间：2021-11-09 11:39:19" itemprop="dateModified" datetime="2021-11-09T11:39:19+08:00">2021-11-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -546,15 +397,15 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Crypto/" itemprop="url" rel="index"><span itemprop="name">Crypto</span></a>
+                  <a href="/categories/Reverse/" itemprop="url" rel="index"><span itemprop="name">Reverse</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Crypto/%E5%87%AF%E6%92%92%E5%AF%86%E7%A0%81/" itemprop="url" rel="index"><span itemprop="name">凯撒密码</span></a>
+                  <a href="/categories/Challenge/" itemprop="url" rel="index"><span itemprop="name">Challenge</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Crypto/%E8%AF%8D%E9%A2%91%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">词频分析</span></a>
+                  <a href="/categories/Challenge/ACTF-2020-%E6%96%B0%E7%94%9F%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">ACTF 2020-新生赛</span></a>
                 </span>
             </span>
 
@@ -569,15 +420,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E4%B8%96%E4%B8%8A%E6%97%A0%E9%9A%BE%E4%BA%8B">题目链接</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/26/%E4%B8%96%E4%B8%8A%E6%97%A0%E9%9A%BE%E4%BA%8B/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#[ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020]rome">题目链接</a><br>附件下载得到程序，看一下信息：<br><img src="/images/Writeup/20210829202214.png"><br>用IDA打开看一下：<br><img src="/images/Writeup/20210829202301.png"><br>F5逆向一下看一下，核心函数应该是func（），ASCII对变量转码看一下：<br><img src="/images/Writeup/20210829202414.png"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">func</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> result; <span class="comment">// eax</span></span><br><span class="line">  <span class="keyword">int</span> v1[<span class="number">4</span>]; <span class="comment">// [esp+14h] [ebp-44h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int8 v2; <span class="comment">// [esp+24h] [ebp-34h] BYREF</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int8 v3; <span class="comment">// [esp+25h] [ebp-33h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int8 v4; <span class="comment">// [esp+26h] [ebp-32h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int8 v5; <span class="comment">// [esp+27h] [ebp-31h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int8 v6; <span class="comment">// [esp+28h] [ebp-30h]</span></span><br><span class="line">  <span class="keyword">int</span> v7; <span class="comment">// [esp+29h] [ebp-2Fh]</span></span><br><span class="line">  <span class="keyword">int</span> v8; <span class="comment">// [esp+2Dh] [ebp-2Bh]</span></span><br><span class="line">  <span class="keyword">int</span> v9; <span class="comment">// [esp+31h] [ebp-27h]</span></span><br><span class="line">  <span class="keyword">int</span> v10; <span class="comment">// [esp+35h] [ebp-23h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int8 v11; <span class="comment">// [esp+39h] [ebp-1Fh]</span></span><br><span class="line">  <span class="keyword">char</span> v12[<span class="number">29</span>]; <span class="comment">// [esp+3Bh] [ebp-1Dh] BYREF</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">strcpy</span>(v12, <span class="string">&quot;Qsw3sj_lz4_Ujw@l&quot;</span>);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Please input:&quot;</span>);</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, &amp;v2);</span><br><span class="line">  result = v2;</span><br><span class="line">  <span class="keyword">if</span> ( v2 == <span class="string">&#x27;A&#x27;</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    result = v3;</span><br><span class="line">    <span class="keyword">if</span> ( v3 == <span class="string">&#x27;C&#x27;</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      result = v4;</span><br><span class="line">      <span class="keyword">if</span> ( v4 == <span class="string">&#x27;T&#x27;</span> )</span><br><span class="line">      &#123;</span><br><span class="line">        result = v5;</span><br><span class="line">        <span class="keyword">if</span> ( v5 == <span class="string">&#x27;F&#x27;</span> )</span><br><span class="line">        &#123;</span><br><span class="line">          result = v6;</span><br><span class="line">          <span class="keyword">if</span> ( v6 == <span class="string">&#x27;&#123;&#x27;</span> )</span><br><span class="line">          &#123;</span><br><span class="line">            result = v11;</span><br><span class="line">            <span class="keyword">if</span> ( v11 == <span class="string">&#x27;&#125;&#x27;</span> )</span><br><span class="line">            &#123;</span><br><span class="line">              v1[<span class="number">0</span>] = v7;</span><br><span class="line">              v1[<span class="number">1</span>] = v8;</span><br><span class="line">              v1[<span class="number">2</span>] = v9;</span><br><span class="line">              v1[<span class="number">3</span>] = v10;</span><br><span class="line">              *(_DWORD *)&amp;v12[<span class="number">17</span>] = <span class="number">0</span>;</span><br><span class="line">              <span class="keyword">while</span> ( *(<span class="keyword">int</span> *)&amp;v12[<span class="number">17</span>] &lt;= <span class="number">15</span> )</span><br><span class="line">              &#123;</span><br><span class="line">                <span class="keyword">if</span> ( *((<span class="keyword">char</span> *)v1 + *(_DWORD *)&amp;v12[<span class="number">17</span>]) &gt; <span class="number">64</span> &amp;&amp; *((<span class="keyword">char</span> *)v1 + *(_DWORD *)&amp;v12[<span class="number">17</span>]) &lt;= <span class="number">90</span> )</span><br><span class="line">                  *((_BYTE *)v1 + *(_DWORD *)&amp;v12[<span class="number">17</span>]) = (*((<span class="keyword">char</span> *)v1 + *(_DWORD *)&amp;v12[<span class="number">17</span>]) - <span class="number">51</span>) % <span class="number">26</span> + <span class="number">65</span>;</span><br><span class="line">                <span class="keyword">if</span> ( *((<span class="keyword">char</span> *)v1 + *(_DWORD *)&amp;v12[<span class="number">17</span>]) &gt; <span class="number">96</span> &amp;&amp; *((<span class="keyword">char</span> *)v1 + *(_DWORD *)&amp;v12[<span class="number">17</span>]) &lt;= <span class="number">122</span> )</span><br><span class="line">                  *((_BYTE *)v1 + *(_DWORD *)&amp;v12[<span class="number">17</span>]) = (*((<span class="keyword">char</span> *)v1 + *(_DWORD *)&amp;v12[<span class="number">17</span>]) - <span class="number">79</span>) % <span class="number">26</span> + <span class="number">97</span>;</span><br><span class="line">                ++*(_DWORD *)&amp;v12[<span class="number">17</span>];</span><br><span class="line">              &#125;</span><br><span class="line">              *(_DWORD *)&amp;v12[<span class="number">17</span>] = <span class="number">0</span>;</span><br><span class="line">              <span class="keyword">while</span> ( *(<span class="keyword">int</span> *)&amp;v12[<span class="number">17</span>] &lt;= <span class="number">15</span> )</span><br><span class="line">              &#123;</span><br><span class="line">                result = (<span class="keyword">unsigned</span> __int8)v12[*(_DWORD *)&amp;v12[<span class="number">17</span>);</span><br><span class="line">                <span class="keyword">if</span> ( *((_BYTE *)v1 + *(_DWORD *)&amp;v12[<span class="number">17</span>]) != (_BYTE)result )</span><br><span class="line">                  <span class="keyword">return</span> result;</span><br><span class="line">                ++*(_DWORD *)&amp;v12[<span class="number">17</span>];</span><br><span class="line">              &#125;</span><br><span class="line">              result = <span class="built_in">printf</span>(<span class="string">&quot;You are correct!&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>是我IDA出问题了吗，感觉跟网上的逆向结果不一样。？<br>网上的逆向代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">func</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> result; <span class="comment">// eax</span></span><br><span class="line">  <span class="keyword">int</span> v1; <span class="comment">// [esp+14h] [ebp-44h]</span></span><br><span class="line">  <span class="keyword">int</span> v2; <span class="comment">// [esp+18h] [ebp-40h]</span></span><br><span class="line">  <span class="keyword">int</span> v3; <span class="comment">// [esp+1Ch] [ebp-3Ch]</span></span><br><span class="line">  <span class="keyword">int</span> v4; <span class="comment">// [esp+20h] [ebp-38h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int8 v5; <span class="comment">// [esp+24h] [ebp-34h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int8 v6; <span class="comment">// [esp+25h] [ebp-33h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int8 v7; <span class="comment">// [esp+26h] [ebp-32h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int8 v8; <span class="comment">// [esp+27h] [ebp-31h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int8 v9; <span class="comment">// [esp+28h] [ebp-30h]</span></span><br><span class="line">  <span class="keyword">int</span> v10; <span class="comment">// [esp+29h] [ebp-2Fh]</span></span><br><span class="line">  <span class="keyword">int</span> v11; <span class="comment">// [esp+2Dh] [ebp-2Bh]</span></span><br><span class="line">  <span class="keyword">int</span> v12; <span class="comment">// [esp+31h] [ebp-27h]</span></span><br><span class="line">  <span class="keyword">int</span> v13; <span class="comment">// [esp+35h] [ebp-23h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int8 v14; <span class="comment">// [esp+39h] [ebp-1Fh]</span></span><br><span class="line">  <span class="keyword">char</span> v15; <span class="comment">// [esp+3Bh] [ebp-1Dh]</span></span><br><span class="line">  <span class="keyword">char</span> v16; <span class="comment">// [esp+3Ch] [ebp-1Ch]</span></span><br><span class="line">  <span class="keyword">char</span> v17; <span class="comment">// [esp+3Dh] [ebp-1Bh]</span></span><br><span class="line">  <span class="keyword">char</span> v18; <span class="comment">// [esp+3Eh] [ebp-1Ah]</span></span><br><span class="line">  <span class="keyword">char</span> v19; <span class="comment">// [esp+3Fh] [ebp-19h]</span></span><br><span class="line">  <span class="keyword">char</span> v20; <span class="comment">// [esp+40h] [ebp-18h]</span></span><br><span class="line">  <span class="keyword">char</span> v21; <span class="comment">// [esp+41h] [ebp-17h]</span></span><br><span class="line">  <span class="keyword">char</span> v22; <span class="comment">// [esp+42h] [ebp-16h]</span></span><br><span class="line">  <span class="keyword">char</span> v23; <span class="comment">// [esp+43h] [ebp-15h]</span></span><br><span class="line">  <span class="keyword">char</span> v24; <span class="comment">// [esp+44h] [ebp-14h]</span></span><br><span class="line">  <span class="keyword">char</span> v25; <span class="comment">// [esp+45h] [ebp-13h]</span></span><br><span class="line">  <span class="keyword">char</span> v26; <span class="comment">// [esp+46h] [ebp-12h]</span></span><br><span class="line">  <span class="keyword">char</span> v27; <span class="comment">// [esp+47h] [ebp-11h]</span></span><br><span class="line">  <span class="keyword">char</span> v28; <span class="comment">// [esp+48h] [ebp-10h]</span></span><br><span class="line">  <span class="keyword">char</span> v29; <span class="comment">// [esp+49h] [ebp-Fh]</span></span><br><span class="line">  <span class="keyword">char</span> v30; <span class="comment">// [esp+4Ah] [ebp-Eh]</span></span><br><span class="line">  <span class="keyword">char</span> v31; <span class="comment">// [esp+4Bh] [ebp-Dh]</span></span><br><span class="line">  <span class="keyword">int</span> i; <span class="comment">// [esp+4Ch] [ebp-Ch]</span></span><br><span class="line"></span><br><span class="line">  v15 = <span class="number">81</span>;</span><br><span class="line">  v16 = <span class="number">115</span>;</span><br><span class="line">  v17 = <span class="number">119</span>;</span><br><span class="line">  v18 = <span class="number">51</span>;</span><br><span class="line">  v19 = <span class="number">115</span>;</span><br><span class="line">  v20 = <span class="number">106</span>;</span><br><span class="line">  v21 = <span class="number">95</span>;</span><br><span class="line">  v22 = <span class="number">108</span>;</span><br><span class="line">  v23 = <span class="number">122</span>;</span><br><span class="line">  v24 = <span class="number">52</span>;</span><br><span class="line">  v25 = <span class="number">95</span>;</span><br><span class="line">  v26 = <span class="number">85</span>;</span><br><span class="line">  v27 = <span class="number">106</span>;</span><br><span class="line">  v28 = <span class="number">119</span>;</span><br><span class="line">  v29 = <span class="number">64</span>;</span><br><span class="line">  v30 = <span class="number">108</span>;</span><br><span class="line">  v31 = <span class="number">0</span>;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Please input:&quot;</span>);</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, &amp;v5);</span><br><span class="line">  result = v5;</span><br><span class="line">  <span class="keyword">if</span> ( v5 == <span class="string">&#x27;A&#x27;</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    result = v6;</span><br><span class="line">    <span class="keyword">if</span> ( v6 == <span class="string">&#x27;C&#x27;</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      result = v7;</span><br><span class="line">      <span class="keyword">if</span> ( v7 == <span class="string">&#x27;T&#x27;</span> )</span><br><span class="line">      &#123;</span><br><span class="line">        result = v8;</span><br><span class="line">        <span class="keyword">if</span> ( v8 == <span class="string">&#x27;F&#x27;</span> )</span><br><span class="line">        &#123;</span><br><span class="line">          result = v9;</span><br><span class="line">          <span class="keyword">if</span> ( v9 == <span class="string">&#x27;&#123;&#x27;</span> )</span><br><span class="line">          &#123;</span><br><span class="line">            result = v14;</span><br><span class="line">            <span class="keyword">if</span> ( v14 == <span class="string">&#x27;&#125;&#x27;</span> )</span><br><span class="line">            &#123;</span><br><span class="line">              v1 = v10;</span><br><span class="line">              v2 = v11;</span><br><span class="line">              v3 = v12;</span><br><span class="line">              v4 = v13;</span><br><span class="line">              <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="number">15</span>; ++i )</span><br><span class="line">              &#123;</span><br><span class="line">                <span class="keyword">if</span> ( *((_BYTE *)&amp;v1 + i) &gt; <span class="number">64</span> &amp;&amp; *((_BYTE *)&amp;v1 + i) &lt;= <span class="number">90</span> )</span><br><span class="line">                  *((_BYTE *)&amp;v1 + i) = (*((<span class="keyword">char</span> *)&amp;v1 + i) - <span class="number">51</span>) % <span class="number">26</span> + <span class="number">65</span>;</span><br><span class="line">                <span class="keyword">if</span> ( *((_BYTE *)&amp;v1 + i) &gt; <span class="number">96</span> &amp;&amp; *((_BYTE *)&amp;v1 + i) &lt;= <span class="number">122</span> )</span><br><span class="line">                  *((_BYTE *)&amp;v1 + i) = (*((<span class="keyword">char</span> *)&amp;v1 + i) - <span class="number">79</span>) % <span class="number">26</span> + <span class="number">97</span>;</span><br><span class="line">              &#125;</span><br><span class="line">              <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="number">15</span>; ++i )</span><br><span class="line">              &#123;</span><br><span class="line">                result = (<span class="keyword">unsigned</span> __int8)*(&amp;v15 + i);</span><br><span class="line">                <span class="keyword">if</span> ( *((_BYTE *)&amp;v1 + i) != (_BYTE)result )</span><br><span class="line">                  <span class="keyword">return</span> result;</span><br><span class="line">              &#125;</span><br><span class="line">              result = <span class="built_in">printf</span>(<span class="string">&quot;You are correct!&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>总之，下面这段函数负责处理flag数据：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="number">15</span>; ++i )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> ( *((_BYTE *)&amp;v1 + i) &gt; <span class="number">64</span> &amp;&amp; *((_BYTE *)&amp;v1 + i) &lt;= <span class="number">90</span> )</span><br><span class="line">			((_BYTE *)&amp;v1 + i) = (*((<span class="keyword">char</span> *)&amp;v1 + i) - <span class="number">51</span>) % <span class="number">26</span> + <span class="number">65</span>;</span><br><span class="line">		<span class="keyword">if</span> ( *((_BYTE *)&amp;v1 + i) &gt; <span class="number">96</span> &amp;&amp; *((_BYTE *)&amp;v1 + i) &lt;= <span class="number">122</span> )</span><br><span class="line">			*((_BYTE *)&amp;v1 + i) = (*((<span class="keyword">char</span> *)&amp;v1 + i) - <span class="number">79</span>) % <span class="number">26</span> + <span class="number">97</span>;</span><br></pre></td></tr></table></figure>
+<p>写一个脚本处理：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line">model = [<span class="number">81</span>,<span class="number">115</span>,<span class="number">119</span>,<span class="number">51</span>,<span class="number">115</span>,<span class="number">106</span>,<span class="number">95</span>,<span class="number">108</span>,<span class="number">122</span>,<span class="number">52</span>,<span class="number">95</span>,<span class="number">85</span>,<span class="number">106</span>,<span class="number">119</span>,<span class="number">64</span>,<span class="number">108</span>]</span><br><span class="line"></span><br><span class="line">s1 = string.ascii_lowercase</span><br><span class="line">s2 = string.ascii_uppercase</span><br><span class="line"></span><br><span class="line">flag = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> model:</span><br><span class="line">    <span class="keyword">if</span> i &gt; <span class="number">64</span> <span class="keyword">and</span> i &lt;= <span class="number">90</span>:</span><br><span class="line">        flag += s2[i-<span class="number">14</span>-<span class="number">65</span>]</span><br><span class="line">    <span class="keyword">elif</span> i &gt; <span class="number">96</span> <span class="keyword">and</span> i &lt;= <span class="number">122</span>:</span><br><span class="line">        flag += s1[i-<span class="number">18</span>-<span class="number">97</span>]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        flag += <span class="built_in">chr</span>(i)</span><br><span class="line"><span class="built_in">print</span> (<span class="string">&#x27;flag&#123;&#x27;</span>+flag+<span class="string">&#x27;&#125;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>flag:<del>flag{Cae3ar_th4_Gre@t}</del><br><em>就奇怪，我这IDA分析结果少了字符数据，就很怪</em></p>
+<hr>
+<p>参考：<br>1.<a target="_blank" rel="noopener" href="https://www.cnblogs.com/jentleTao/p/12642500.html">[ACTF新生赛2020]rome</a><br>2.<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_46874126/article/details/108030000">BUU_re_[ACTF新生赛2020]rome</a></p>
+
       
     </div>
 
@@ -596,7 +450,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/26/%E4%B8%A2%E5%A4%B1%E7%9A%84MD5/">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/29/CrackRTF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
@@ -610,7 +464,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/08/26/%E4%B8%A2%E5%A4%B1%E7%9A%84MD5/" class="post-title-link" itemprop="url">丢失的MD5</a>
+            <a href="/2021/08/29/CrackRTF/" class="post-title-link" itemprop="url">CrackRTF</a>
         </h2>
 
         <div class="post-meta">
@@ -620,14 +474,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-26T00:00:00+08:00">2021-08-26</time>
+              <time title="创建时间：2021-08-29 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-29T00:00:00+08:00">2021-08-29</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-17 20:52:28" itemprop="dateModified" datetime="2021-09-17T20:52:28+08:00">2021-09-17</time>
+                <time title="修改时间：2021-11-09 11:39:31" itemprop="dateModified" datetime="2021-11-09T11:39:31+08:00">2021-11-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -635,7 +489,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Crypto/" itemprop="url" rel="index"><span itemprop="name">Crypto</span></a>
+                  <a href="/categories/Reverse/" itemprop="url" rel="index"><span itemprop="name">Reverse</span></a>
                 </span>
             </span>
 
@@ -650,15 +504,44 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E4%B8%A2%E5%A4%B1%E7%9A%84MD5">题目链接</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/26/%E4%B8%A2%E5%A4%B1%E7%9A%84MD5/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#CrackRTF">题目链接</a><br>附件下载得到程序，看一下信息：<br><img src="/images/Writeup/20210829204920.png"><br>进IDA看一下：<br><img src="/images/Writeup/20210829205100.png"><br>F5逆向一下：<br><img src="/images/Writeup/20210829205122.png"><br><img src="/images/Writeup/20210829205141.png"><br>核心函数-main_0：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> __cdecl <span class="title">main_0</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> **argv, <span class="keyword">const</span> <span class="keyword">char</span> **envp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  DWORD v3; <span class="comment">// eax</span></span><br><span class="line">  DWORD v4; <span class="comment">// eax</span></span><br><span class="line">  <span class="keyword">char</span> Str[<span class="number">260</span>]; <span class="comment">// [esp+4Ch] [ebp-310h] BYREF</span></span><br><span class="line">  <span class="keyword">int</span> v7; <span class="comment">// [esp+150h] [ebp-20Ch]</span></span><br><span class="line">  <span class="keyword">char</span> String1[<span class="number">260</span>]; <span class="comment">// [esp+154h] [ebp-208h] BYREF</span></span><br><span class="line">  <span class="keyword">char</span> Destination[<span class="number">260</span>]; <span class="comment">// [esp+258h] [ebp-104h] BYREF</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">memset</span>(Destination, <span class="number">0</span>, <span class="keyword">sizeof</span>(Destination));</span><br><span class="line">  <span class="built_in">memset</span>(String1, <span class="number">0</span>, <span class="keyword">sizeof</span>(String1));</span><br><span class="line">  v7 = <span class="number">0</span>;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;pls input the first passwd(1): &quot;</span>);</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, Destination);</span><br><span class="line">  <span class="keyword">if</span> ( <span class="built_in">strlen</span>(Destination) != <span class="number">6</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Must be 6 characters!\n&quot;</span>);</span><br><span class="line">    ExitProcess(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  v7 = atoi(Destination);</span><br><span class="line">  <span class="keyword">if</span> ( v7 &lt; <span class="number">100000</span> )</span><br><span class="line">    ExitProcess(<span class="number">0</span>);</span><br><span class="line">  <span class="built_in">strcat</span>(Destination, <span class="string">&quot;@DBApp&quot;</span>);</span><br><span class="line">  v3 = <span class="built_in">strlen</span>(Destination);</span><br><span class="line">  sub_40100A((BYTE *)Destination, v3, String1);</span><br><span class="line">  <span class="keyword">if</span> ( !_strcmpi(String1, <span class="string">&quot;6E32D0943418C2C33385BC35A1470250DD8923A9&quot;</span>) )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;continue...\n\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;pls input the first passwd(2): &quot;</span>);</span><br><span class="line">    <span class="built_in">memset</span>(Str, <span class="number">0</span>, <span class="keyword">sizeof</span>(Str));</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, Str);</span><br><span class="line">    <span class="keyword">if</span> ( <span class="built_in">strlen</span>(Str) != <span class="number">6</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;Must be 6 characters!\n&quot;</span>);</span><br><span class="line">      ExitProcess(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">strcat</span>(Str, Destination);</span><br><span class="line">    <span class="built_in">memset</span>(String1, <span class="number">0</span>, <span class="keyword">sizeof</span>(String1));</span><br><span class="line">    v4 = <span class="built_in">strlen</span>(Str);</span><br><span class="line">    sub_401019((BYTE *)Str, v4, String1);</span><br><span class="line">    <span class="keyword">if</span> ( !_strcmpi(<span class="string">&quot;27019e688a4e62a649fd99cadaafdb4e&quot;</span>, String1) )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> ( !(<span class="keyword">unsigned</span> __int8)sub_40100F(Str) )</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Error!!\n&quot;</span>);</span><br><span class="line">        ExitProcess(<span class="number">0</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;bye ~~\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>前面为信息输出和捕捉用户输入：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">v7 = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;pls input the first passwd(1): &quot;</span>);</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, Destination);</span><br></pre></td></tr></table></figure>
+<p>然后是判断用户输入的数据的长度：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="built_in">strlen</span>(Destination) != <span class="number">6</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Must be 6 characters!\n&quot;</span>);</span><br><span class="line">    ExitProcess(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接着判断用户输入的是不是int，以及判断大小：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">v7 = atoi(Destination);</span><br><span class="line"><span class="keyword">if</span> (v7 &lt; <span class="number">100000</span>)</span><br><span class="line">    ExitProcess(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<p>然后合并数据：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">strcat</span>(Destination, <span class="string">&quot;@DBApp&quot;</span>); <span class="comment">//合并&quot;@DBApp&quot;到Destination的末尾</span></span><br></pre></td></tr></table></figure>
+<p>然后获取Destination的长度，并执行sub_40100A，返回了一个String1：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">v3 = <span class="built_in">strlen</span>(Destination);</span><br><span class="line">sub_40100A((BYTE *)Destination, v3, String1);</span><br></pre></td></tr></table></figure>
+<p>sub_40100A是一个加密函数：<br><img src="/images/Writeup/20210829212016.png"><br>结合输出的密文是“6E32D0943418C2C33385BC35A1470250DD8923A9”，怀疑是SHA-1加密，嫖一个脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line">flag = <span class="string">&quot;@DBApp&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100000</span>,<span class="number">999999</span>):</span><br><span class="line">	s = <span class="built_in">str</span>(i)+flag</span><br><span class="line">	x = hashlib.sha1(s.encode())</span><br><span class="line">	cnt = x.hexdigest()</span><br><span class="line">	<span class="keyword">if</span> <span class="string">&quot;6e32d0943418c2c&quot;</span> <span class="keyword">in</span> cnt:</span><br><span class="line">		<span class="built_in">print</span>(cnt)</span><br><span class="line">		<span class="built_in">print</span>(<span class="built_in">str</span>(i)+flag)</span><br></pre></td></tr></table></figure>
+<p>得到输出的结果，也就是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">123321@DBApp</span><br></pre></td></tr></table></figure>
+<p>就得到了第一段的密码：123321，并检验成功<br><img src="/images/Writeup/20210829212416.png"><br>接着对String1进行对比，并执行第二段密码的校验：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!_strcmpi(String1, <span class="string">&quot;6E32D0943418C2C33385BC35A1470250DD8923A9&quot;</span>))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;continue...\n\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;pls input the first passwd(2): &quot;</span>);</span><br><span class="line">    <span class="built_in">memset</span>(Str, <span class="number">0</span>, <span class="keyword">sizeof</span>(Str));</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, Str);</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">strlen</span>(Str) != <span class="number">6</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Must be 6 characters!\n&quot;</span>);</span><br><span class="line">        ExitProcess(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">strcat</span>(Str, Destination);</span><br><span class="line">    <span class="built_in">memset</span>(String1, <span class="number">0</span>, <span class="keyword">sizeof</span>(String1));</span><br><span class="line">    v4 = <span class="built_in">strlen</span>(Str);</span><br><span class="line">    sub_401019((BYTE *)Str, v4, String1);</span><br><span class="line">    <span class="keyword">if</span> (!_strcmpi(<span class="string">&quot;27019e688a4e62a649fd99cadaafdb4e&quot;</span>, String1))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!(<span class="keyword">unsigned</span> __int8)sub_40100F(Str))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;Error!!\n&quot;</span>);</span><br><span class="line">            ExitProcess(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;bye ~~\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>相同的逻辑，在比较完String1的数据之后，要求输入第二段密码，并进行校验：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;continue...\n\n&quot;</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;pls input the first passwd(2): &quot;</span>); <span class="comment">//输出数据</span></span><br><span class="line"><span class="built_in">memset</span>(Str, <span class="number">0</span>, <span class="keyword">sizeof</span>(Str)); </span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, Str); <span class="comment">//给Str开空间，并储存用户输入的第二段密码</span></span><br></pre></td></tr></table></figure>
+<p>同样，第二段密码也是6位数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="built_in">strlen</span>(Str) != <span class="number">6</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Must be 6 characters!\n&quot;</span>);</span><br><span class="line">    ExitProcess(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里涉及到另一段加密函数sub_401019：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">strcat</span>(Str, Destination); <span class="comment">//附加Destination到Str末尾</span></span><br><span class="line"><span class="built_in">memset</span>(String1, <span class="number">0</span>, <span class="keyword">sizeof</span>(String1)); <span class="comment">//给密文开空间</span></span><br><span class="line">v4 = <span class="built_in">strlen</span>(Str); <span class="comment">//输入数据的长度</span></span><br><span class="line">sub_401019((BYTE *)Str, v4, String1); <span class="comment">//加密</span></span><br></pre></td></tr></table></figure>
+<p>加密函数sub_401019：<br><img src="/images/Writeup/20210829213051.png"><br>然后就是校验：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!_strcmpi(<span class="string">&quot;27019e688a4e62a649fd99cadaafdb4e&quot;</span>, String1))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!(<span class="keyword">unsigned</span> __int8)sub_40100F(Str))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Error!!\n&quot;</span>);</span><br><span class="line">        ExitProcess(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;bye ~~\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>字符长度不对，不像是SHA-1了，看了一下CSDN上面的解法：</p>
+<blockquote>
+<p>接下来走第二次输入~<br>第二次输入同理，不过他把123321@DBApp加在了第二次密码的后面，并且进行加密~<br><img src="/images/Writeup/20210829213516.png"><br>直接进入sub_401019函数进行查看<del>：<br><img src="/images/Writeup/20210829213527.png"><br>发现大体好像差不多，不过第二个参数不同了，应该换了一种加密方式~~<br>再次查看比较字符串的长度</del><br>发现是32位的，一般来说就是MD5了<br>不过什么提示都没有，，，我怎么进行爆破啊<br>6位全字符，这得爆破到一年，，，，陷入迷惘！！！<br>先继续往下走走看~<br>发现if里面还有一个函数~<br>进入到这个比较中的sub_40100F函数看看！！<br><img src="/images/Writeup/20210829213537.png"><br>看到内容如下，应该是从一个AAA的东西里面取出数据，<br>然后将从AAA中取出的数据和我们传入的参数——也就是输入的第二次密码连接后的字符串<br>传入一个sub_401005函数<br>最后生成一个dbapp.rtf文件，看到这想起了题目的RTF~<br>这个函数应该有东西~<br><img src="/images/Writeup/20210829213552.png"><br>进入sub_401005函数查看一下，<br>就是将我们从AAA取出的值和第二次密码连接后的字符串进行异或嘛：<br><img src="/images/Writeup/20210829213559.png"><br>不过从AAA中的值不知道，，，，</p>
+</blockquote>
+<p>其实这里AAA就是RTF文件的文件头（前六位），对此构建脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">&quot;&#123;\rtf1&quot;</span></span><br><span class="line"></span><br><span class="line">a = [<span class="number">0x05</span>,<span class="number">0x7D</span>,<span class="number">0x41</span>,<span class="number">0x15</span>,<span class="number">0x26</span>,<span class="number">0x01</span>]</span><br><span class="line"></span><br><span class="line">flag = <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(s)):</span><br><span class="line">	x = <span class="built_in">ord</span>(s[i]) ^ a[i]</span><br><span class="line">	flag += <span class="built_in">chr</span>(x)</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
+<p>得到第二段密码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~!3a@0</span><br></pre></td></tr></table></figure>
+<p><img src="/images/Writeup/20210829213757.png"><br>然后就在程序的同级目录下发现dbapp.rtf这个文件，打开就是flag。<br>flag<del>Flag{N0_M0re_Free_Bugs}</del></p>
+<hr>
+<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42967398/article/details/96492843">BUUCTF Reverse CrackRTF</a></p>
+
       
     </div>
 
@@ -677,7 +560,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/26/%E4%BC%A0%E7%BB%9F%E7%9F%A5%E8%AF%86+%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/29/findit/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
@@ -691,7 +574,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/08/26/%E4%BC%A0%E7%BB%9F%E7%9F%A5%E8%AF%86+%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/" class="post-title-link" itemprop="url">传统知识+古典密码</a>
+            <a href="/2021/08/29/findit/" class="post-title-link" itemprop="url">findit</a>
         </h2>
 
         <div class="post-meta">
@@ -701,20 +584,24 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-26T00:00:00+08:00">2021-08-26</time>
+              <time title="创建时间：2021-08-29 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-29T00:00:00+08:00">2021-08-29</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-17 22:54:42" itemprop="dateModified" datetime="2021-09-17T22:54:42+08:00">2021-09-17</time>
+                <time title="修改时间：2021-11-09 11:39:47" itemprop="dateModified" datetime="2021-11-09T11:39:47+08:00">2021-11-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Reverse/" itemprop="url" rel="index"><span itemprop="name">Reverse</span></a>
+                </span>
+                  ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Crypto/" itemprop="url" rel="index"><span itemprop="name">Crypto</span></a>
                 </span>
@@ -735,15 +622,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E4%BC%A0%E7%BB%9F%E7%9F%A5%E8%AF%86+%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81">题目链接</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/26/%E4%BC%A0%E7%BB%9F%E7%9F%A5%E8%AF%86+%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#findit">题目链接</a><br>附件下载得到程序，看一下核心：<br><img src="/images/Writeup/20210829215232.png"><br>在下面发现有一段数据：<br><img src="/images/Writeup/20210829215258.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">0x70</span><br><span class="line">0x76</span><br><span class="line">0x6b</span><br><span class="line">0x71</span><br><span class="line">0x7b</span><br><span class="line">0x6d</span><br><span class="line">0x31</span><br><span class="line">0x36</span><br><span class="line">0x34</span><br><span class="line">0x36</span><br><span class="line">0x37</span><br><span class="line">0x35</span><br><span class="line">0x32</span><br><span class="line">0x36</span><br><span class="line">0x32</span><br><span class="line">0x30</span><br><span class="line">0x33</span><br><span class="line">0x33</span><br><span class="line">0x6c</span><br><span class="line">0x34</span><br><span class="line">0x6d</span><br><span class="line">0x34</span><br><span class="line">0x39</span><br><span class="line">0x6c</span><br><span class="line">0x6e</span><br><span class="line">0x70</span><br><span class="line">0x37</span><br><span class="line">0x70</span><br><span class="line">0x39</span><br><span class="line">0x6d</span><br><span class="line">0x6e</span><br><span class="line">0x6b</span><br><span class="line">0x32</span><br><span class="line">0x38</span><br><span class="line">0x6b</span><br><span class="line">0x37</span><br><span class="line">0x35</span><br><span class="line">0x7d</span><br></pre></td></tr></table></figure>
+<p>用脚本转换一下ASCII码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s1=[<span class="number">0x70</span>,<span class="number">0x76</span>,<span class="number">0x6b</span>,<span class="number">0x71</span>,<span class="number">0x7b</span>,<span class="number">0x6d</span>,<span class="number">0x31</span>,<span class="number">0x36</span>,<span class="number">0x34</span>,<span class="number">0x36</span>,<span class="number">0x37</span>,<span class="number">0x35</span>,<span class="number">0x32</span>,<span class="number">0x36</span>,<span class="number">0x32</span>,<span class="number">0x30</span>,<span class="number">0x33</span>,<span class="number">0x33</span>,<span class="number">0x6c</span>,<span class="number">0x34</span>,<span class="number">0x6d</span>,<span class="number">0x34</span>,<span class="number">0x39</span>,<span class="number">0x6c</span>,<span class="number">0x6e</span>,<span class="number">0x70</span>,<span class="number">0x37</span>,<span class="number">0x70</span>,<span class="number">0x39</span>,<span class="number">0x6d</span>,<span class="number">0x6e</span>,<span class="number">0x6b</span>,<span class="number">0x32</span>,<span class="number">0x38</span>,<span class="number">0x6b</span>,<span class="number">0x37</span>,<span class="number">0x35</span>,<span class="number">0x7d</span>]</span><br><span class="line"><span class="keyword">for</span> letter <span class="keyword">in</span> s1:</span><br><span class="line">	<span class="built_in">print</span>(<span class="built_in">chr</span>(letter),end=<span class="string">&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pvkq&#123;m164675262033l4m49lnp7p9mnk28k75&#125;</span><br></pre></td></tr></table></figure>
+<p>怀疑是凯撒密码，脚本处理：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">s1=<span class="string">&quot;pvkq&#123;m164675262033l4m49lnp7p9mnk28k75&#125;&quot;</span></span><br><span class="line">i:<span class="built_in">int</span>=<span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> i&lt;=<span class="number">26</span>:</span><br><span class="line">	<span class="keyword">for</span> letter <span class="keyword">in</span> s1:</span><br><span class="line">		a=<span class="built_in">ord</span>(letter)</span><br><span class="line">		<span class="keyword">if</span> a&gt;=<span class="number">65</span> <span class="keyword">and</span> a&lt;=<span class="number">90</span>:</span><br><span class="line">			a=a+i</span><br><span class="line">			<span class="keyword">if</span> a&gt;<span class="number">90</span>:</span><br><span class="line">				<span class="built_in">print</span>(<span class="built_in">chr</span>(a-<span class="number">90</span>+<span class="number">64</span>),end=<span class="string">&quot;&quot;</span>)</span><br><span class="line">				<span class="keyword">continue</span></span><br><span class="line">			<span class="keyword">else</span>:</span><br><span class="line">				<span class="built_in">print</span>(<span class="built_in">chr</span>(a),end=<span class="string">&quot;&quot;</span>)</span><br><span class="line">		<span class="keyword">elif</span> a&gt;=<span class="number">97</span> <span class="keyword">and</span> a&lt;=<span class="number">122</span>:</span><br><span class="line">			a=a+i</span><br><span class="line">			<span class="keyword">if</span> a&gt;<span class="number">122</span>:</span><br><span class="line">				<span class="built_in">print</span>(<span class="built_in">chr</span>(a-<span class="number">122</span>+<span class="number">96</span>),end=<span class="string">&quot;&quot;</span>)</span><br><span class="line">				<span class="keyword">continue</span></span><br><span class="line">			<span class="keyword">else</span>:</span><br><span class="line">				<span class="built_in">print</span>(<span class="built_in">chr</span>(a),end=<span class="string">&quot;&quot;</span>)</span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			<span class="built_in">print</span>(<span class="built_in">chr</span>(a),end=<span class="string">&quot;&quot;</span>)</span><br><span class="line">	i+=<span class="number">1</span></span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>运行脚本，得到flag。<br>flag:<del>flag{c164675262033b4c49bdf7f9cda28a75}</del></p>
+
       
     </div>
 
@@ -762,7 +650,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/26/%E4%BF%A1%E6%81%AF%E5%8C%96%E6%97%B6%E4%BB%A3%E7%9A%84%E6%AD%A5%E4%BC%90/">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/29/xor%201/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
@@ -776,7 +664,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/08/26/%E4%BF%A1%E6%81%AF%E5%8C%96%E6%97%B6%E4%BB%A3%E7%9A%84%E6%AD%A5%E4%BC%90/" class="post-title-link" itemprop="url">信息化时代的步伐</a>
+            <a href="/2021/08/29/xor%201/" class="post-title-link" itemprop="url">xor</a>
         </h2>
 
         <div class="post-meta">
@@ -786,14 +674,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-26T00:00:00+08:00">2021-08-26</time>
+              <time title="创建时间：2021-08-29 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-29T00:00:00+08:00">2021-08-29</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-17 20:54:18" itemprop="dateModified" datetime="2021-09-17T20:54:18+08:00">2021-09-17</time>
+                <time title="修改时间：2021-11-09 11:40:21" itemprop="dateModified" datetime="2021-11-09T11:40:21+08:00">2021-11-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -801,7 +689,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Crypto/" itemprop="url" rel="index"><span itemprop="name">Crypto</span></a>
+                  <a href="/categories/Reverse/" itemprop="url" rel="index"><span itemprop="name">Reverse</span></a>
                 </span>
             </span>
 
@@ -816,15 +704,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E4%BF%A1%E6%81%AF%E5%8C%96%E6%97%B6%E4%BB%A3%E7%9A%84%E6%AD%A5%E4%BC%90">题目链接</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/26/%E4%BF%A1%E6%81%AF%E5%8C%96%E6%97%B6%E4%BB%A3%E7%9A%84%E6%AD%A5%E4%BC%90/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#xor">题目链接</a><br>拖进Exeinfo分析一下：<br><img src="/images/Writeup/20210826212530.png"><br>IDA打开看结构：<br><img src="/images/Writeup/20210826212642.png"><br>F5逆向看一下：<br><img src="/images/Writeup/20210826212743.png"><br>核心代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">get_line(__b, <span class="number">256LL</span>);</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">strlen</span>(__b) != <span class="number">33</span>)</span><br><span class="line">    <span class="keyword">goto</span> LABEL_7;</span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; <span class="number">33</span>; ++i)</span><br><span class="line">    __b[i] ^= __b[i - <span class="number">1</span>];</span><br><span class="line"><span class="keyword">if</span> (!<span class="built_in">strncmp</span>(__b, global, <span class="number">0x21</span>uLL))</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Success&quot;</span>);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    LABEL_7 : <span class="built_in">printf</span>(<span class="string">&quot;Failed&quot;</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<p>就是输入的数据储存为__b，然后__b做异或，然后把__b和global做比较。于是追踪global的数据：<br><img src="/images/Writeup/20210826215048.png"><br>写一个python脚本处理数据：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">s = [<span class="string">&#x27;f&#x27;</span>,<span class="number">10</span>,<span class="string">&#x27;k&#x27;</span>,<span class="number">12</span>,<span class="string">&#x27;w&amp;O.@&#x27;</span>,<span class="number">17</span>,<span class="string">&#x27;x&#x27;</span>,<span class="number">13</span>,<span class="string">&#x27;Z;U&#x27;</span>,<span class="number">17</span>,<span class="string">&#x27;p&#x27;</span>,<span class="number">25</span>,<span class="string">&#x27;F&#x27;</span>,<span class="number">31</span>,<span class="string">&#x27;v&quot;M#D&#x27;</span>,<span class="number">14</span>,<span class="string">&#x27;g&#x27;</span>,<span class="number">6</span>,<span class="string">&#x27;h&#x27;</span>,<span class="number">15</span>,<span class="string">&#x27;G2O&#x27;</span>,<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">ss = <span class="string">&#x27;fkw&amp;O.@xZ;UpFv&quot;M#DghG2O&#x27;</span></span><br><span class="line"></span><br><span class="line">x = <span class="string">&quot;f&quot;</span></span><br><span class="line"></span><br><span class="line">a = [<span class="number">102</span>, <span class="number">10</span>, <span class="number">107</span>, <span class="number">12</span>, <span class="number">119</span>, <span class="number">38</span>, <span class="number">79</span>, <span class="number">46</span>, <span class="number">64</span>, <span class="number">17</span>, <span class="number">120</span>, <span class="number">13</span>, <span class="number">90</span>, <span class="number">59</span>, <span class="number">85</span>, <span class="number">17</span>, <span class="number">112</span>, <span class="number">25</span>, <span class="number">70</span>, <span class="number">31</span>, <span class="number">118</span>, <span class="number">34</span>, <span class="number">77</span>, <span class="number">35</span>, <span class="number">68</span>, <span class="number">14</span>, <span class="number">103</span>, <span class="number">6</span>, <span class="number">104</span>, <span class="number">15</span>, <span class="number">71</span>, <span class="number">50</span>, <span class="number">79</span> ,<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(a)):</span><br><span class="line">	x += <span class="built_in">chr</span>(a[i]^a[i-<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+<p>flag:<del>flag{QianQiuWanDai_YiTongJiangHu}</del></p>
+
       
     </div>
 
@@ -843,7 +728,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/26/%E5%86%85%E6%B6%B5%E7%9A%84%E8%BD%AF%E4%BB%B6/">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/29/%E7%A7%98%E5%AF%86%E6%96%87%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
@@ -857,7 +742,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/08/26/%E5%86%85%E6%B6%B5%E7%9A%84%E8%BD%AF%E4%BB%B6/" class="post-title-link" itemprop="url">内涵的软件</a>
+            <a href="/2021/08/29/%E7%A7%98%E5%AF%86%E6%96%87%E4%BB%B6/" class="post-title-link" itemprop="url">秘密文件</a>
         </h2>
 
         <div class="post-meta">
@@ -867,14 +752,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-26T00:00:00+08:00">2021-08-26</time>
+              <time title="创建时间：2021-08-29 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-29T00:00:00+08:00">2021-08-29</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-22 17:17:00" itemprop="dateModified" datetime="2021-09-22T17:17:00+08:00">2021-09-22</time>
+                <time title="修改时间：2021-11-07 22:03:44" itemprop="dateModified" datetime="2021-11-07T22:03:44+08:00">2021-11-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -882,7 +767,15 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Reserve/" itemprop="url" rel="index"><span itemprop="name">Reserve</span></a>
+                  <a href="/categories/Misc/" itemprop="url" rel="index"><span itemprop="name">Misc</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Misc/%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">流量分析</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Misc/%E5%8E%8B%E7%BC%A9%E5%8C%85%E7%A0%B4%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">压缩包破解</span></a>
                 </span>
             </span>
 
@@ -897,9 +790,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E5%86%85%E6%B6%B5%E7%9A%84%E8%BD%AF%E4%BB%B6">题目链接</a><br>拖进IDA分析一下：<br><img src="/images/Writeup/20210826210317.png"><br>F5逆向一下看看：<br><img src="/images/Writeup/20210826210341.png"><br><img src="/images/Writeup/20210826210546.png"><br>看程序逻辑是没有找到啥核心数据，倒是上面的：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v5 = <span class="string">&quot;DBAPP&#123;49d3c93df25caad81232130f3d2ebfad&#125;&quot;</span>;</span><br></pre></td></tr></table></figure>
-<p>抱着试一试的态度，改了一下格式上交，居然过了。。<br>flag:<del>flag{49d3c93df25caad81232130f3d2ebfad}</del></p>
+          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E7%A7%98%E5%AF%86%E6%96%87%E4%BB%B6">题目链接</a><br>附件是一个流量包：<br><img src="/images/Writeup/20210829182946.png"><br>分析其中的数据流，可以发现存在一个rar文件：<br><img src="/images/Writeup/20210829183323.png"><br><img src="/images/Writeup/20210829183331.png"><br><img src="/images/Writeup/20210829183340.png"><br>用[[Binwalk)提取文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">randark@randark-VirtualBox:~/CTF$ binwalk -e 1.pcapng</span><br><span class="line"></span><br><span class="line">DECIMAL       HEXADECIMAL     DESCRIPTION</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">WARNING: Extractor.execute failed to run external extractor &#x27;unrar e &#x27;%e&#x27;&#x27;: [Errno 2] No such file or directory: &#x27;unrar&#x27;, &#x27;unrar e &#x27;%e&#x27;&#x27; might not be installed correctly</span><br><span class="line"></span><br><span class="line">WARNING: Extractor.execute failed to run external extractor &#x27;unrar -x &#x27;%e&#x27;&#x27;: [Errno 2] No such file or directory: &#x27;unrar&#x27;, &#x27;unrar -x &#x27;%e&#x27;&#x27; might not be installed correctly</span><br><span class="line">16198         0x3F46          RAR archive data, version 4.x, first volume type: MAIN_HEAD</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>得到了：<br><img src="/images/Writeup/20210829183638.png"><br>用[[ARCHPR)枚举一下密码：<br><img src="/images/Writeup/20210829183658.png"><br>解压，得到flag。<br>flag:<del>flag{d72e5a671aa50fa5f400e5d10eedeaa5}</del></p>
 
       
     </div>
@@ -919,7 +812,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/26/%E5%87%AF%E6%92%92%EF%BC%9F%E6%9B%BF%E6%8D%A2%EF%BC%9F%E5%91%B5%E5%91%B5!/">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/29/%E7%BE%8A%E5%9F%8E%E6%9D%AF-2020-TCP_IP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
@@ -933,7 +826,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/08/26/%E5%87%AF%E6%92%92%EF%BC%9F%E6%9B%BF%E6%8D%A2%EF%BC%9F%E5%91%B5%E5%91%B5!/" class="post-title-link" itemprop="url">凯撒？替换？呵呵!</a>
+            <a href="/2021/08/29/%E7%BE%8A%E5%9F%8E%E6%9D%AF-2020-TCP_IP/" class="post-title-link" itemprop="url">TCP_IP</a>
         </h2>
 
         <div class="post-meta">
@@ -943,14 +836,112 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-26T00:00:00+08:00">2021-08-26</time>
+              <time title="创建时间：2021-08-29 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-29T00:00:00+08:00">2021-08-29</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-17 20:57:35" itemprop="dateModified" datetime="2021-09-17T20:57:35+08:00">2021-09-17</time>
+                <time title="修改时间：2021-11-09 11:37:04" itemprop="dateModified" datetime="2021-11-09T11:37:04+08:00">2021-11-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Misc/" itemprop="url" rel="index"><span itemprop="name">Misc</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Challenge/" itemprop="url" rel="index"><span itemprop="name">Challenge</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Misc/%E6%B5%81%E9%87%8F%E5%AE%A1%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">流量审计</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Challenge/%E7%BE%8A%E5%9F%8E%E6%9D%AF-2020/" itemprop="url" rel="index"><span itemprop="name">羊城杯 2020</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#[%E7%BE%8A%E5%9F%8E%E6%9D%AF%202020]TCP_IP">题目链接</a><br>这道题附件是一个流量包，但是追踪TCP流之后发现里面并没有有效信息：<br><img src="/images/Writeup/20210829134540.png"><br><img src="/images/Writeup/20210829134542.png"><br>看起来应该都是英语听力。。而后[[010Editor]和[[Binwalk]分析隐写文件，也没有发现特征。于是在流量包里面寻找线索：<br><img src="/images/Writeup/20210829134731.png"><br>分析大概率只有Identification里面可能有数据（数据范围在ASCII表范围内）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s_raw=[64,105,72,60,44,123,42,59,111,85,112,47,105,109,34,81,80,108,96,121,82,42,105,101,125,78,75,59,46,68,33,88,117,41,98,58,74,91,82,106,43,54,75,75,77,55,80,64,105,72,60,44,123,42,59,111,85,112,47,105,109,34,81,80,108,96,121,82]</span><br></pre></td></tr></table></figure>
+<p>写个脚本处理一下数据：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s_raw=[<span class="number">64</span>,<span class="number">105</span>,<span class="number">72</span>,<span class="number">60</span>,<span class="number">44</span>,<span class="number">123</span>,<span class="number">42</span>,<span class="number">59</span>,<span class="number">111</span>,<span class="number">85</span>,<span class="number">112</span>,<span class="number">47</span>,<span class="number">105</span>,<span class="number">109</span>,<span class="number">34</span>,<span class="number">81</span>,<span class="number">80</span>,<span class="number">108</span>,<span class="number">96</span>,<span class="number">121</span>,<span class="number">82</span>,<span class="number">42</span>,<span class="number">105</span>,<span class="number">101</span>,<span class="number">125</span>,<span class="number">78</span>,<span class="number">75</span>,<span class="number">59</span>,<span class="number">46</span>,<span class="number">68</span>,<span class="number">33</span>,<span class="number">88</span>,<span class="number">117</span>,<span class="number">41</span>,<span class="number">98</span>,<span class="number">58</span>,<span class="number">74</span>,<span class="number">91</span>,<span class="number">82</span>,<span class="number">106</span>,<span class="number">43</span>,<span class="number">54</span>,<span class="number">75</span>,<span class="number">75</span>,<span class="number">77</span>,<span class="number">55</span>,<span class="number">80</span>,<span class="number">64</span>,<span class="number">105</span>,<span class="number">72</span>,<span class="number">60</span>,<span class="number">44</span>,<span class="number">123</span>,<span class="number">42</span>,<span class="number">59</span>,<span class="number">111</span>,<span class="number">85</span>,<span class="number">112</span>,<span class="number">47</span>,<span class="number">105</span>,<span class="number">109</span>,<span class="number">34</span>,<span class="number">81</span>,<span class="number">80</span>,<span class="number">108</span>,<span class="number">96</span>,<span class="number">121</span>,<span class="number">82</span>]</span><br><span class="line">s_out:<span class="built_in">str</span>=<span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> letter <span class="keyword">in</span> s_raw:</span><br><span class="line">	s_out+=<span class="built_in">chr</span>(letter)</span><br><span class="line"><span class="built_in">print</span>(s_out)</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@iH&lt;,&#123;*;oUp/im&quot;QPl`yR*ie&#125;NK;.D!Xu)b:J[Rj+6KKM7P@iH&lt;,&#123;*;oUp/im&quot;QPl`yR</span><br></pre></td></tr></table></figure>
+<p>用<a target="_blank" rel="noopener" href="https://www.dcode.fr/base-91-encoding">Base91 Encoding</a>或者脚本转换一下Base91编码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base91</span><br><span class="line">s=<span class="string">&quot;@iH&lt;,&#123;*;oUp/im&quot;</span>QPl`yR*ie&#125;NK;.D!Xu)b:J[Rj+6KKM7P@iH&lt;,&#123;*;oUp/im<span class="string">&quot;QPl`yR&quot;</span></span><br><span class="line">decode = base91.decode(s)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">str</span>(decode))</span><br></pre></td></tr></table></figure>
+<p>或者，干脆全部写到一起：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base91</span><br><span class="line">s_raw_1=[<span class="number">64</span>,<span class="number">105</span>,<span class="number">72</span>,<span class="number">60</span>,<span class="number">44</span>,<span class="number">123</span>,<span class="number">42</span>,<span class="number">59</span>,<span class="number">111</span>,<span class="number">85</span>,<span class="number">112</span>,<span class="number">47</span>,<span class="number">105</span>,<span class="number">109</span>,<span class="number">34</span>,<span class="number">81</span>,<span class="number">80</span>,<span class="number">108</span>,<span class="number">96</span>,<span class="number">121</span>,<span class="number">82</span>,<span class="number">42</span>,<span class="number">105</span>,<span class="number">101</span>,<span class="number">125</span>,<span class="number">78</span>,<span class="number">75</span>,<span class="number">59</span>,<span class="number">46</span>,<span class="number">68</span>,<span class="number">33</span>,<span class="number">88</span>,<span class="number">117</span>,<span class="number">41</span>,<span class="number">98</span>,<span class="number">58</span>,<span class="number">74</span>,<span class="number">91</span>,<span class="number">82</span>,<span class="number">106</span>,<span class="number">43</span>,<span class="number">54</span>,<span class="number">75</span>,<span class="number">75</span>,<span class="number">77</span>,<span class="number">55</span>,<span class="number">80</span>,<span class="number">64</span>,<span class="number">105</span>,<span class="number">72</span>,<span class="number">60</span>,<span class="number">44</span>,<span class="number">123</span>,<span class="number">42</span>,<span class="number">59</span>,<span class="number">111</span>,<span class="number">85</span>,<span class="number">112</span>,<span class="number">47</span>,<span class="number">105</span>,<span class="number">109</span>,<span class="number">34</span>,<span class="number">81</span>,<span class="number">80</span>,<span class="number">108</span>,<span class="number">96</span>,<span class="number">121</span>,<span class="number">82</span>]</span><br><span class="line">s_raw_2:<span class="built_in">str</span>=<span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> letter <span class="keyword">in</span> s_raw_1:</span><br><span class="line">	s_raw_2+=<span class="built_in">chr</span>(letter)</span><br><span class="line">s_out = base91.decode(s_raw_2)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">str</span>(s_out))</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bytearray(b&#x27;flag&#123;wMt84iS06mCbbfuOfuVXCZ8MSsAFN1GA\xfd\xe3\x9f&quot;1w\xe3Aw\xea\xbe\x18\tXV\xb8|\x8f&#x27;)</span><br></pre></td></tr></table></figure>
+<p>flag:<del>flag{wMt84iS06mCbbfuOfuVXCZ8MSsAFN1GA}</del></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/29/SWPU2019-%E7%A5%9E%E5%A5%87%E7%9A%84%E4%BA%8C%E7%BB%B4%E7%A0%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
+      <meta itemprop="name" content="Randark">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橘墨的摸鱼现场">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/29/SWPU2019-%E7%A5%9E%E5%A5%87%E7%9A%84%E4%BA%8C%E7%BB%B4%E7%A0%81/" class="post-title-link" itemprop="url">神奇的二维码</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-29 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-29T00:00:00+08:00">2021-08-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-09 11:29:47" itemprop="dateModified" datetime="2021-11-09T11:29:47+08:00">2021-11-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -962,11 +953,15 @@
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Crypto/%E5%87%AF%E6%92%92%E5%AF%86%E7%A0%81/" itemprop="url" rel="index"><span itemprop="name">凯撒密码</span></a>
+                  <a href="/categories/Challenge/" itemprop="url" rel="index"><span itemprop="name">Challenge</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Crypto/%E8%AF%8D%E9%A2%91%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">词频分析</span></a>
+                  <a href="/categories/Crypto/Base/" itemprop="url" rel="index"><span itemprop="name">Base</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Challenge/SWPU-2019/" itemprop="url" rel="index"><span itemprop="name">SWPU 2019</span></a>
                 </span>
             </span>
 
@@ -981,15 +976,112 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E5%87%AF%E6%92%92%EF%BC%9F%E6%9B%BF%E6%8D%A2%EF%BC%9F%E5%91%B5%E5%91%B5!">题目链接</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/26/%E5%87%AF%E6%92%92%EF%BC%9F%E6%9B%BF%E6%8D%A2%EF%BC%9F%E5%91%B5%E5%91%B5!/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#[SWPU2019]%E7%A5%9E%E5%A5%87%E7%9A%84%E4%BA%8C%E7%BB%B4%E7%A0%81">题目链接</a><br>附件是一张png，打开来是一张正常的二维码：<br><img src="/images/Writeup/20210829110641.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swpuctf&#123;flag_is_not_here&#125;</span><br></pre></td></tr></table></figure>
+<p>别试了，我试过了，这个不是flag。。<br>用[[Binwalk)分析一下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">randark@randark-VirtualBox:~/CTF$ binwalk -e 1.png</span><br><span class="line"></span><br><span class="line">DECIMAL       HEXADECIMAL     DESCRIPTION</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">0             0x0             PNG image, 400 x 400, 8-bit/color RGBA, non-interlaced</span><br><span class="line"></span><br><span class="line">WARNING: Extractor.execute failed to run external extractor &#x27;unrar e &#x27;%e&#x27;&#x27;: [Errno 2] No such file or directory: &#x27;unrar&#x27;, &#x27;unrar e &#x27;%e&#x27;&#x27; might not be installed correctly</span><br><span class="line"></span><br><span class="line">WARNING: Extractor.execute failed to run external extractor &#x27;unrar -x &#x27;%e&#x27;&#x27;: [Errno 2] No such file or directory: &#x27;unrar&#x27;, &#x27;unrar -x &#x27;%e&#x27;&#x27; might not be installed correctly</span><br><span class="line">28932         0x7104          RAR archive data, version 5.x</span><br><span class="line"></span><br><span class="line">WARNING: Extractor.execute failed to run external extractor &#x27;unrar e &#x27;%e&#x27;&#x27;: [Errno 2] No such file or directory: &#x27;unrar&#x27;, &#x27;unrar e &#x27;%e&#x27;&#x27; might not be installed correctly</span><br><span class="line"></span><br><span class="line">WARNING: Extractor.execute failed to run external extractor &#x27;unrar -x &#x27;%e&#x27;&#x27;: [Errno 2] No such file or directory: &#x27;unrar&#x27;, &#x27;unrar -x &#x27;%e&#x27;&#x27; might not be installed correctly</span><br><span class="line">29034         0x716A          RAR archive data, version 5.x</span><br><span class="line"></span><br><span class="line">WARNING: Extractor.execute failed to run external extractor &#x27;unrar e &#x27;%e&#x27;&#x27;: [Errno 2] No such file or directory: &#x27;unrar&#x27;, &#x27;unrar e &#x27;%e&#x27;&#x27; might not be installed correctly</span><br><span class="line"></span><br><span class="line">WARNING: Extractor.execute failed to run external extractor &#x27;unrar -x &#x27;%e&#x27;&#x27;: [Errno 2] No such file or directory: &#x27;unrar&#x27;, &#x27;unrar -x &#x27;%e&#x27;&#x27; might not be installed correctly</span><br><span class="line">94226         0x17012         RAR archive data, version 5.x</span><br><span class="line"></span><br><span class="line">WARNING: Extractor.execute failed to run external extractor &#x27;unrar e &#x27;%e&#x27;&#x27;: [Errno 2] No such file or directory: &#x27;unrar&#x27;, &#x27;unrar e &#x27;%e&#x27;&#x27; might not be installed correctly</span><br><span class="line"></span><br><span class="line">WARNING: Extractor.execute failed to run external extractor &#x27;unrar -x &#x27;%e&#x27;&#x27;: [Errno 2] No such file or directory: &#x27;unrar&#x27;, &#x27;unrar -x &#x27;%e&#x27;&#x27; might not be installed correctly</span><br><span class="line">99220         0x18394         RAR archive data, version 5.x</span><br></pre></td></tr></table></figure>
+<p>得到了四个rar文件：<br><img src="/images/Writeup/20210829110822.png"><br>716A.rar解压后得到：<br><img src="/images/Writeup/20210829111053.png"><br>7104.rar解压后得到：<br><img src="/images/Writeup/20210829111126.png"><br>其中的encode.txt文件内容为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">YXNkZmdoamtsMTIzNDU2Nzg5MA==</span><br></pre></td></tr></table></figure>
+<p>Base64解码后得到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">asdfghjkl1234567890</span><br></pre></td></tr></table></figure>
+<p>17012.rar里面是一个doc，打开后的内容为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vm0wd2QyUXlVWGxWV0d4V1YwZDRWMVl3WkRSV01WbDNXa1JTVjAxV2JETlhhMUpUVmpBeFYySkVUbGhoTVVwVVZtcEJlRll5U2tWVWJHaG9UVlZ3VlZadGNFSmxSbGw1VTJ0V1ZXSkhhRzlVVmxaM1ZsWmFjVkZ0UmxSTmJFcEpWbTEwYTFkSFNrZGpSVGxhVmpOU1IxcFZXbUZrUjA1R1UyMTRVMkpIZHpGV1ZFb3dWakZhV0ZOcmFHaFNlbXhXVm1wT1QwMHhjRlpYYlVaclVqQTFSMWRyV25kV01ERkZVbFJHVjFaRmIzZFdha1poVjBaT2NtRkhhRk5sYlhoWFZtMXdUMVF3TUhoalJscFlZbFZhY1ZadGRHRk5SbFowWlVaT1ZXSlZXVEpWYkZKSFZqRmFSbUl6WkZkaGExcG9WakJhVDJOdFJraGhSazVzWWxob1dGWnRNWGRVTVZGM1RVaG9hbEpzY0ZsWmJGWmhZMnhXY1ZGVVJsTk5XRUpIVmpKNFQxWlhTa2RqUmxwWFlsaFNNMVpxU2t0V1ZrcFpXa1prYUdFeGNGbFhhMVpoVkRKTmVGcElUbWhTTW5oVVdWUk9RMWRzV1hoWGJYUk9VakZHTlZaWE5VOWhiRXAwVld4c1dtSkdXbWhaTW5oWFl6RldjbHBHWkdsU2JrSmFWMnhXWVZReFdsaFRiRnBZVmtWd1YxbHJXa3RUUmxweFUydGFiRlpzV2xwWGExcHJZVWRGZUdOR2JGaGhNVnBvVmtSS1QyTXlUa1phUjJoVFRXNW9WVlpHWTNoaU1rbDRWMWhvWVZKRlNtRldiWGh6VFRGU1ZtRkhPV2hpUlhCNldUQmFjMWR0U2tkWGJXaGFUVzVvV0ZreFdrZFdWa3B6VkdzMVYySkdhM2hXYTFwaFZURlZlRmR1U2s1WFJYQnhWVzB4YjFZeFVsaE9WazVPVFZad2VGVXlkREJXTVZweVkwWndXR0V4Y0ROV2FrWkxWakpPU1dKR1pGZFNWWEJ2Vm10U1MxUXlUWGxVYTFwb1VqTkNWRmxZY0ZkWFZscFlZMFU1YVUxcmJEUldNV2h2V1ZaS1IxTnNaRlZXYkZwNlZHeGFZVmRGTlZaUFZtaFRUVWhDU2xac1pEUmpNV1IwVTJ0a1dHSlhhR0ZVVnpWdlYwWnJlRmRyWkZkV2EzQjZWa2R6TVZZd01WWmlla1pYWWxoQ1MxUldaRVpsUm1SWldrVTFWMVpzY0ZWWFYzUnJWVEZzVjFWc1dsaGlWVnBQVkZaYWQyVkdWWGxrUkVKWFRWWndlVmt3V25kWFIwVjRZMFJPV21FeVVrZGFWM2hIWTIxS1IxcEhiRmhTVlhCS1ZtMTBVMU14VlhoWFdHaFlZbXhhVmxsclpHOWpSbHB4VTIwNWJHSkhVbGxhVldNMVlWVXhjbUpFVWxkTmFsWlVWa2Q0YTFOR1ZuTlhiRlpYVFRGS05sWkhlR0ZXTWxKSVZXdG9hMUl5YUhCVmJHaENaREZhYzFwRVVtcE5WMUl3VlRKMGExZEhTbGhoUjBaVlZucFdkbFl3V25OT2JFcHpXa2R3YVZORlNrbFdNblJyWXpGVmVWTnVTbFJpVlZwWVZGYzFiMWRHYkhGVGExcHNVbTFTV2xkclZURldNVnB6WTBaV1dGWnNTa2hhUkVaYVpVZEtTVk5zYUdoTk1VcFdWbGN4TkdReVZrZFdXR3hyVWpCYWNGVnRlSGRsYkZsNVpVaGtXRkl3VmpSWk1GSlBWMjFGZVZWclpHRldNMmhJV1RJeFMxSXlSa2RoUmxKVFZsaENTMVp0TVRCVk1VMTRWbGhvV0ZkSGFGbFpiWGhoVm14c2NscEhPV3BTYkhCNFZrY3dOVll4V25OalJXaFlWa1UxZGxsV1ZYaGpNVTUxWTBaa1RtRnNXbFZXYTJRMFlURk9SMVp1VGxoaVJscFlWRlJHUzA1c1draGxSMFpYVFd4S1NWWlhkRzloTVVwMFlVWlNWVlpYYUVSVk1uaGhZekZ3UlZWdGNFNVdNVWwzVmxSS01HRXhaRWhUYkdob1VqQmFWbFp0ZUhkTk1XeFdWMjVrVTJKSVFraFdSM2hUVlRKRmVsRnFWbGRTTTJob1ZrUktSMWRHU2xsYVIzQlRWak5vV1ZkWGVHOVJNVkpIVlc1S1dHSkZjSE5WYlRGVFpXeHNWbGRzVG1oU1ZFWjZWVEkxYjFZeFdqWlJhbEpWWVRKU1NGVnFSbUZYVm5CSVlVWk9WMVpHV2xaV2JHTjRUa2RSZVZaclpGZFhSM2h5VldwQ1lXTkdWblJsU0dSc1lrWldOVnBWYUd0WFIwcEhZMFpvV2sxSGFFeFdha1poVW14a2NtVkdaRTVXYmtKSlYxUkplRk14U1hoalJXUmhVbFJXVDFWc2FFTlRNVnAwVFZSQ1ZrMVZNVFJXYkdodlYwWmtTR0ZHYkZwaVdHaG9WbXBHYzJNeGNFaFBWbVJUWWxob1lWZFVRbUZoTWtwSVUydG9WbUpIZUdoV2JHUk9UVlpzVjFaWWFGaFNiRnA1V1ZWYWExUnRSbk5YYkZaWFlUSlJNRlpFUms5VFJrcHlXa1pLYVZKdVFuZFdiWFJYVm0xUmVGZHVVbXBTVjFKWFZGWmFkMDFHVm5Sa1J6bFdVbXh3TUZsVldsTldWbHBZWVVWU1ZXSkdjR2hWTUdSWFUwWktkR05GTlZkTlZXd3pWbXhTUzAxSFJYaGFSV2hVWWtkb2IxVnFRbUZXYkZwMVkwWmthMkpHYkROV01qVlBWREpLUm1OSWNGaGhNbEl6V1ZaYVQxSnNUbkppUm1ST1lteEtlVmRZY0VkV2JWWlhWRzVXVkdKR1NuQldiRnAzVjFaYVIxbDZSbWxOVjFKSVdXdG9SMVpIUlhoalNFNVdZbFJHVkZZeWVHdGpiRnBWVW14a1RsWnVRalpYVkVKaFZqRmtSMWRZY0ZaaWEzQllWbXRXWVdWc1duRlNiR1JxVFZkU2VsbFZaSE5oVmxweVkwUmFWMDFYVVhkWFZtUlNaVlphY2xwR1pHbGlSWEJRVm0xNGExVXhXbk5WYkdoclUwZFNWRlJXV25OT1ZuQldZVWQwV0ZJd2NFaFpNRnB2VjJzeFNGVnVXbGROYWtaSFdsWmFWMk5zY0VoU2JHUk9UVzFvU2xZeFVrcGxSazE0VTFob2FsSlhVbWhWYkZKWFZERldjMkZGVGxSTlZuQXdWRlpTUTFack1WWk5WRkpYWWtkb2RsWXdXbXRUUjBaSFlrWndhVmRIYUc5V2JURTBZekpPYzJORmFGQldNMEpVV1d0b1EwNUdXbkpaTTJSUFZqQldOVlV5ZEd0aGJFcFlZVVpvV21KR1NrTlVWbHBoVjBkTmVtRkdhRk5pUm05NFYxUkNZV0V4VW5SU2JrNVlZWHBHV0ZsWGRFdGpiRlkyVW1zNVUwMVdjREZXVjNoUFlWWkplRk51V2xoV2JFcElXa1JHVDFZeFpISmhSM1JUVFVad2FGWnRNSGhWTVU1WFYyeG9hMUo2Ykc5VVZsWnpUbFpzVm1GRlRsZGlWWEJKV1ZWV1QxbFdTa1pYYldoYVpXdGFNMVZzV2xka1IwNUdUbFprVGxaWGQzcFdiWGhUVXpBeFNGTlliRk5oTWxKVldXMXpNVlpXYkhKYVJ6bFhZa1p3TUZwVmFHdFVhekZYWWtST1YwMXFWa3haYTFwTFpFWldkV0pIUmxOV01VbDZWMVphWVZsWFRuUlVhMXBwVW0xU2NGVnFSa1prTVdSWFZXdDBVMDFXYkRSV1J6VlhWbTFLUmxOc2FGWmlSa3BZVmpGYVlWSXhiRFpTYld4T1ZqRktTVmRYZEc5U01WcElVbGhvYWxORk5WZFpiRkpIVmtaWmVXVkhkR3BpUm5CV1ZXMTRhMVJzV25WUmFscFlWa1ZLYUZacVJtdFNNV1JaWTBaYWFXRXpRbGxXYlhSWFdWZFdjMWR1UmxOaVIxSnhWRlprVTJWc2JGWmFTRTVvVm14d2VWa3dVbUZXTURGWVZWaGtXRlp0VWxOYVZscGhZMnh3UjFwSGJHbFNXRUpSVm0weE5HRXhWWGhYYms1V1lrZG9jbFV3WkZOV1JsSlhWMjVPVDFadVFsZFpWV1F3VjBaSmQyTkZhRnBOUm5CMlZqSnplRk5IUmtabFJtUm9ZVEZ3YjFaWE1UUmhNazUwVm10a1lWSlVWbGhaYlhSTFUyeFplRlZyY0d4U2F6RTBWVEZvYjJGc1NsaFZiV2hXWWtaS1dGWkVSbGRqTWtaR1ZHeFNUbFp1UVhkV1JscFRVVEZhY2sxV1drNVdSa3BZV1d0a2IyUnNXWGRYYlhSVVVqQmFTRmxyV25kaFZtUklZVWM1VjJKVVJUQlpla3BQWXpKT1JtRkdRbGROTUVwVlYxZDBiMUV3TlVkWGJrcGFUVEpTVUZadGVITk9SbGw1VGxaT1YySlZjRWxaVlZwdlZqSkdjazVWT1ZWV2JIQm9WakJrVG1WdFJrZGhSazVwVW01Qk1WWXhXbGRaVjBWNFZXNVNVMkpyTlZsWmExcGhWMFpzVlZOc1NrNVNiVkpZVmpKME1HRnJNVmRUYWtaWFVucEdkbFpVU2t0U01rNUhZa1prVTJKRmNFMVhWM0JIVkRGWmVGcElTbWhTTTJoVVZGVmFkMkZHV25STlNHaFdUVlZzTkZaWE5VOVhSMHBXVjJ4a1ZtSllhRE5VVlZwaFYwZE9ObFpzYUdsU2JrSklWa2Q0VjFVeFdsaFRhMlJxVWpKb1YxUlZaRk5YUmxWM1YydDBhMUl3TlVkVWJGcHJWR3hhV0dRemNGZGlXR2hVVlhwQmVGTkdTbGxoUjBaVFZqSm9WbGRYZEd0aU1rbDRWbTVHVW1KVldsaFphMXAzVFZacmQxZHRkR2hOYTNCSVdXdFNUMVl3TVhGV2JFSlhVa1Z3VEZWdE1VOVRWMDVIWVVkb1RtSkZiRFpXTVZwaFdWWlJlRk51VGxWaWEzQndWVzB4YjFkR2JISlhibVJzVm0xU1dsa3dWbXRXTWtwWFVtcE9WVlpzV25wWlZWcExZMnMxV0U5V2NHaE5iV2hGVm1wR1lXRXhXWGhqUlZaU1lsaFNjRlp0ZEZwTlJscHhVMnBTVjAxV1ZqVlZNblJyWVd4T1JrNVdaRnBpUmtwSVZtdGFVMVl4WkhOWGJYaFhUVVJSZVZaWE1UUmhNVkp6VjI1V1VtRnNjRmxXYTFaTFlVWmFjVkp0ZEZOTlYxSXhWa2Q0VTJGRk1YUmhSemxYVmpOU1dGZFdaRTlqTVZwMVVteFNhRTB4U2xaV2JURTBVekF4UjJKR1dsaGhlbXh3VldwQ2QxZHNiRlpYYTJSWFRXdFdORmt3Wkc5WFJscDBWV3hPWVZac2NHaFpNbmgzVWpGd1NHSkhiRk5YUlVwU1ZtMHdlRTVIUlhoV1dHaFlWMGRvVjFsclpHOWpiRlYzV2taT1dGSnNTbGhYYTFKVFlrWmFjMk5HYkZWV2JGcHlWakJhUzJOdFNrVlViR1JwVjBWS1ZWWnFTbnBsUmtsNFZHNU9VbUpIVW05WlZFNURVMVprVlZOcVVtaE5helV3Vm0xMGExbFdTWGxoUnpsVlZrVktURlpYZUdGak1WWnlWRzFvVGxaWGR6QldWRVp2WXpGVmVWSlliR2hUUlVwWFdXeG9UbVZHYTNkWGJrNVhWbXRhTVZkclZURmhWa3AxVVZoa1YxSnNjRlJWVkVaaFkyc3hWMWRyTlZkU2EzQlpWbTB3ZUdJeVZuTlhiazVZWWxoU1ZWVnFSbUZUUmxsNVpVaGtWMDFWY0ZoWmFrNTNWMFphYzFkdGFGZGhhM0JRVm1wR1UyUldWbk5SYkdScFZtdHdWbFl4WkRCV01sRjRXa2hPV0dFeWFITlZhazVEVlVaYWRHVklUazlTYkd3MVZHeFZOV0ZIU2taalJteGFWbFp3ZWxacVNrWmxSbHBaWVVkR1UwMHlhRFpXYlhCSFdWWmtXRkpyWkdoU2F6VndWVzB3TlU1R1dYaFZhMDVhVmpCV05GWlhOVTlYUm1SSVpVYzVWbUV4V2pOV01GcHpWMGRTUm1SSGNHbFNiR3Q1Vmxjd2VFMUdXWGROVm1ScVVrVmFWMVJYTlc5U1JscHhVMnQwVkZacldqRlhhMXByWVZaa1IxTnNiRmRpVkVJMFZsY3hWMUl4Y0VsV2JFNXBVbGhDZDFadGVHRmtNa1pIVjI1U1RsTkhhRmRVVmxVeFYwWlplV1ZIT1doTlZXOHlXV3RqTlZaV1duTlhibkJWWWtad2VsWnRNVWRTYkZKeldrZHNWMWRGU2t0V01WcFhWakZSZUdKR1pGUmhNWEJaV1d4a2IxbFdjRmhrUjBaT1RWWmFlbFl5ZUd0aE1VbDNUbFZrVldKR2NISldSM2hoVjBkUmVtTkdaR2xYUjJoVlZsaHdRbVZHVGtkVWJHeHBVbXMxYjFSWGVFdFdiR1JZVFZod1RsWnNjRmhaYTJoUFZqSktWbGRzYUZwaE1YQXpWRlZhZDFadFJraGtSbFpvWld0YVdWZFVRbTlqTVZsM1RWaEdVMkV5YUdGV2FrNXZZVVpyZVUxVk9WTldhM0I2V1ZWa2IxUnNaRVpUYkVwWFlsaFNjbFJyV25OWFJsSjFWV3hXYUUxV2NGbFhWM1JyVlRGYVIxVnNWbFJpVkd4d1ZGWmFkMlZXV2xoa1JFSldUVVJHV0ZsclVsTldNVW8yVm14b1YySlVSa3hWYlhoUFl6SkdSMWR0YkZOaE0wSmFWbTF3UjFsWFJYaFhXR2hYWW10d2FGVnFUbE5VTVd4VlVtNWtWRlpzY0hoVk1uQlRWakF4VjFacVZsWmlSMmgyV1ZkNFQxSnJOVmRhUm5CcFVtdHdTVlp0ZEdGa01XUklWbXRzVldKSFVuQlZha1pMVG14YWNsa3phR2xOVmxZMFZqSjBZVmRIUm5OalJtaFhZVEZhZVZwVlduTldWa3B6WTBkNFUySldTbUZYVkVKaFdWZEdWMWRZYkdoU2JXaFpXV3RrVW1ReFpGZFhiazVYVFdzMVNGWXllRzloVmtsNFUyNW9WMUp0VVhkWFZscEtaVVpXV1dGR2FHbFhSa3AyVmxkd1IxbFhWbk5YV0d4cVVqQmFXRlJWVWtkWFZscFhZVWQwV0ZKc2NEQldWM2hQV1ZaYWMyTkhhRnBOYm1nelZXcEdkMU5IU2toaVJrNVlVbFZ3VTFadE1IZGxSVFZJVWxob1YxZEhhRmxXTUdSdlZqRnNjbHBIT1dwaVJsWXpWMnRhVDFkR1NuTlRiR2hYVFdwV2NsWkhlRXRrUjFKRlZHeG9hRTFXY0hsV2FrSmhVMjFSZVZScldtaFNia0pQVlcwMVEwMXNXbkZUYm5Cc1VtczFTRlp0TlZkWFIwcElWV3M1V21KVVJuWlpha1poWTFaR2RGSnNaRTVoZWxZMlYxUkNWMkl4VlhsVGEyaFdZa2RvVmxadGVHRk5NVnBZWlVkR2FrMVlRa3BYYTFwVFZHeGFWVkpVUWxkV1JWcDJXWHBHVm1WV1NsbGlSbHBwVmtkNFdGZFhlRzlpTVZKSFYyNUtXR0pWV25GVVYzUmhVakZhU0dWR1RsVmlSbkF4VlZkd1UxWXhXalpSYWxKV1lXdGFhRmt5YzNoV01XUnlUbFprVTJFelFscFdiVEIzWlVkSmVWWnVUbGhpYXpWWldXeG9VMVpXVm5GUmJVWlVWbTE0VjFZeU1VZFdWMHBHWTBSR1ZsWjZRVEZXYWtwTFZsWktWVkZzY0d4aE0wSlJWMWh3UjJReFRsZFVibEpyVW1zMVQxUlZWbmRXYkZsNFdrUkNXbFl4UmpOVWJGWnJWMGRLU0dGRk9WZGhNVnBNVmtSR1YyUkhWa2xVYXpsVFlrZDNNVlpIZUZaT1YwWklVMnRhYWxKdGVHRldiRnAzWkd4YWNWTnJaR3BoZWxaWVZsZDRhMVV4V25WUmFscFhZbGhvYUZWcVJtdFhSa3B5V2taV2FWSXhTblpXUmxKRFUyc3hjMWR1VW10U00xSlFWVzB4TkZkR1duTmhTRTVYVWpCV05Ga3dXbk5XTURGSVlVVlNWMDFHY0doWmVrWnJaRlp3UjFSck5WZGhNV3QzVm0xd1MwMUdVWGhYYmxKVVlURndWVmxyV25kV2JGcHpWMnRrVGsxV1draFZiRkp6VlZaV1ZVMUVhejA9</span><br></pre></td></tr></table></figure>
+<p>怀疑是base多次加密，写个脚本测试一下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line">s1=<span class="string">&quot;Vm0wd2QyUXlVWGxWV0d4V1YwZDRWMVl3WkRSV01WbDNXa1JTVjAxV2JETlhhMUpUVmpBeFYySkVUbGhoTVVwVVZtcEJlRll5U2tWVWJHaG9UVlZ3VlZadGNFSmxSbGw1VTJ0V1ZXSkhhRzlVVmxaM1ZsWmFjVkZ0UmxSTmJFcEpWbTEwYTFkSFNrZGpSVGxhVmpOU1IxcFZXbUZrUjA1R1UyMTRVMkpIZHpGV1ZFb3dWakZhV0ZOcmFHaFNlbXhXVm1wT1QwMHhjRlpYYlVaclVqQTFSMWRyV25kV01ERkZVbFJHVjFaRmIzZFdha1poVjBaT2NtRkhhRk5sYlhoWFZtMXdUMVF3TUhoalJscFlZbFZhY1ZadGRHRk5SbFowWlVaT1ZXSlZXVEpWYkZKSFZqRmFSbUl6WkZkaGExcG9WakJhVDJOdFJraGhSazVzWWxob1dGWnRNWGRVTVZGM1RVaG9hbEpzY0ZsWmJGWmhZMnhXY1ZGVVJsTk5XRUpIVmpKNFQxWlhTa2RqUmxwWFlsaFNNMVpxU2t0V1ZrcFpXa1prYUdFeGNGbFhhMVpoVkRKTmVGcElUbWhTTW5oVVdWUk9RMWRzV1hoWGJYUk9VakZHTlZaWE5VOWhiRXAwVld4c1dtSkdXbWhaTW5oWFl6RldjbHBHWkdsU2JrSmFWMnhXWVZReFdsaFRiRnBZVmtWd1YxbHJXa3RUUmxweFUydGFiRlpzV2xwWGExcHJZVWRGZUdOR2JGaGhNVnBvVmtSS1QyTXlUa1phUjJoVFRXNW9WVlpHWTNoaU1rbDRWMWhvWVZKRlNtRldiWGh6VFRGU1ZtRkhPV2hpUlhCNldUQmFjMWR0U2tkWGJXaGFUVzVvV0ZreFdrZFdWa3B6VkdzMVYySkdhM2hXYTFwaFZURlZlRmR1U2s1WFJYQnhWVzB4YjFZeFVsaE9WazVPVFZad2VGVXlkREJXTVZweVkwWndXR0V4Y0ROV2FrWkxWakpPU1dKR1pGZFNWWEJ2Vm10U1MxUXlUWGxVYTFwb1VqTkNWRmxZY0ZkWFZscFlZMFU1YVUxcmJEUldNV2h2V1ZaS1IxTnNaRlZXYkZwNlZHeGFZVmRGTlZaUFZtaFRUVWhDU2xac1pEUmpNV1IwVTJ0a1dHSlhhR0ZVVnpWdlYwWnJlRmRyWkZkV2EzQjZWa2R6TVZZd01WWmlla1pYWWxoQ1MxUldaRVpsUm1SWldrVTFWMVpzY0ZWWFYzUnJWVEZzVjFWc1dsaGlWVnBQVkZaYWQyVkdWWGxrUkVKWFRWWndlVmt3V25kWFIwVjRZMFJPV21FeVVrZGFWM2hIWTIxS1IxcEhiRmhTVlhCS1ZtMTBVMU14VlhoWFdHaFlZbXhhVmxsclpHOWpSbHB4VTIwNWJHSkhVbGxhVldNMVlWVXhjbUpFVWxkTmFsWlVWa2Q0YTFOR1ZuTlhiRlpYVFRGS05sWkhlR0ZXTWxKSVZXdG9hMUl5YUhCVmJHaENaREZhYzFwRVVtcE5WMUl3VlRKMGExZEhTbGhoUjBaVlZucFdkbFl3V25OT2JFcHpXa2R3YVZORlNrbFdNblJyWXpGVmVWTnVTbFJpVlZwWVZGYzFiMWRHYkhGVGExcHNVbTFTV2xkclZURldNVnB6WTBaV1dGWnNTa2hhUkVaYVpVZEtTVk5zYUdoTk1VcFdWbGN4TkdReVZrZFdXR3hyVWpCYWNGVnRlSGRsYkZsNVpVaGtXRkl3VmpSWk1GSlBWMjFGZVZWclpHRldNMmhJV1RJeFMxSXlSa2RoUmxKVFZsaENTMVp0TVRCVk1VMTRWbGhvV0ZkSGFGbFpiWGhoVm14c2NscEhPV3BTYkhCNFZrY3dOVll4V25OalJXaFlWa1UxZGxsV1ZYaGpNVTUxWTBaa1RtRnNXbFZXYTJRMFlURk9SMVp1VGxoaVJscFlWRlJHUzA1c1draGxSMFpYVFd4S1NWWlhkRzloTVVwMFlVWlNWVlpYYUVSVk1uaGhZekZ3UlZWdGNFNVdNVWwzVmxSS01HRXhaRWhUYkdob1VqQmFWbFp0ZUhkTk1XeFdWMjVrVTJKSVFraFdSM2hUVlRKRmVsRnFWbGRTTTJob1ZrUktSMWRHU2xsYVIzQlRWak5vV1ZkWGVHOVJNVkpIVlc1S1dHSkZjSE5WYlRGVFpXeHNWbGRzVG1oU1ZFWjZWVEkxYjFZeFdqWlJhbEpWWVRKU1NGVnFSbUZYVm5CSVlVWk9WMVpHV2xaV2JHTjRUa2RSZVZaclpGZFhSM2h5VldwQ1lXTkdWblJsU0dSc1lrWldOVnBWYUd0WFIwcEhZMFpvV2sxSGFFeFdha1poVW14a2NtVkdaRTVXYmtKSlYxUkplRk14U1hoalJXUmhVbFJXVDFWc2FFTlRNVnAwVFZSQ1ZrMVZNVFJXYkdodlYwWmtTR0ZHYkZwaVdHaG9WbXBHYzJNeGNFaFBWbVJUWWxob1lWZFVRbUZoTWtwSVUydG9WbUpIZUdoV2JHUk9UVlpzVjFaWWFGaFNiRnA1V1ZWYWExUnRSbk5YYkZaWFlUSlJNRlpFUms5VFJrcHlXa1pLYVZKdVFuZFdiWFJYVm0xUmVGZHVVbXBTVjFKWFZGWmFkMDFHVm5Sa1J6bFdVbXh3TUZsVldsTldWbHBZWVVWU1ZXSkdjR2hWTUdSWFUwWktkR05GTlZkTlZXd3pWbXhTUzAxSFJYaGFSV2hVWWtkb2IxVnFRbUZXYkZwMVkwWmthMkpHYkROV01qVlBWREpLUm1OSWNGaGhNbEl6V1ZaYVQxSnNUbkppUm1ST1lteEtlVmRZY0VkV2JWWlhWRzVXVkdKR1NuQldiRnAzVjFaYVIxbDZSbWxOVjFKSVdXdG9SMVpIUlhoalNFNVdZbFJHVkZZeWVHdGpiRnBWVW14a1RsWnVRalpYVkVKaFZqRmtSMWRZY0ZaaWEzQllWbXRXWVdWc1duRlNiR1JxVFZkU2VsbFZaSE5oVmxweVkwUmFWMDFYVVhkWFZtUlNaVlphY2xwR1pHbGlSWEJRVm0xNGExVXhXbk5WYkdoclUwZFNWRlJXV25OT1ZuQldZVWQwV0ZJd2NFaFpNRnB2VjJzeFNGVnVXbGROYWtaSFdsWmFWMk5zY0VoU2JHUk9UVzFvU2xZeFVrcGxSazE0VTFob2FsSlhVbWhWYkZKWFZERldjMkZGVGxSTlZuQXdWRlpTUTFack1WWk5WRkpYWWtkb2RsWXdXbXRUUjBaSFlrWndhVmRIYUc5V2JURTBZekpPYzJORmFGQldNMEpVV1d0b1EwNUdXbkpaTTJSUFZqQldOVlV5ZEd0aGJFcFlZVVpvV21KR1NrTlVWbHBoVjBkTmVtRkdhRk5pUm05NFYxUkNZV0V4VW5SU2JrNVlZWHBHV0ZsWGRFdGpiRlkyVW1zNVUwMVdjREZXVjNoUFlWWkplRk51V2xoV2JFcElXa1JHVDFZeFpISmhSM1JUVFVad2FGWnRNSGhWTVU1WFYyeG9hMUo2Ykc5VVZsWnpUbFpzVm1GRlRsZGlWWEJKV1ZWV1QxbFdTa1pYYldoYVpXdGFNMVZzV2xka1IwNUdUbFprVGxaWGQzcFdiWGhUVXpBeFNGTlliRk5oTWxKVldXMXpNVlpXYkhKYVJ6bFhZa1p3TUZwVmFHdFVhekZYWWtST1YwMXFWa3haYTFwTFpFWldkV0pIUmxOV01VbDZWMVphWVZsWFRuUlVhMXBwVW0xU2NGVnFSa1prTVdSWFZXdDBVMDFXYkRSV1J6VlhWbTFLUmxOc2FGWmlSa3BZVmpGYVlWSXhiRFpTYld4T1ZqRktTVmRYZEc5U01WcElVbGhvYWxORk5WZFpiRkpIVmtaWmVXVkhkR3BpUm5CV1ZXMTRhMVJzV25WUmFscFlWa1ZLYUZacVJtdFNNV1JaWTBaYWFXRXpRbGxXYlhSWFdWZFdjMWR1UmxOaVIxSnhWRlprVTJWc2JGWmFTRTVvVm14d2VWa3dVbUZXTURGWVZWaGtXRlp0VWxOYVZscGhZMnh3UjFwSGJHbFNXRUpSVm0weE5HRXhWWGhYYms1V1lrZG9jbFV3WkZOV1JsSlhWMjVPVDFadVFsZFpWV1F3VjBaSmQyTkZhRnBOUm5CMlZqSnplRk5IUmtabFJtUm9ZVEZ3YjFaWE1UUmhNazUwVm10a1lWSlVWbGhaYlhSTFUyeFplRlZyY0d4U2F6RTBWVEZvYjJGc1NsaFZiV2hXWWtaS1dGWkVSbGRqTWtaR1ZHeFNUbFp1UVhkV1JscFRVVEZhY2sxV1drNVdSa3BZV1d0a2IyUnNXWGRYYlhSVVVqQmFTRmxyV25kaFZtUklZVWM1VjJKVVJUQlpla3BQWXpKT1JtRkdRbGROTUVwVlYxZDBiMUV3TlVkWGJrcGFUVEpTVUZadGVITk9SbGw1VGxaT1YySlZjRWxaVlZwdlZqSkdjazVWT1ZWV2JIQm9WakJrVG1WdFJrZGhSazVwVW01Qk1WWXhXbGRaVjBWNFZXNVNVMkpyTlZsWmExcGhWMFpzVlZOc1NrNVNiVkpZVmpKME1HRnJNVmRUYWtaWFVucEdkbFpVU2t0U01rNUhZa1prVTJKRmNFMVhWM0JIVkRGWmVGcElTbWhTTTJoVVZGVmFkMkZHV25STlNHaFdUVlZzTkZaWE5VOVhSMHBXVjJ4a1ZtSllhRE5VVlZwaFYwZE9ObFpzYUdsU2JrSklWa2Q0VjFVeFdsaFRhMlJxVWpKb1YxUlZaRk5YUmxWM1YydDBhMUl3TlVkVWJGcHJWR3hhV0dRemNGZGlXR2hVVlhwQmVGTkdTbGxoUjBaVFZqSm9WbGRYZEd0aU1rbDRWbTVHVW1KVldsaFphMXAzVFZacmQxZHRkR2hOYTNCSVdXdFNUMVl3TVhGV2JFSlhVa1Z3VEZWdE1VOVRWMDVIWVVkb1RtSkZiRFpXTVZwaFdWWlJlRk51VGxWaWEzQndWVzB4YjFkR2JISlhibVJzVm0xU1dsa3dWbXRXTWtwWFVtcE9WVlpzV25wWlZWcExZMnMxV0U5V2NHaE5iV2hGVm1wR1lXRXhXWGhqUlZaU1lsaFNjRlp0ZEZwTlJscHhVMnBTVjAxV1ZqVlZNblJyWVd4T1JrNVdaRnBpUmtwSVZtdGFVMVl4WkhOWGJYaFhUVVJSZVZaWE1UUmhNVkp6VjI1V1VtRnNjRmxXYTFaTFlVWmFjVkp0ZEZOTlYxSXhWa2Q0VTJGRk1YUmhSemxYVmpOU1dGZFdaRTlqTVZwMVVteFNhRTB4U2xaV2JURTBVekF4UjJKR1dsaGhlbXh3VldwQ2QxZHNiRlpYYTJSWFRXdFdORmt3Wkc5WFJscDBWV3hPWVZac2NHaFpNbmgzVWpGd1NHSkhiRk5YUlVwU1ZtMHdlRTVIUlhoV1dHaFlWMGRvVjFsclpHOWpiRlYzV2taT1dGSnNTbGhYYTFKVFlrWmFjMk5HYkZWV2JGcHlWakJhUzJOdFNrVlViR1JwVjBWS1ZWWnFTbnBsUmtsNFZHNU9VbUpIVW05WlZFNURVMVprVlZOcVVtaE5helV3Vm0xMGExbFdTWGxoUnpsVlZrVktURlpYZUdGak1WWnlWRzFvVGxaWGR6QldWRVp2WXpGVmVWSlliR2hUUlVwWFdXeG9UbVZHYTNkWGJrNVhWbXRhTVZkclZURmhWa3AxVVZoa1YxSnNjRlJWVkVaaFkyc3hWMWRyTlZkU2EzQlpWbTB3ZUdJeVZuTlhiazVZWWxoU1ZWVnFSbUZUUmxsNVpVaGtWMDFWY0ZoWmFrNTNWMFphYzFkdGFGZGhhM0JRVm1wR1UyUldWbk5SYkdScFZtdHdWbFl4WkRCV01sRjRXa2hPV0dFeWFITlZhazVEVlVaYWRHVklUazlTYkd3MVZHeFZOV0ZIU2taalJteGFWbFp3ZWxacVNrWmxSbHBaWVVkR1UwMHlhRFpXYlhCSFdWWmtXRkpyWkdoU2F6VndWVzB3TlU1R1dYaFZhMDVhVmpCV05GWlhOVTlYUm1SSVpVYzVWbUV4V2pOV01GcHpWMGRTUm1SSGNHbFNiR3Q1Vmxjd2VFMUdXWGROVm1ScVVrVmFWMVJYTlc5U1JscHhVMnQwVkZacldqRlhhMXByWVZaa1IxTnNiRmRpVkVJMFZsY3hWMUl4Y0VsV2JFNXBVbGhDZDFadGVHRmtNa1pIVjI1U1RsTkhhRmRVVmxVeFYwWlplV1ZIT1doTlZXOHlXV3RqTlZaV1duTlhibkJWWWtad2VsWnRNVWRTYkZKeldrZHNWMWRGU2t0V01WcFhWakZSZUdKR1pGUmhNWEJaV1d4a2IxbFdjRmhrUjBaT1RWWmFlbFl5ZUd0aE1VbDNUbFZrVldKR2NISldSM2hoVjBkUmVtTkdaR2xYUjJoVlZsaHdRbVZHVGtkVWJHeHBVbXMxYjFSWGVFdFdiR1JZVFZod1RsWnNjRmhaYTJoUFZqSktWbGRzYUZwaE1YQXpWRlZhZDFadFJraGtSbFpvWld0YVdWZFVRbTlqTVZsM1RWaEdVMkV5YUdGV2FrNXZZVVpyZVUxVk9WTldhM0I2V1ZWa2IxUnNaRVpUYkVwWFlsaFNjbFJyV25OWFJsSjFWV3hXYUUxV2NGbFhWM1JyVlRGYVIxVnNWbFJpVkd4d1ZGWmFkMlZXV2xoa1JFSldUVVJHV0ZsclVsTldNVW8yVm14b1YySlVSa3hWYlhoUFl6SkdSMWR0YkZOaE0wSmFWbTF3UjFsWFJYaFhXR2hYWW10d2FGVnFUbE5VTVd4VlVtNWtWRlpzY0hoVk1uQlRWakF4VjFacVZsWmlSMmgyV1ZkNFQxSnJOVmRhUm5CcFVtdHdTVlp0ZEdGa01XUklWbXRzVldKSFVuQlZha1pMVG14YWNsa3phR2xOVmxZMFZqSjBZVmRIUm5OalJtaFhZVEZhZVZwVlduTldWa3B6WTBkNFUySldTbUZYVkVKaFdWZEdWMWRZYkdoU2JXaFpXV3RrVW1ReFpGZFhiazVYVFdzMVNGWXllRzloVmtsNFUyNW9WMUp0VVhkWFZscEtaVVpXV1dGR2FHbFhSa3AyVmxkd1IxbFhWbk5YV0d4cVVqQmFXRlJWVWtkWFZscFhZVWQwV0ZKc2NEQldWM2hQV1ZaYWMyTkhhRnBOYm1nelZXcEdkMU5IU2toaVJrNVlVbFZ3VTFadE1IZGxSVFZJVWxob1YxZEhhRmxXTUdSdlZqRnNjbHBIT1dwaVJsWXpWMnRhVDFkR1NuTlRiR2hYVFdwV2NsWkhlRXRrUjFKRlZHeG9hRTFXY0hsV2FrSmhVMjFSZVZScldtaFNia0pQVlcwMVEwMXNXbkZUYm5Cc1VtczFTRlp0TlZkWFIwcElWV3M1V21KVVJuWlpha1poWTFaR2RGSnNaRTVoZWxZMlYxUkNWMkl4VlhsVGEyaFdZa2RvVmxadGVHRk5NVnBZWlVkR2FrMVlRa3BYYTFwVFZHeGFWVkpVUWxkV1JWcDJXWHBHVm1WV1NsbGlSbHBwVmtkNFdGZFhlRzlpTVZKSFYyNUtXR0pWV25GVVYzUmhVakZhU0dWR1RsVmlSbkF4VlZkd1UxWXhXalpSYWxKV1lXdGFhRmt5YzNoV01XUnlUbFprVTJFelFscFdiVEIzWlVkSmVWWnVUbGhpYXpWWldXeG9VMVpXVm5GUmJVWlVWbTE0VjFZeU1VZFdWMHBHWTBSR1ZsWjZRVEZXYWtwTFZsWktWVkZzY0d4aE0wSlJWMWh3UjJReFRsZFVibEpyVW1zMVQxUlZWbmRXYkZsNFdrUkNXbFl4UmpOVWJGWnJWMGRLU0dGRk9WZGhNVnBNVmtSR1YyUkhWa2xVYXpsVFlrZDNNVlpIZUZaT1YwWklVMnRhYWxKdGVHRldiRnAzWkd4YWNWTnJaR3BoZWxaWVZsZDRhMVV4V25WUmFscFhZbGhvYUZWcVJtdFhSa3B5V2taV2FWSXhTblpXUmxKRFUyc3hjMWR1VW10U00xSlFWVzB4TkZkR1duTmhTRTVYVWpCV05Ga3dXbk5XTURGSVlVVlNWMDFHY0doWmVrWnJaRlp3UjFSck5WZGhNV3QzVm0xd1MwMUdVWGhYYmxKVVlURndWVmxyV25kV2JGcHpWMnRrVGsxV1draFZiRkp6VlZaV1ZVMUVhejA9&quot;</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decode</span>(<span class="params">f</span>):</span></span><br><span class="line">	n = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">		<span class="keyword">try</span>:</span><br><span class="line">			f = base64.b64decode(f)</span><br><span class="line">			n += <span class="number">1</span></span><br><span class="line">		<span class="keyword">except</span>:</span><br><span class="line">			<span class="built_in">print</span>(<span class="string">&#x27;[+]Base64共decode了&#123;0&#125;次，最终解码结果如下:&#x27;</span>.<span class="built_in">format</span>(n))</span><br><span class="line">			<span class="built_in">print</span>(<span class="built_in">str</span>(f,<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">	decode(s1)</span><br></pre></td></tr></table></figure>
+<p>得到以下输出： ^2bfa5f</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[+]Base64共decode了20次，最终解码结果如下:</span><br><span class="line">comEON_YOuAreSOSoS0great</span><br></pre></td></tr></table></figure>
+<p>18394.rar这个文件解压时需要密码，尝试用[[#^2bfa5f|输出的字符串)解压，得到good.mp3这个文件，用[[Audacity)打开看一下：<br><img src="/images/Writeup/20210829113437.png"><br>看来是莫斯密码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-- --- .-. ... . .. ... ...- . .-. -.-- ...- . .-. -.-- . .- ... -.--</span><br></pre></td></tr></table></figure>
+<p>解码得到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ISRSEISVERYVERYEASY</span><br></pre></td></tr></table></figure>
+<p>但是记得改小写才能正确提交。<br>flag:<del>flag{morseisveryveryeasy}</del></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/28/MRCTF2020-Transform/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
+      <meta itemprop="name" content="Randark">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橘墨的摸鱼现场">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/28/MRCTF2020-Transform/" class="post-title-link" itemprop="url">Transform</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-28 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-28T00:00:00+08:00">2021-08-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-09 11:39:54" itemprop="dateModified" datetime="2021-11-09T11:39:54+08:00">2021-11-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Reverse/" itemprop="url" rel="index"><span itemprop="name">Reverse</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Challenge/" itemprop="url" rel="index"><span itemprop="name">Challenge</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Challenge/MRCTF-2020/" itemprop="url" rel="index"><span itemprop="name">MRCTF 2020</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#[MRCTF2020]Transform">题目链接</a><br>附件下载得到程序，看一下信息：<br><img src="/images/Writeup/20210828144512.png"><br>IDA看一下主函数：<br><img src="/images/Writeup/20210828144537.png"><br>F5逆向一下：<br><img src="/images/Writeup/20210828144600.png"><br>核心函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">sub_40E640(<span class="string">&quot;Give me your code:\n&quot;</span>);  <span class="comment">//打印欢迎信息</span></span><br><span class="line">sub_40E5F0(<span class="string">&quot;%s&quot;</span>, Str);  <span class="comment">//读取用户输入</span></span><br><span class="line"><span class="keyword">if</span> ( <span class="built_in">strlen</span>(Str) != <span class="number">33</span> )  <span class="comment">//判断用户输入的数据长度</span></span><br><span class="line">&#123;</span><br><span class="line">    sub_40E640(<span class="string">&quot;Wrong!\n&quot;</span>);</span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//下面就是flag数据的所在</span></span><br><span class="line"><span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="number">32</span>; ++i )</span><br><span class="line">&#123;</span><br><span class="line">    byte_414040[i] = Str[dword_40F040[i);</span><br><span class="line">    byte_414040[i] ^= LOBYTE(dword_40F040[i]);  <span class="comment">//异或，加密</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> ( j = <span class="number">0</span>; j &lt;= <span class="number">32</span>; ++j )</span><br><span class="line">&#123;  </span><br><span class="line">    <span class="keyword">if</span> ( byte_40F0E0[j] != byte_414040[j] ) <span class="comment">//判断flag数据与用户输入是否匹配</span></span><br><span class="line">    &#123;</span><br><span class="line">    	sub_40E640(<span class="string">&quot;Wrong!\n&quot;</span>);</span><br><span class="line">    	system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">    	<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;   </span><br><span class="line">&#125;</span><br><span class="line">sub_40E640(<span class="string">&quot;Right!Good Job!\n&quot;</span>);</span><br><span class="line">sub_40E640(<span class="string">&quot;Here is your flag: %s\n&quot;</span>, Str);</span><br><span class="line">system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<p>也就是先将输入的flag使用dword_40F040数组作为索引，打乱顺序，再将打乱后的flag数组，与dword_40F040数组异或，得到byte_40F0E0<br><img src="/images/Writeup/20210828145701.png"><br>对应写一个脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">model = [<span class="number">0x9</span>, <span class="number">0x0A</span>, <span class="number">0x0F</span>, <span class="number">0x17</span>, <span class="number">0x7</span>, <span class="number">0x18</span>, <span class="number">0x0C</span>, <span class="number">0x6</span>, <span class="number">0x1</span>, <span class="number">0x10</span>, <span class="number">0x3</span>, <span class="number">0x11</span>, <span class="number">0x20</span>, <span class="number">0x1D</span>, <span class="number">0x0B</span>, <span class="number">0x1E</span>, <span class="number">0x1B</span>, <span class="number">0x16</span>, <span class="number">0x4</span>, <span class="number">0x0D</span>, <span class="number">0x13</span>, <span class="number">0x14</span>, <span class="number">0x15</span>, <span class="number">0x2</span>, <span class="number">0x19</span>, <span class="number">0x5</span>, <span class="number">0x1F</span>, <span class="number">0x8</span>, <span class="number">0x12</span>, <span class="number">0x1A</span>, <span class="number">0x1C</span>, <span class="number">0x0E</span>, <span class="number">0</span>]</span><br><span class="line">model1 = [<span class="number">0x67</span>, <span class="number">0x79</span>, <span class="number">0x7B</span>, <span class="number">0x7F</span>, <span class="number">0x75</span>, <span class="number">0x2B</span>, <span class="number">0x3C</span>, <span class="number">0x52</span>, <span class="number">0x53</span>, <span class="number">0x79</span>, <span class="number">0x57</span>, <span class="number">0x5E</span>, <span class="number">0x5D</span>, <span class="number">0x42</span>, <span class="number">0x7B</span>, <span class="number">0x2D</span>, <span class="number">0x2A</span>, <span class="number">0x66</span>, <span class="number">0x42</span>, <span class="number">0x7E</span>, <span class="number">0x4C</span>, <span class="number">0x57</span>, <span class="number">0x79</span>, <span class="number">0x41</span>, <span class="number">0x6B</span>, <span class="number">0x7E</span>, <span class="number">0x65</span>, <span class="number">0x3C</span>, <span class="number">0x5C</span>, <span class="number">0x45</span>, <span class="number">0x6F</span>, <span class="number">0x62</span>, <span class="number">0x4D</span>]</span><br><span class="line"></span><br><span class="line">flag = [<span class="number">0</span>]*<span class="number">33</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(model)):</span><br><span class="line">    model1[i] ^= model[i]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(model)):</span><br><span class="line">    flag[model[i) = model1[i]</span><br><span class="line"><span class="built_in">print</span> (<span class="string">&#x27;&#x27;</span>.join([<span class="built_in">chr</span>(x) <span class="keyword">for</span> x <span class="keyword">in</span> flag]))</span><br></pre></td></tr></table></figure>
+<p>flag:<del>MRCTF{Tr4nsp0sltiON_Clph3r_1s_3z}</del><br><em>记得改提交格式</em></p>
+
       
     </div>
 
@@ -1007,7 +1099,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/default-index/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/default-index/">1</a><span class="space">&hellip;</span><a class="page-number" href="/default-index/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/default-index/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/default-index/page/11/">11</a><a class="extend next" rel="next" href="/default-index/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/default-index/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/default-index/">1</a><span class="space">&hellip;</span><a class="page-number" href="/default-index/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/default-index/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/default-index/page/13/">13</a><a class="extend next" rel="next" href="/default-index/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1075,14 +1167,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-count">130</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-count">71</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>

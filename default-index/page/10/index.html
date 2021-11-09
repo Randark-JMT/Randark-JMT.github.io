@@ -185,7 +185,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/26/%E8%BF%98%E5%8E%9F%E5%A4%A7%E5%B8%88/">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/26/reverse1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
@@ -199,7 +199,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/08/26/%E8%BF%98%E5%8E%9F%E5%A4%A7%E5%B8%88/" class="post-title-link" itemprop="url">还原大师</a>
+            <a href="/2021/08/26/reverse1/" class="post-title-link" itemprop="url">reverse1</a>
         </h2>
 
         <div class="post-meta">
@@ -216,7 +216,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-17 20:57:01" itemprop="dateModified" datetime="2021-09-17T20:57:01+08:00">2021-09-17</time>
+                <time title="修改时间：2021-11-09 11:39:58" itemprop="dateModified" datetime="2021-11-09T11:39:58+08:00">2021-11-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -224,11 +224,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Crypto/" itemprop="url" rel="index"><span itemprop="name">Crypto</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Crypto/MD5/" itemprop="url" rel="index"><span itemprop="name">MD5</span></a>
+                  <a href="/categories/Reverse/" itemprop="url" rel="index"><span itemprop="name">Reverse</span></a>
                 </span>
             </span>
 
@@ -243,10 +239,175 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E8%BF%98%E5%8E%9F%E5%A4%A7%E5%B8%88">题目链接</a></p>
+          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#reverse1">题目链接</a><br>拖进IDA分析一下，看一下主函数：<br><img src="/images/Writeup/20210826162729.png"><br>一路跟进下去，发现难度实在太大，换一下，看一下字符列表：<br><img src="/images/Writeup/20210826163344.png"><br>发现了存在flag数据的痕迹，跟进一下：<br><img src="/images/Writeup/20210826163526.png"><br>跟进一下sub_1400118C0函数：<br><img src="/images/Writeup/20210826163557.png"><br><img src="/images/Writeup/20210826163622.png"><br>可以看到这里有一个字符串比较函数，看来是拿输入字符串与Str2作了比较：<br><img src="/images/Writeup/20210826163904.png"><br>跟踪Str2的数据，看见了flag：<br><img src="/images/Writeup/20210826163939.png"><br>flag:<del>flag{hello_world}</del><br>但是，真的结束了吗？将flag数据提交上去，发现系统返回flag不对，再返回看一下Str2的处理过程，发现做了字符替换：<br><img src="/images/Writeup/20210826164134.png"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ( j = <span class="number">0</span>; ; ++j )</span><br><span class="line">&#123;</span><br><span class="line">	v8 = j;</span><br><span class="line">	v2 = j_strlen(Str2);</span><br><span class="line">	<span class="keyword">if</span> ( v8 &gt; v2 )</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">if</span> ( Str2[j] == <span class="number">111</span> )</span><br><span class="line">		Str2[j] = <span class="number">48</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>转换一下ASCII编码显示一下字符：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ( j = <span class="number">0</span>; ; ++j )</span><br><span class="line">&#123;</span><br><span class="line">	v8 = j;</span><br><span class="line">	v2 = j_strlen(Str2);</span><br><span class="line">	<span class="keyword">if</span> ( v8 &gt; v2 )</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">if</span> ( Str2[j] == <span class="string">&#x27;o&#x27;</span> )</span><br><span class="line">		Str2[j] = <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>看来是将Str2里面的“o”替换成了”0”，于是得到了最终flag<br>flag:<del>flag{hell0_w0rld}</del></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/26/reverse2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
+      <meta itemprop="name" content="Randark">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橘墨的摸鱼现场">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/26/reverse2/" class="post-title-link" itemprop="url">reverse2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-26T00:00:00+08:00">2021-08-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-09 11:40:05" itemprop="dateModified" datetime="2021-11-09T11:40:05+08:00">2021-11-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Reverse/" itemprop="url" rel="index"><span itemprop="name">Reverse</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#reverse2">题目链接</a><br>拖进IDA分析一下：<br><img src="/images/Writeup/20210826204912.png"><br>吐槽一下，这个还比[[reverse1)简单，这个在主函数就看到了flag的影子，[[reverse1)还要去字符库里面找。。<br>逆向编译一下，看看有关flag的操作：<br><img src="/images/Writeup/20210826205058.png"></p>
+<p>核心代码： ^199370</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( pid )</span><br><span class="line">&#123;</span><br><span class="line">	waitpid(pid, &amp;stat_loc, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="built_in">strlen</span>(&amp;flag); ++i )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> ( *(&amp;flag + i) == <span class="number">105</span> || *(&amp;flag + i) == <span class="number">114</span> )</span><br><span class="line">			*(&amp;flag + i) = <span class="number">49</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;input the flag:&quot;</span>);</span><br><span class="line">__isoc99_scanf(<span class="string">&quot;%20s&quot;</span>, s2);</span><br><span class="line"><span class="keyword">if</span> ( !<span class="built_in">strcmp</span>(&amp;flag, s2) )</span><br><span class="line">	result = <span class="built_in">puts</span>(<span class="string">&quot;this is the right flag!&quot;</span>);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	result = <span class="built_in">puts</span>(<span class="string">&quot;wrong flag!&quot;</span>);</span><br><span class="line"><span class="keyword">return</span> result;</span><br></pre></td></tr></table></figure>
+<p>看来是用户输入了s2，然后比较$flag的值与s2。那么s2就代表着flag，即去追踪&amp;flag的数据：<br><img src="/images/Writeup/20210826205424.png"><br>找到了，ASCII码转换一下：<br><img src="/images/Writeup/20210826205454.png"><br>那么<del>flag{hacking_for_fun}</del>就是最终flag的数据？并不是，在[[reverse2#^199370|核心代码)里面可以看见&amp;flag的数值做出了改变，ASCII转换一下看一下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( pid )</span><br><span class="line">&#123;</span><br><span class="line">	waitpid(pid, &amp;stat_loc, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="built_in">strlen</span>(&amp;flag); ++i )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> ( *(&amp;flag + i) == <span class="string">&quot;i&quot;</span> || *(&amp;flag + i) == <span class="string">&quot;r&quot;</span> )</span><br><span class="line">			*(&amp;flag + i) = <span class="string">&quot;1&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;input the flag:&quot;</span>);</span><br><span class="line">__isoc99_scanf(<span class="string">&quot;%20s&quot;</span>, s2);</span><br><span class="line"><span class="keyword">if</span> ( !<span class="built_in">strcmp</span>(&amp;flag, s2) )</span><br><span class="line">	result = <span class="built_in">puts</span>(<span class="string">&quot;this is the right flag!&quot;</span>);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	result = <span class="built_in">puts</span>(<span class="string">&quot;wrong flag!&quot;</span>);</span><br><span class="line"><span class="keyword">return</span> result;</span><br></pre></td></tr></table></figure>
+<p>替换一下字符，便得到了最终正确的flag。<br>flag:<del>flag{hack1ng_fo1_fun}</del></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/26/rip/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
+      <meta itemprop="name" content="Randark">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橘墨的摸鱼现场">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/26/rip/" class="post-title-link" itemprop="url">rip</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-26T00:00:00+08:00">2021-08-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-09-18 21:23:50" itemprop="dateModified" datetime="2021-09-18T21:23:50+08:00">2021-09-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Crypto/" itemprop="url" rel="index"><span itemprop="name">Crypto</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Crypto/%E6%91%A9%E6%96%AF%E5%AF%86%E7%A0%81/" itemprop="url" rel="index"><span itemprop="name">摩斯密码</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Crypto/ASCII/" itemprop="url" rel="index"><span itemprop="name">ASCII</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#rip">题目链接</a></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/08/26/%E8%BF%98%E5%8E%9F%E5%A4%A7%E5%B8%88/#more" rel="contents">
+              <a class="btn" href="/2021/08/26/rip/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -270,7 +431,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/25/%E4%B9%8C%E9%95%87%E5%B3%B0%E4%BC%9A%E7%A7%8D%E5%9B%BE/">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/26/%E4%B8%96%E4%B8%8A%E6%97%A0%E9%9A%BE%E4%BA%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
@@ -284,7 +445,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/08/25/%E4%B9%8C%E9%95%87%E5%B3%B0%E4%BC%9A%E7%A7%8D%E5%9B%BE/" class="post-title-link" itemprop="url">乌镇峰会种图</a>
+            <a href="/2021/08/26/%E4%B8%96%E4%B8%8A%E6%97%A0%E9%9A%BE%E4%BA%8B/" class="post-title-link" itemprop="url">世上无难事</a>
         </h2>
 
         <div class="post-meta">
@@ -294,665 +455,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-08-25 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-25T00:00:00+08:00">2021-08-25</time>
+              <time title="创建时间：2021-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-26T00:00:00+08:00">2021-08-26</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-07 21:51:19" itemprop="dateModified" datetime="2021-11-07T21:51:19+08:00">2021-11-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/" itemprop="url" rel="index"><span itemprop="name">Misc</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99/" itemprop="url" rel="index"><span itemprop="name">图片隐写</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E4%B9%8C%E9%95%87%E5%B3%B0%E4%BC%9A%E7%A7%8D%E5%9B%BE">题目链接</a><br>题目的附件下载下来就是图片文件了，打开来看了一下，肉眼应该是没有问题，用[[Stegsolve]分析一下：<br><img src="/images/Writeup/20210825145323.png"><br>看来文件尾的数据转换为ASCII就出来了，得到了flag：<del>flag{97314e7864a8f6262 7b26f3f9  98c37f1}</del></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/25/%E4%BD%A0%E7%AB%9F%E7%84%B6%E8%B5%B6%E6%88%91%E8%B5%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
-      <meta itemprop="name" content="Randark">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橘墨的摸鱼现场">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/25/%E4%BD%A0%E7%AB%9F%E7%84%B6%E8%B5%B6%E6%88%91%E8%B5%B0/" class="post-title-link" itemprop="url">你竟然赶我走</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-25 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-25T00:00:00+08:00">2021-08-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-07 21:51:16" itemprop="dateModified" datetime="2021-11-07T21:51:16+08:00">2021-11-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/" itemprop="url" rel="index"><span itemprop="name">Misc</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99/" itemprop="url" rel="index"><span itemprop="name">图片隐写</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E4%BD%A0%E7%AB%9F%E7%84%B6%E8%B5%B6%E6%88%91%E8%B5%B0">题目链接</a><br>附件下载解压，得到的是一张图片：biubiu.jpg,打开来看的话能发现右下角有阴影，怀疑是图片隐写了数据：<br><img src="/images/Writeup/biubiu.jpg"><br>用[[Stegsolve]打开来看一下文件头，在ASCII编码区看到了flag数据<br><img src="/images/Writeup/20210825112927.png"><br>就得到了flag：<del>flag{stego_ is_s0_bor1ing}</del></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/25/%E5%81%87%E5%A6%82%E7%BB%99%E6%88%91%E4%B8%89%E5%A4%A9%E5%85%89%E6%98%8E/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
-      <meta itemprop="name" content="Randark">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橘墨的摸鱼现场">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/25/%E5%81%87%E5%A6%82%E7%BB%99%E6%88%91%E4%B8%89%E5%A4%A9%E5%85%89%E6%98%8E/" class="post-title-link" itemprop="url">假如给我三天光明</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-25 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-25T00:00:00+08:00">2021-08-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-07 22:05:09" itemprop="dateModified" datetime="2021-11-07T22:05:09+08:00">2021-11-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/" itemprop="url" rel="index"><span itemprop="name">Misc</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/%E7%BC%96%E7%A0%81%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">编码分析</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E5%81%87%E5%A6%82%E7%BB%99%E6%88%91%E4%B8%89%E5%A4%A9%E5%85%89%E6%98%8E">题目链接</a><br>附件下载解压，获得一个zip和一个jpg，从题意可以知道jpg下面的的神奇图案是盲文：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`kmdonowg`</span><br></pre></td></tr></table></figure>
-<p>盲文解出来的作为密钥，将zip解压，得到一个wav文件，听出来是一段摩斯密码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-.-.  -  ..-.  .--  .--.  .  ..  -----  ---..  --...  ...--  ..---  ..--..  ..---  ...--  -..  --..</span><br></pre></td></tr></table></figure>
-<p>转换出来就是：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CTFWPEI08732?23DZ</span><br></pre></td></tr></table></figure>
-<p>flag:<del>flag{wpei08732?23dz}</del></p>
-<p>#Misc #Misc/编码分析<br>2021-08-25</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/25/%E5%8F%A6%E5%A4%96%E4%B8%80%E4%B8%AA%E4%B8%96%E7%95%8C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
-      <meta itemprop="name" content="Randark">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橘墨的摸鱼现场">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/25/%E5%8F%A6%E5%A4%96%E4%B8%80%E4%B8%AA%E4%B8%96%E7%95%8C/" class="post-title-link" itemprop="url">另外一个世界</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-25 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-25T00:00:00+08:00">2021-08-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-07 22:04:17" itemprop="dateModified" datetime="2021-11-07T22:04:17+08:00">2021-11-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/" itemprop="url" rel="index"><span itemprop="name">Misc</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99/" itemprop="url" rel="index"><span itemprop="name">图片隐写</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/%E7%BC%96%E7%A0%81%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">编码分析</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E5%8F%A6%E5%A4%96%E4%B8%80%E4%B8%AA%E4%B8%96%E7%95%8C">题目链接</a><br>附件下载解压，得到一张jpg，用[[Stegsolve)打开来看一下，没有任何问题。。<br>？？<br>用[[Binwalk)看了一下数据，也没问题。。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">randark@randark-VirtualBox:~/CTF$ binwalk monster.jpg</span><br><span class="line"></span><br><span class="line">DECIMAL       HEXADECIMAL     DESCRIPTION</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">0             0x0             JPEG image data, JFIF standard 1.01</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>用[[010Editor)打开来看一下数据：<br><img src="/images/Writeup/20210825191312.png"><br>在文件末尾看到可疑的一串二进制信息：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">01101011011011110110010101101011011010100011001101110011</span><br></pre></td></tr></table></figure>
-<p>用ASCII编码格式格式化一下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">01101011 k</span><br><span class="line">01101111 3</span><br><span class="line">01100101 e</span><br><span class="line">01101011 k</span><br><span class="line">01101010 j</span><br><span class="line">00110011 3</span><br><span class="line">01110011 s</span><br></pre></td></tr></table></figure>
-<p>flag:<del>flag{koekj3s}</del></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/25/%E5%9F%BA%E7%A1%80%E7%A0%B4%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
-      <meta itemprop="name" content="Randark">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橘墨的摸鱼现场">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/25/%E5%9F%BA%E7%A1%80%E7%A0%B4%E8%A7%A3/" class="post-title-link" itemprop="url">基础破解</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-25 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-25T00:00:00+08:00">2021-08-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-07 22:05:33" itemprop="dateModified" datetime="2021-11-07T22:05:33+08:00">2021-11-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/" itemprop="url" rel="index"><span itemprop="name">Misc</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/%E5%8E%8B%E7%BC%A9%E5%8C%85%E7%A0%B4%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">压缩包破解</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E5%9F%BA%E7%A1%80%E7%A0%B4%E8%A7%A3">题目链接</a><br>什么都不用说，好吧。。拿起ARCHPR直接暴力猜，毕竟题目都给你缩小范围了。。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/25/%E5%A4%A7%E7%99%BD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
-      <meta itemprop="name" content="Randark">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橘墨的摸鱼现场">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/25/%E5%A4%A7%E7%99%BD/" class="post-title-link" itemprop="url">大白</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-25 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-25T00:00:00+08:00">2021-08-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-07 22:01:16" itemprop="dateModified" datetime="2021-11-07T22:01:16+08:00">2021-11-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/" itemprop="url" rel="index"><span itemprop="name">Misc</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99/" itemprop="url" rel="index"><span itemprop="name">图片隐写</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E5%A4%A7%E7%99%BD">题目链接</a><br>附件下载解压，得到的是dabai.png，看着没啥毛病，用[[Stegsolve)看看<br><img src="/images/Writeup/20210825113746.png"><br>然后用[[010Editor)打开的时候，下面提示文件的CRC校验出错<br><img src="/images/Writeup/20210825114040.png"><br>那看来是文件的数据被改了，而且大概率是长宽被改，用大佬的脚本计算一下正确的长宽高：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">misc = <span class="built_in">open</span>(<span class="string">&quot;dabai.png&quot;</span>,<span class="string">&quot;rb&quot;</span>).read()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1024</span>):</span><br><span class="line">    data = misc[<span class="number">12</span>:<span class="number">20</span>] +struct.pack(<span class="string">&#x27;&gt;i&#x27;</span>,i)+ misc[<span class="number">24</span>:<span class="number">29</span>]</span><br><span class="line">    crc32 = binascii.crc32(data) &amp; <span class="number">0xffffffff</span></span><br><span class="line">    <span class="keyword">if</span> crc32 == <span class="number">0x6d7c7135</span>:</span><br><span class="line">        <span class="built_in">print</span> (i)</span><br></pre></td></tr></table></figure>
-<p>计算得出原本文件的高是479，修改文件的数据再打开<br><img src="/images/Writeup/20210825114759.png"><br>便可以得到flag：<br>flag{He1l0_d4_ba1}</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/25/%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%B4%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
-      <meta itemprop="name" content="Randark">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橘墨的摸鱼现场">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/25/%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%B4%A2/" class="post-title-link" itemprop="url">数据包中的线索</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-25 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-25T00:00:00+08:00">2021-08-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-07 21:52:23" itemprop="dateModified" datetime="2021-11-07T21:52:23+08:00">2021-11-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/" itemprop="url" rel="index"><span itemprop="name">Misc</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">流量分析</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%B4%A2">题目链接</a><br>附件下载解压，发现是流量包数据，用[[工具/Misc/Wireshark|Wireshark]打开看看：<br><img src="/images/Writeup/20210825200857.png"><br>发现了HTTP流：<br><img src="/images/Writeup/20210825201116.png"><br>追踪出来的数据应该是Base64，解码看一下：<br><img src="/images/Writeup/20210825201200.png"><br><img src="/images/Writeup/20210825201227.png"><br><img src="/images/Writeup/20210825201244.png"><br>flag:<del>flag{209acebf6324a09671abc31c869de72c}</del></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/25/%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E7%A7%98%E5%AF%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
-      <meta itemprop="name" content="Randark">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橘墨的摸鱼现场">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/25/%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E7%A7%98%E5%AF%86/" class="post-title-link" itemprop="url">文件中的秘密</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-25 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-25T00:00:00+08:00">2021-08-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-07 21:51:29" itemprop="dateModified" datetime="2021-11-07T21:51:29+08:00">2021-11-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web/PHP%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">PHP代码审计</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/" itemprop="url" rel="index"><span itemprop="name">Misc</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99/" itemprop="url" rel="index"><span itemprop="name">图片隐写</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E7%A7%98%E5%AF%86">题目链接</a><br>附件下载解压，得到了”图片中的秘密.jpeg”一张图片，看起来也是没有问题，用[[Stegsolve]看一下文件信息，发现文件头尾的数据很多，看起来应该是藏在这里了，上下拖动一下便可以找到flag：<br><img src="/images/Writeup/20210825145909.png"><br>当然，用[[010Editor]分析文件的数据会更简单：<br><img src="/images/Writeup/20210825150145.png"><br>便得到了flag：<del>flag{870c5a72806115cb5439345d8b014396}</del></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/25/%E7%A5%9E%E7%A7%98%E9%BE%99%E5%8D%B7%E9%A3%8E/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
-      <meta itemprop="name" content="Randark">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橘墨的摸鱼现场">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/25/%E7%A5%9E%E7%A7%98%E9%BE%99%E5%8D%B7%E9%A3%8E/" class="post-title-link" itemprop="url">神秘龙卷风</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-25 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-25T00:00:00+08:00">2021-08-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-07 21:50:39" itemprop="dateModified" datetime="2021-11-07T21:50:39+08:00">2021-11-07</time>
+                <time title="修改时间：2021-09-17 20:55:08" itemprop="dateModified" datetime="2021-09-17T20:55:08+08:00">2021-09-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -964,15 +474,11 @@
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/" itemprop="url" rel="index"><span itemprop="name">Misc</span></a>
+                  <a href="/categories/Crypto/%E5%87%AF%E6%92%92%E5%AF%86%E7%A0%81/" itemprop="url" rel="index"><span itemprop="name">凯撒密码</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/%E5%8E%8B%E7%BC%A9%E5%8C%85%E7%A0%B4%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">压缩包破解</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Crypto/Brainfuck/" itemprop="url" rel="index"><span itemprop="name">Brainfuck</span></a>
+                  <a href="/categories/Crypto/%E8%AF%8D%E9%A2%91%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">词频分析</span></a>
                 </span>
             </span>
 
@@ -987,10 +493,512 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E7%A5%9E%E7%A7%98%E9%BE%99%E5%8D%B7%E9%A3%8E">题目链接</a><br>附件下载解压，得到一个rar，根据题意，用[[ARCHPR]纯四位数字爆破：<br><img src="/images/Writeup/20210825195620.png"><br>得到了一段神秘信息：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">                  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span><br><span class="line">                       +++++++++++++++++.&gt;+++++++++++++++++++++++++++++++++++++++++++++++++++++++</span><br><span class="line">                            +++++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;++++++++</span><br><span class="line">                                   +++++++++++++++++++++++++++++++++++++++++++++++</span><br><span class="line">                                         ++++++++++++++++++++++++++++++++++++</span><br><span class="line">                                            ++++++.&gt;++++++++++++++++++++++</span><br><span class="line">                                              ++++++++++++++++++++++++++</span><br><span class="line">                                               ++++++++++++++++++++++++</span><br><span class="line">                                                ++++++++++++++++++++++</span><br><span class="line">                                                 +++++++++.&gt;+++++++++</span><br><span class="line">                                                  ++++++++++++++++++</span><br><span class="line">                                                  ++++++++++++++++++</span><br><span class="line">                                                  ++++++++++++++++++</span><br><span class="line">                                                  ++++++++++++++++++</span><br><span class="line">                                                 ++++++++++++++++++++</span><br><span class="line">                                               ++++++++++++++++++++++.&gt;</span><br><span class="line">                                             +++++++++++++++++++++++++++</span><br><span class="line">                                           +++++++++++++++++++++++++++++++</span><br><span class="line">                                        +++++++++++++++++++++++++++++++++++++</span><br><span class="line">                                      ++++++.&gt;++++++++++++++++++++++++++++++++++</span><br><span class="line">                                    ++++++++++++++++++.&gt;+++++++++++++++++++++++++++</span><br><span class="line">                                  ++++++++++++++++++++++++++++++++++++++++++++++++++++</span><br><span class="line">                                +++++++++++++++++++.&gt;++++++++++++++++++++++++++++++++++++++</span><br><span class="line">                            ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;++++++</span><br><span class="line">                         ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span><br><span class="line">                      +++++++++++++++++++.&gt;+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span><br><span class="line">                   +++++++++++++++++++++++++++++++++.&gt;++++++++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;+++++++</span><br><span class="line">                +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;+++++++++++++++</span><br><span class="line">            +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;++++++++++++++++++++++++++++++++</span><br><span class="line">       ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;+++++++++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;</span><br><span class="line">+++++++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;++++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;+++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;++++++++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;+++++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;+++++++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;+++++++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;+++++++++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;++++++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;+++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;+++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;++++++++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.&gt;</span><br></pre></td></tr></table></figure>
-<p>看到这种格式，应该是Brainfuck代码，在线解码一下：<br><img src="/images/Writeup/20210825195810.png"><br>flag:<del>flag{e4bbef8bdf9743f8bf5b727a9f6332a8}</del></p>
+          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E4%B8%96%E4%B8%8A%E6%97%A0%E9%9A%BE%E4%BA%8B">题目链接</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/08/26/%E4%B8%96%E4%B8%8A%E6%97%A0%E9%9A%BE%E4%BA%8B/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
 
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/26/%E4%B8%A2%E5%A4%B1%E7%9A%84MD5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
+      <meta itemprop="name" content="Randark">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橘墨的摸鱼现场">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/26/%E4%B8%A2%E5%A4%B1%E7%9A%84MD5/" class="post-title-link" itemprop="url">丢失的MD5</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-26T00:00:00+08:00">2021-08-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-09-17 20:52:28" itemprop="dateModified" datetime="2021-09-17T20:52:28+08:00">2021-09-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Crypto/" itemprop="url" rel="index"><span itemprop="name">Crypto</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E4%B8%A2%E5%A4%B1%E7%9A%84MD5">题目链接</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/08/26/%E4%B8%A2%E5%A4%B1%E7%9A%84MD5/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/26/%E4%BC%A0%E7%BB%9F%E7%9F%A5%E8%AF%86+%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
+      <meta itemprop="name" content="Randark">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橘墨的摸鱼现场">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/26/%E4%BC%A0%E7%BB%9F%E7%9F%A5%E8%AF%86+%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/" class="post-title-link" itemprop="url">传统知识+古典密码</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-26T00:00:00+08:00">2021-08-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-09-17 22:54:42" itemprop="dateModified" datetime="2021-09-17T22:54:42+08:00">2021-09-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Crypto/" itemprop="url" rel="index"><span itemprop="name">Crypto</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Crypto/%E5%87%AF%E6%92%92%E5%AF%86%E7%A0%81/" itemprop="url" rel="index"><span itemprop="name">凯撒密码</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E4%BC%A0%E7%BB%9F%E7%9F%A5%E8%AF%86+%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81">题目链接</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/08/26/%E4%BC%A0%E7%BB%9F%E7%9F%A5%E8%AF%86+%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/26/%E4%BF%A1%E6%81%AF%E5%8C%96%E6%97%B6%E4%BB%A3%E7%9A%84%E6%AD%A5%E4%BC%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
+      <meta itemprop="name" content="Randark">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橘墨的摸鱼现场">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/26/%E4%BF%A1%E6%81%AF%E5%8C%96%E6%97%B6%E4%BB%A3%E7%9A%84%E6%AD%A5%E4%BC%90/" class="post-title-link" itemprop="url">信息化时代的步伐</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-26T00:00:00+08:00">2021-08-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-09-17 20:54:18" itemprop="dateModified" datetime="2021-09-17T20:54:18+08:00">2021-09-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Crypto/" itemprop="url" rel="index"><span itemprop="name">Crypto</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E4%BF%A1%E6%81%AF%E5%8C%96%E6%97%B6%E4%BB%A3%E7%9A%84%E6%AD%A5%E4%BC%90">题目链接</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/08/26/%E4%BF%A1%E6%81%AF%E5%8C%96%E6%97%B6%E4%BB%A3%E7%9A%84%E6%AD%A5%E4%BC%90/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/26/%E5%86%85%E6%B6%B5%E7%9A%84%E8%BD%AF%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
+      <meta itemprop="name" content="Randark">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橘墨的摸鱼现场">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/26/%E5%86%85%E6%B6%B5%E7%9A%84%E8%BD%AF%E4%BB%B6/" class="post-title-link" itemprop="url">内涵的软件</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-26T00:00:00+08:00">2021-08-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-09 11:40:15" itemprop="dateModified" datetime="2021-11-09T11:40:15+08:00">2021-11-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Reverse/" itemprop="url" rel="index"><span itemprop="name">Reverse</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E5%86%85%E6%B6%B5%E7%9A%84%E8%BD%AF%E4%BB%B6">题目链接</a><br>拖进IDA分析一下：<br><img src="/images/Writeup/20210826210317.png"><br>F5逆向一下看看：<br><img src="/images/Writeup/20210826210341.png"><br><img src="/images/Writeup/20210826210546.png"><br>看程序逻辑是没有找到啥核心数据，倒是上面的：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v5 = <span class="string">&quot;DBAPP&#123;49d3c93df25caad81232130f3d2ebfad&#125;&quot;</span>;</span><br></pre></td></tr></table></figure>
+<p>抱着试一试的态度，改了一下格式上交，居然过了。。<br>flag:<del>flag{49d3c93df25caad81232130f3d2ebfad}</del></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/26/%E5%87%AF%E6%92%92%EF%BC%9F%E6%9B%BF%E6%8D%A2%EF%BC%9F%E5%91%B5%E5%91%B5!/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
+      <meta itemprop="name" content="Randark">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橘墨的摸鱼现场">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/26/%E5%87%AF%E6%92%92%EF%BC%9F%E6%9B%BF%E6%8D%A2%EF%BC%9F%E5%91%B5%E5%91%B5!/" class="post-title-link" itemprop="url">凯撒？替换？呵呵!</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-26T00:00:00+08:00">2021-08-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-09-17 20:57:35" itemprop="dateModified" datetime="2021-09-17T20:57:35+08:00">2021-09-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Crypto/" itemprop="url" rel="index"><span itemprop="name">Crypto</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Crypto/%E5%87%AF%E6%92%92%E5%AF%86%E7%A0%81/" itemprop="url" rel="index"><span itemprop="name">凯撒密码</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Crypto/%E8%AF%8D%E9%A2%91%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">词频分析</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E5%87%AF%E6%92%92%EF%BC%9F%E6%9B%BF%E6%8D%A2%EF%BC%9F%E5%91%B5%E5%91%B5!">题目链接</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/08/26/%E5%87%AF%E6%92%92%EF%BC%9F%E6%9B%BF%E6%8D%A2%EF%BC%9F%E5%91%B5%E5%91%B5!/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/26/%E5%8F%98%E5%BC%82%E5%87%AF%E6%92%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
+      <meta itemprop="name" content="Randark">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橘墨的摸鱼现场">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/26/%E5%8F%98%E5%BC%82%E5%87%AF%E6%92%92/" class="post-title-link" itemprop="url">变异凯撒</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-26T00:00:00+08:00">2021-08-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-09-17 20:53:27" itemprop="dateModified" datetime="2021-09-17T20:53:27+08:00">2021-09-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Crypto/" itemprop="url" rel="index"><span itemprop="name">Crypto</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Crypto/%E5%87%AF%E6%92%92%E5%AF%86%E7%A0%81/" itemprop="url" rel="index"><span itemprop="name">凯撒密码</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E5%8F%98%E5%BC%82%E5%87%AF%E6%92%92">题目链接</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/08/26/%E5%8F%98%E5%BC%82%E5%87%AF%E6%92%92/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1008,7 +1016,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/default-index/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/default-index/">1</a><span class="space">&hellip;</span><a class="page-number" href="/default-index/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/default-index/page/11/">11</a><a class="extend next" rel="next" href="/default-index/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/default-index/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/default-index/">1</a><span class="space">&hellip;</span><a class="page-number" href="/default-index/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/default-index/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/default-index/page/13/">13</a><a class="extend next" rel="next" href="/default-index/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1076,14 +1084,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-count">130</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-count">71</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
