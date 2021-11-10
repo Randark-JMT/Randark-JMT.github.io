@@ -185,6 +185,92 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/09/09/SUCTF2018-followme/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
+      <meta itemprop="name" content="Randark">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橘墨的摸鱼现场">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/09/SUCTF2018-followme/" class="post-title-link" itemprop="url">followme</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-09-09 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-09T00:00:00+08:00">2021-09-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-09 11:34:00" itemprop="dateModified" datetime="2021-11-09T11:34:00+08:00">2021-11-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Misc/" itemprop="url" rel="index"><span itemprop="name">Misc</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Challenge/" itemprop="url" rel="index"><span itemprop="name">Challenge</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Misc/%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">流量分析</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Challenge/SUCTF-2018/" itemprop="url" rel="index"><span itemprop="name">SUCTF 2018</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#[SUCTF2018]followme">题目链接</a><br>附件下载，[[工具/Misc/Wireshark|Wireshark)打开看一下数据：<br><img src="/images/Writeup/20210909204946.png"><br>尝试追踪流，发现数据比较乱，尝试提取http数据：<br><img src="/images/Writeup/20210909205022.png"><br>看起来像是登录数据，全部提取出来，尝试匹配关键词’ctf’查找一下有没有有效文件：<br><img src="/images/Writeup/20210909205148.png"><br>就两个有效文件，第一个没有有效数据，第二个文件发现flag：<br><img src="/images/Writeup/20210909205339.png"><br>flag:<del>SUCTF{password_is_not_weak}</del></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://randark.site/2021/09/09/UTCTF2020-docx/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -314,11 +400,11 @@
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Challenge/WUSTCTF-2020/" itemprop="url" rel="index"><span itemprop="name">WUSTCTF 2020</span></a>
+                  <a href="/categories/Misc/%E5%8E%8B%E7%BC%A9%E5%8C%85%E7%A0%B4%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">压缩包破解</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/%E5%8E%8B%E7%BC%A9%E5%8C%85%E7%A0%B4%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">压缩包破解</span></a>
+                  <a href="/categories/Challenge/WUSTCTF-2020/" itemprop="url" rel="index"><span itemprop="name">WUSTCTF 2020</span></a>
                 </span>
             </span>
 
@@ -675,11 +761,11 @@
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99/" itemprop="url" rel="index"><span itemprop="name">图片隐写</span></a>
+                  <a href="/categories/Misc/%E5%8E%8B%E7%BC%A9%E5%8C%85%E7%A0%B4%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">压缩包破解</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/%E5%8E%8B%E7%BC%A9%E5%8C%85%E7%A0%B4%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">压缩包破解</span></a>
+                  <a href="/categories/Misc/%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99/" itemprop="url" rel="index"><span itemprop="name">图片隐写</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1004,93 +1090,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/09/07/%E4%BA%8C%E7%BB%B4%E7%A0%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
-      <meta itemprop="name" content="Randark">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橘墨的摸鱼现场">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/07/%E4%BA%8C%E7%BB%B4%E7%A0%81/" class="post-title-link" itemprop="url">二维码</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-09-07 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-07T00:00:00+08:00">2021-09-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-07 22:08:52" itemprop="dateModified" datetime="2021-11-07T22:08:52+08:00">2021-11-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/" itemprop="url" rel="index"><span itemprop="name">Misc</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/%E5%8E%8B%E7%BC%A9%E5%8C%85%E7%A0%B4%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">压缩包破解</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E4%BA%8C%E7%BB%B4%E7%A0%81">题目链接</a><br>附件下载，解压，得到的是一张二维码<br><img src="/images/Writeup/20210825094820.png"><br>但是将二维码数据读取出来，得到的并不是flag<br><img src="/images/Writeup/20210825094909.png"><br>上[[Stegsolve)看一下文件数据<br><img src="/images/Writeup/20210825095030.png"><br>从文件的ASCII中看到了压缩文件的影子，用7zip看看有没有数据<br><img src="/images/Writeup/20210825095206.png"><br>看来是有数据，但是数据被隐写在图片里面了，那就开始考虑能不能用[[Binwalk)把里面的压缩包提取出来</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">randark@randark-VirtualBox:~/CTF$ binwalk -e QR_code.png</span><br><span class="line"></span><br><span class="line">DECIMAL       HEXADECIMAL     DESCRIPTION</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">0             0x0             PNG image, 280 x 280, 1-bit colormap, non-interlaced</span><br><span class="line"></span><br><span class="line">WARNING: Extractor.execute failed to run external extractor &#x27;jar xvf &#x27;%e&#x27;&#x27;: [Errno 2] No such file or directory: &#x27;jar&#x27;, &#x27;jar xvf &#x27;%e&#x27;&#x27; might not be installed correctly</span><br><span class="line"></span><br><span class="line">WARNING: Extractor.execute failed to run external extractor &#x27;7z x -y &#x27;%e&#x27; -p &#x27;&#x27;&#x27;: [Errno 2] No such file or directory: &#x27;7z&#x27;, &#x27;7z x -y &#x27;%e&#x27; -p &#x27;&#x27;&#x27; might not be installed correctly</span><br><span class="line">471           0x1D7           Zip archive data, encrypted at least v2.0 to extract, compressed size: 29, uncompressed size: 15, name: 4number.txt</span><br><span class="line">650           0x28A           End of Zip archive, footer length: 22</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>便得到了里面的压缩包文件，试图解压，但是却提示说压缩包需要密码<br><img src="/images/Writeup/20210825095816.png"><br>思考了一下是伪加密，但是不如先暴力破解一下看看输出， 便打开[[ARCHPR)看看，按照一般的套路试了一下四位纯数字，还真出来了<br><img src="/images/Writeup/20210825100533.png"></p>
-<p>–&gt;同样的，也可以用[[Foremost)来提取文件，同样可以得到里面的压缩包，并且分析出来的数据更加完整</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">randark@randark-VirtualBox:~/CTF$ foremost QR_code.png</span><br><span class="line">Processing: QR_code.png</span><br><span class="line">�foundat=4number.txtn</span><br><span class="line">Qjxu�J����[����OPF4L�</span><br><span class="line">*|</span><br></pre></td></tr></table></figure>
-<p>解压，便得到了flag：<del>CTF{vjpw_wnoei}</del><br><em>记得改格式啊，报错是真的伤不起啊</em></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/default-index/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/default-index/">1</a><a class="page-number" href="/default-index/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/default-index/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/default-index/page/13/">13</a><a class="extend next" rel="next" href="/default-index/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/default-index/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/default-index/">1</a><a class="page-number" href="/default-index/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/default-index/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/default-index/page/14/">14</a><a class="extend next" rel="next" href="/default-index/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1158,7 +1161,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">130</span>
+          <span class="site-state-item-count">131</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

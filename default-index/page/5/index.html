@@ -185,6 +185,88 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/09/06/%E8%A2%AB%E5%8A%AB%E6%8C%81%E7%9A%84%E7%A5%9E%E7%A7%98%E7%A4%BC%E7%89%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
+      <meta itemprop="name" content="Randark">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橘墨的摸鱼现场">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/06/%E8%A2%AB%E5%8A%AB%E6%8C%81%E7%9A%84%E7%A5%9E%E7%A7%98%E7%A4%BC%E7%89%A9/" class="post-title-link" itemprop="url">被劫持的神秘礼物</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-09-06 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-06T00:00:00+08:00">2021-09-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-09 11:40:19" itemprop="dateModified" datetime="2021-11-09T11:40:19+08:00">2021-11-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Reverse/" itemprop="url" rel="index"><span itemprop="name">Reverse</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Misc/" itemprop="url" rel="index"><span itemprop="name">Misc</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#%E8%A2%AB%E5%8A%AB%E6%8C%81%E7%9A%84%E7%A5%9E%E7%A7%98%E7%A4%BC%E7%89%A9">题目链接</a><br>附件下载下来，是一个exe程序，打开来看一下：<br><img src="/images/Writeup/20210906165359.png"><br>看来是可以用逆向的知识来做，看一下程序信息：<br><img src="/images/Writeup/20210906165439.png"><br>拖进IDA看一下结构：<br><img src="/images/Writeup/20210906165551.png"><br>Shift+F12看一下字符串表：<br><img src="/images/Writeup/20210906165633.png"><br>追踪一下：<br><img src="/images/Writeup/20210906165652.png"><br>看起来核心函数是sub_401090：<br><img src="/images/Writeup/20210906165728.png"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> __stdcall <span class="title">sub_401090</span><span class="params">(HWND hWnd, <span class="keyword">int</span> a2, <span class="keyword">int</span> a3, <span class="keyword">int</span> a4)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> v4; <span class="comment">// eax</span></span><br><span class="line">  <span class="keyword">char</span> Source[<span class="number">260</span>]; <span class="comment">// [esp+50h] [ebp-310h] BYREF</span></span><br><span class="line">  CHAR Text[<span class="number">5</span>]; <span class="comment">// [esp+154h] [ebp-20Ch] BYREF</span></span><br><span class="line">  <span class="keyword">char</span> v8[<span class="number">252</span>]; <span class="comment">// [esp+159h] [ebp-207h] BYREF</span></span><br><span class="line">  __int16 v9; <span class="comment">// [esp+255h] [ebp-10Bh]</span></span><br><span class="line">  <span class="keyword">char</span> v10; <span class="comment">// [esp+257h] [ebp-109h]</span></span><br><span class="line">  <span class="keyword">int</span> Value; <span class="comment">// [esp+258h] [ebp-108h]</span></span><br><span class="line">  CHAR String[<span class="number">260</span>]; <span class="comment">// [esp+25Ch] [ebp-104h] BYREF</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">memset</span>(String, <span class="number">0</span>, <span class="keyword">sizeof</span>(String));</span><br><span class="line">  Value = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> ( a2 == <span class="number">16</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    DestroyWindow(hWnd);</span><br><span class="line">    PostQuitMessage(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> ( a2 == <span class="number">273</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( a3 == <span class="number">1000</span> )</span><br><span class="line">    &#123;</span><br><span class="line">      GetDlgItemTextA(hWnd, <span class="number">1002</span>, String, <span class="number">260</span>);</span><br><span class="line">      <span class="built_in">strlen</span>(String);</span><br><span class="line">      <span class="keyword">if</span> ( <span class="built_in">strlen</span>(String) &gt; <span class="number">6</span> )</span><br><span class="line">        ExitProcess(<span class="number">0</span>);</span><br><span class="line">      v4 = atoi(String);</span><br><span class="line">      Value = v4 + <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">if</span> ( v4 == <span class="number">122</span> &amp;&amp; String[<span class="number">3</span>] == <span class="number">120</span> &amp;&amp; String[<span class="number">5</span>] == <span class="number">122</span> &amp;&amp; String[<span class="number">4</span>] == <span class="number">121</span> )</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">strcpy</span>(Text, <span class="string">&quot;flag&quot;</span>);</span><br><span class="line">        <span class="built_in">memset</span>(v8, <span class="number">0</span>, <span class="keyword">sizeof</span>(v8));</span><br><span class="line">        v9 = <span class="number">0</span>;</span><br><span class="line">        v10 = <span class="number">0</span>;</span><br><span class="line">        _itoa(Value, Source, <span class="number">10</span>);</span><br><span class="line">        <span class="built_in">strcat</span>(Text, <span class="string">&quot;&#123;&quot;</span>);</span><br><span class="line">        <span class="built_in">strcat</span>(Text, Source);</span><br><span class="line">        <span class="built_in">strcat</span>(Text, <span class="string">&quot;_&quot;</span>);</span><br><span class="line">        <span class="built_in">strcat</span>(Text, <span class="string">&quot;Buff3r_0v3rf|0w&quot;</span>);</span><br><span class="line">        <span class="built_in">strcat</span>(Text, <span class="string">&quot;&#125;&quot;</span>);</span><br><span class="line">        MessageBoxA(<span class="number">0</span>, Text, <span class="string">&quot;well done&quot;</span>, <span class="number">0</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      SetTimer(hWnd, <span class="number">1u</span>, <span class="number">0x3E8</span>u, TimerFunc);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ( a3 == <span class="number">1001</span> )</span><br><span class="line">      KillTimer(hWnd, <span class="number">1u</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>核心部分：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">strcpy</span>(Text, <span class="string">&quot;flag&quot;</span>);</span><br><span class="line"><span class="built_in">memset</span>(v8, <span class="number">0</span>, <span class="keyword">sizeof</span>(v8));</span><br><span class="line">v9 = <span class="number">0</span>;</span><br><span class="line">v10 = <span class="number">0</span>;</span><br><span class="line">_itoa(Value, Source, <span class="number">10</span>);</span><br><span class="line"><span class="built_in">strcat</span>(Text, <span class="string">&quot;&#123;&quot;</span>);</span><br><span class="line"><span class="built_in">strcat</span>(Text, Source);</span><br><span class="line"><span class="built_in">strcat</span>(Text, <span class="string">&quot;_&quot;</span>);</span><br><span class="line"><span class="built_in">strcat</span>(Text, <span class="string">&quot;Buff3r_0v3rf|0w&quot;</span>);</span><br><span class="line"><span class="built_in">strcat</span>(Text, <span class="string">&quot;&#125;&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>直接看出来flag的数据应该是：<del>flag{123_Buff3r_0v3rf|0w}</del><br>或者根据校验的逻辑构造出答案：122xyz<br><img src="/images/Writeup/20210906170056.png"><br>flag:<del>flag{123_Buff3r_0v3rf|0w}</del></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://randark.site/2021/09/04/ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020-easyre/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -228,11 +310,11 @@
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Reverse/UPX/" itemprop="url" rel="index"><span itemprop="name">UPX</span></a>
+                  <a href="/categories/Challenge/" itemprop="url" rel="index"><span itemprop="name">Challenge</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Challenge/" itemprop="url" rel="index"><span itemprop="name">Challenge</span></a>
+                  <a href="/categories/Reverse/UPX/" itemprop="url" rel="index"><span itemprop="name">UPX</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -266,210 +348,6 @@
 <p>flag:<del>flag{U9X_1S_W6@T?}</del></p>
 <hr>
 <p>参考：<br>1.<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_46009088/article/details/109521777">BUUCTF_[ACTF新生赛2020]easyre</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/09/04/FlareOn4-login/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
-      <meta itemprop="name" content="Randark">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橘墨的摸鱼现场">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/04/FlareOn4-login/" class="post-title-link" itemprop="url">login</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-09-04 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-04T00:00:00+08:00">2021-09-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-09 11:39:35" itemprop="dateModified" datetime="2021-11-09T11:39:35+08:00">2021-11-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Reverse/" itemprop="url" rel="index"><span itemprop="name">Reverse</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web/PHP%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">PHP代码审计</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Challenge/" itemprop="url" rel="index"><span itemprop="name">Challenge</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Challenge/FlareOn4/" itemprop="url" rel="index"><span itemprop="name">FlareOn4</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#[FlareOn4]login">题目链接</a><br>附件下载，得到一个html和一个hint：<br><img src="/images/Writeup/20210904142948.png"><br>hint里面没啥提示：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hint:本题解出相应字符串后请用flag&#123;&#125;包裹，形如：flag&#123;123456@flare-on.com&#125;</span><br></pre></td></tr></table></figure>
-<p>看一下html：<br><img src="/images/Writeup/20210904143026.png"><br>试了几个字符，看来是要看看源代码了：<br><img src="/images/Writeup/20210904143118.png"></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">Html</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>FLARE On 2017<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;flag&quot;</span> <span class="attr">id</span>=<span class="string">&quot;flag&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Enter the flag&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">id</span>=<span class="string">&quot;prompt&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Click to check the flag&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.getElementById(<span class="string">&quot;prompt&quot;</span>).onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> flag = <span class="built_in">document</span>.getElementById(<span class="string">&quot;flag&quot;</span>).value;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> rotFlag = flag.replace(<span class="regexp">/[a-zA-Z]/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">c</span>)</span>&#123;<span class="keyword">return</span> <span class="built_in">String</span>.fromCharCode((c &lt;= <span class="string">&quot;Z&quot;</span> ? <span class="number">90</span> : <span class="number">122</span>) &gt;= (c = c.charCodeAt(<span class="number">0</span>) + <span class="number">13</span>) ? c : c - <span class="number">26</span>);&#125;);</span></span><br><span class="line"><span class="javascript">                <span class="keyword">if</span> (<span class="string">&quot;PyvragFvqrYbtvafNerRnfl@syner-ba.pbz&quot;</span> == rotFlag) &#123;</span></span><br><span class="line"><span class="javascript">                    alert(<span class="string">&quot;Correct flag!&quot;</span>);</span></span><br><span class="line"><span class="javascript">                &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">                    alert(<span class="string">&quot;Incorrect flag, rot again&quot;</span>);</span></span><br><span class="line"><span class="javascript">                &#125;</span></span><br><span class="line"><span class="javascript">            &#125;</span></span><br><span class="line"><span class="javascript">        </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>试了一下直接提交PyvragFvqrYbtvafNerRnfl@syner-ba.pbz，没过，看来是要分析一下逻辑了。。<br>核心代码：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var rotFlag = flag.replace(/[a-zA-Z]/g, function (c) &#123; return String.fromCharCode((c &lt;= &quot;Z&quot; ? 90 : 122)&gt;= (c = c.charCodeAt(0) + 13) ? c : c - 26); &#125;);</span><br></pre></td></tr></table></figure>
-<p>借用网上大佬的脚本：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">enc = <span class="string">&#x27;PyvragFvqrYbtvafNerRnfl@syner-ba.pbz&#x27;</span></span><br><span class="line">flag = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> enc:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">ord</span>(i) &gt;= <span class="number">65</span> <span class="keyword">and</span> <span class="built_in">ord</span>(i) &lt;= <span class="number">90</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">ord</span>(i) - <span class="number">13</span> &lt; <span class="number">65</span> :</span><br><span class="line">            flag += <span class="built_in">chr</span>(<span class="built_in">ord</span>(i) + <span class="number">13</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            flag += <span class="built_in">chr</span>(<span class="built_in">ord</span>(i) - <span class="number">13</span>)</span><br><span class="line">    <span class="keyword">elif</span> <span class="built_in">ord</span>(i) &gt;= <span class="number">97</span> <span class="keyword">and</span> <span class="built_in">ord</span>(i) &lt;= <span class="number">122</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">ord</span>(i) - <span class="number">13</span> &lt; <span class="number">97</span> :</span><br><span class="line">            flag += <span class="built_in">chr</span>(<span class="built_in">ord</span>(i) + <span class="number">13</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            flag += <span class="built_in">chr</span>(<span class="built_in">ord</span>(i) - <span class="number">13</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        flag += i</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ClientSideLoginsAreEasy@flare-on.com</span></span><br></pre></td></tr></table></figure>
-<p>flag:<del>flag{<a href="mailto:&#67;&#108;&#x69;&#x65;&#110;&#x74;&#x53;&#x69;&#x64;&#x65;&#76;&#x6f;&#x67;&#x69;&#x6e;&#115;&#65;&#x72;&#101;&#x45;&#97;&#115;&#121;&#64;&#x66;&#108;&#97;&#x72;&#101;&#x2d;&#x6f;&#x6e;&#x2e;&#x63;&#x6f;&#109;">&#67;&#108;&#x69;&#x65;&#110;&#x74;&#x53;&#x69;&#x64;&#x65;&#76;&#x6f;&#x67;&#x69;&#x6e;&#115;&#65;&#x72;&#101;&#x45;&#97;&#115;&#121;&#64;&#x66;&#108;&#97;&#x72;&#101;&#x2d;&#x6f;&#x6e;&#x2e;&#x63;&#x6f;&#109;</a>}</del></p>
-<hr>
-<p>参考：<br>1.<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43859686/article/details/112627046">[FlareOn4]login</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/09/04/GUET-CTF2019-re/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
-      <meta itemprop="name" content="Randark">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橘墨的摸鱼现场">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/04/GUET-CTF2019-re/" class="post-title-link" itemprop="url">re</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-09-04 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-04T00:00:00+08:00">2021-09-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-09 11:39:49" itemprop="dateModified" datetime="2021-11-09T11:39:49+08:00">2021-11-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Reverse/" itemprop="url" rel="index"><span itemprop="name">Reverse</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Reverse/%E5%8A%A0%E5%A3%B3/" itemprop="url" rel="index"><span itemprop="name">加壳</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Challenge/" itemprop="url" rel="index"><span itemprop="name">Challenge</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Challenge/GUET-CTF-2019/" itemprop="url" rel="index"><span itemprop="name">GUET-CTF 2019</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#[GUET-CTF2019]re">题目链接</a><br>附件下载得到程序，看一下信息：<br><img src="/images/Writeup/20210904070633.png"><br>看来是有UPX加壳的，先脱壳一下：</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">D:\<span class="title">Downloads</span>\<span class="title">attachment</span>&gt;<span class="title">upx</span> -<span class="title">d</span> <span class="title">re</span></span></span><br><span class="line"><span class="function">                       <span class="title">Ultimate</span> <span class="title">Packer</span> <span class="title">for</span> <span class="title">eXecutables</span></span></span><br><span class="line"><span class="function">                          <span class="title">Copyright</span> (<span class="title">C</span>) 1996 - 2020</span></span><br><span class="line"><span class="function"><span class="title">UPX</span> 3.96<span class="title">w</span>       <span class="title">Markus</span> <span class="title">Oberhumer</span>, <span class="title">Laszlo</span> <span class="title">Molnar</span> &amp; <span class="title">John</span> <span class="title">Reiser</span>   <span class="title">Jan</span> 23<span class="title">rd</span> 2020</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">        <span class="title">File</span> <span class="title">size</span>         <span class="title">Ratio</span>      <span class="title">Format</span>      <span class="title">Name</span></span></span><br><span class="line"><span class="function">   --------------------   ------   -----------   -----------</span></span><br><span class="line"><span class="function">    840640 &lt;-    304524   36.23%   <span class="title">linux</span>/<span class="title">amd64</span>   <span class="title">re</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">Unpacked</span> 1 <span class="title">file</span>.</span></span><br></pre></td></tr></table></figure>
-<p>脱壳之后，拖进IDA分析一下代码，先看一下主函数：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// positive sp value has been detected, the output may be wrong!</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> __fastcall __noreturn <span class="title">start</span><span class="params">(__int64 a1, __int64 a2, <span class="keyword">int</span> a3)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  __int64 v3; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">int</span> v4; <span class="comment">// esi</span></span><br><span class="line">  __int64 v5; <span class="comment">// [rsp-8h] [rbp-8h] BYREF</span></span><br><span class="line">  <span class="keyword">void</span> *retaddr; <span class="comment">// [rsp+0h] [rbp+0h] BYREF</span></span><br><span class="line"></span><br><span class="line">  v4 = v5;</span><br><span class="line">  v5 = v3;</span><br><span class="line">  sub_4016C0(</span><br><span class="line">    (<span class="keyword">unsigned</span> <span class="keyword">int</span>)sub_400E28,</span><br><span class="line">    v4,</span><br><span class="line">    (<span class="keyword">unsigned</span> <span class="keyword">int</span>)&amp;retaddr,</span><br><span class="line">    (<span class="keyword">unsigned</span> <span class="keyword">int</span>)sub_401B80,</span><br><span class="line">    (<span class="keyword">unsigned</span> <span class="keyword">int</span>)sub_401C10,</span><br><span class="line">    a3,</span><br><span class="line">    (__int64)&amp;v5);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>看了一下，应该核心函数是sub_400E28：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__int64 __fastcall <span class="title">sub_400E28</span><span class="params">(__int64 a1, <span class="keyword">int</span> a2, <span class="keyword">int</span> a3, <span class="keyword">int</span> a4, <span class="keyword">int</span> a5, <span class="keyword">int</span> a6)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> v6; <span class="comment">// edx</span></span><br><span class="line">  <span class="keyword">int</span> v7; <span class="comment">// ecx</span></span><br><span class="line">  <span class="keyword">int</span> v8; <span class="comment">// er8</span></span><br><span class="line">  <span class="keyword">int</span> v9; <span class="comment">// er9</span></span><br><span class="line">  __int64 result; <span class="comment">// rax</span></span><br><span class="line">  __int64 v11; <span class="comment">// [rsp+0h] [rbp-30h] BYREF</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v12; <span class="comment">// [rsp+28h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v12 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  sub_40F950((<span class="keyword">unsigned</span> <span class="keyword">int</span>)<span class="string">&quot;input your flag:&quot;</span>, a2, a3, a4, a5, a6, <span class="number">0LL</span>, <span class="number">0LL</span>, <span class="number">0LL</span>, <span class="number">0LL</span>); <span class="comment">//打印</span></span><br><span class="line">  sub_40FA80((<span class="keyword">unsigned</span> <span class="keyword">int</span>)<span class="string">&quot;%s&quot;</span>, (<span class="keyword">unsigned</span> <span class="keyword">int</span>)&amp;v11, v6, v7, v8, v9, v11); <span class="comment">//获取输入，储存到v11</span></span><br><span class="line">  <span class="keyword">if</span> ( (<span class="keyword">unsigned</span> <span class="keyword">int</span>)sub_4009AE(&amp;v11) ) <span class="comment">//字符串比较</span></span><br><span class="line">    sub_410350(<span class="string">&quot;Correct!&quot;</span>);</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    sub_410350(<span class="string">&quot;Wrong!&quot;</span>);</span><br><span class="line">  result = <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( __readfsqword(<span class="number">0x28</span>u) != v12 )</span><br><span class="line">    sub_443550();</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>那么应该看一下sub_4009AE里面：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">_BOOL8 __fastcall <span class="title">sub_4009AE</span><span class="params">(<span class="keyword">char</span> *a1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">1629056</span> * *a1 != <span class="number">166163712</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">6771600</span> * a1[<span class="number">1</span>] != <span class="number">731332800</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">3682944</span> * a1[<span class="number">2</span>] != <span class="number">357245568</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">10431000</span> * a1[<span class="number">3</span>] != <span class="number">1074393000</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">3977328</span> * a1[<span class="number">4</span>] != <span class="number">489211344</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">5138336</span> * a1[<span class="number">5</span>] != <span class="number">518971936</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">7532250</span> * a1[<span class="number">7</span>] != <span class="number">406741500</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">5551632</span> * a1[<span class="number">8</span>] != <span class="number">294236496</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">3409728</span> * a1[<span class="number">9</span>] != <span class="number">177305856</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">13013670</span> * a1[<span class="number">10</span>] != <span class="number">650683500</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">6088797</span> * a1[<span class="number">11</span>] != <span class="number">298351053</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">7884663</span> * a1[<span class="number">12</span>] != <span class="number">386348487</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">8944053</span> * a1[<span class="number">13</span>] != <span class="number">438258597</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">5198490</span> * a1[<span class="number">14</span>] != <span class="number">249527520</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">4544518</span> * a1[<span class="number">15</span>] != <span class="number">445362764</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">3645600</span> * a1[<span class="number">17</span>] != <span class="number">174988800</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">10115280</span> * a1[<span class="number">16</span>] != <span class="number">981182160</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">9667504</span> * a1[<span class="number">18</span>] != <span class="number">493042704</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">5364450</span> * a1[<span class="number">19</span>] != <span class="number">257493600</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">13464540</span> * a1[<span class="number">20</span>] != <span class="number">767478780</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">5488432</span> * a1[<span class="number">21</span>] != <span class="number">312840624</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">14479500</span> * a1[<span class="number">22</span>] != <span class="number">1404511500</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">6451830</span> * a1[<span class="number">23</span>] != <span class="number">316139670</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">6252576</span> * a1[<span class="number">24</span>] != <span class="number">619005024</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">7763364</span> * a1[<span class="number">25</span>] != <span class="number">372641472</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">7327320</span> * a1[<span class="number">26</span>] != <span class="number">373693320</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">8741520</span> * a1[<span class="number">27</span>] != <span class="number">498266640</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">8871876</span> * a1[<span class="number">28</span>] != <span class="number">452465676</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">4086720</span> * a1[<span class="number">29</span>] != <span class="number">208422720</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">9374400</span> * a1[<span class="number">30</span>] == <span class="number">515592000</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">5759124</span> * a1[<span class="number">31</span>] == <span class="number">719890500</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>就是简单地逐位校验，并且a1[6]不见了，打概率可以手动爆破一下，先写一下脚本看一下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line">a1 = <span class="built_in">chr</span>(<span class="number">166163712</span> // <span class="number">1629056</span>)</span><br><span class="line">a2 = <span class="built_in">chr</span>(<span class="number">731332800</span> // <span class="number">6771600</span>)</span><br><span class="line">a3 = <span class="built_in">chr</span>(<span class="number">357245568</span> // <span class="number">3682944</span>)</span><br><span class="line">a4 = <span class="built_in">chr</span>(<span class="number">1074393000</span> // <span class="number">10431000</span>)</span><br><span class="line">a5 = <span class="built_in">chr</span>(<span class="number">489211344</span> // <span class="number">3977328</span>)</span><br><span class="line">a6 = <span class="built_in">chr</span>(<span class="number">518971936</span> // <span class="number">5138336</span>)</span><br><span class="line">a8 = <span class="built_in">chr</span>(<span class="number">406741500</span> // <span class="number">7532250</span>)</span><br><span class="line">a9 = <span class="built_in">chr</span>(<span class="number">294236496</span> // <span class="number">5551632</span>)</span><br><span class="line">a10 = <span class="built_in">chr</span>(<span class="number">177305856</span> // <span class="number">3409728</span>)</span><br><span class="line">a11 = <span class="built_in">chr</span>(<span class="number">650683500</span> // <span class="number">13013670</span>)</span><br><span class="line">a12 = <span class="built_in">chr</span>(<span class="number">298351053</span> // <span class="number">6088797</span>)</span><br><span class="line">a13 = <span class="built_in">chr</span>(<span class="number">386348487</span> // <span class="number">7884663</span>)</span><br><span class="line">a14 = <span class="built_in">chr</span>(<span class="number">438258597</span> // <span class="number">8944053</span>)</span><br><span class="line">a15 = <span class="built_in">chr</span>(<span class="number">249527520</span> // <span class="number">5198490</span>)</span><br><span class="line">a16 = <span class="built_in">chr</span>(<span class="number">445362764</span> // <span class="number">4544518</span>)</span><br><span class="line">a17 = <span class="built_in">chr</span>(<span class="number">981182160</span> // <span class="number">10115280</span>)</span><br><span class="line">a18 = <span class="built_in">chr</span>(<span class="number">174988800</span> // <span class="number">3645600</span>)</span><br><span class="line">a19 = <span class="built_in">chr</span>(<span class="number">493042704</span> // <span class="number">9667504</span>)</span><br><span class="line">a20 = <span class="built_in">chr</span>(<span class="number">257493600</span> // <span class="number">5364450</span>)</span><br><span class="line">a21 = <span class="built_in">chr</span>(<span class="number">767478780</span> // <span class="number">13464540</span>)</span><br><span class="line">a22 = <span class="built_in">chr</span>(<span class="number">312840624</span> // <span class="number">5488432</span>)</span><br><span class="line">a23 = <span class="built_in">chr</span>(<span class="number">1404511500</span> // <span class="number">14479500</span>)</span><br><span class="line">a24 = <span class="built_in">chr</span>(<span class="number">316139670</span> // <span class="number">6451830</span>)</span><br><span class="line">a25 = <span class="built_in">chr</span>(<span class="number">619005024</span> // <span class="number">6252576</span>)</span><br><span class="line">a26 = <span class="built_in">chr</span>(<span class="number">372641472</span> // <span class="number">7763364</span>)</span><br><span class="line">a27 = <span class="built_in">chr</span>(<span class="number">373693320</span> // <span class="number">7327320</span>)</span><br><span class="line">a28 = <span class="built_in">chr</span>(<span class="number">498266640</span> // <span class="number">8741520</span>)</span><br><span class="line">a29 = <span class="built_in">chr</span>(<span class="number">452465676</span> // <span class="number">8871876</span>)</span><br><span class="line">a30 = <span class="built_in">chr</span>(<span class="number">208422720</span> // <span class="number">4086720</span>)</span><br><span class="line">a31 = <span class="built_in">chr</span>(<span class="number">515592000</span> // <span class="number">9374400</span>)</span><br><span class="line">a32 = <span class="built_in">chr</span>(<span class="number">719890500</span> // <span class="number">5759124</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> (a1,a2,a3,a4,a5,a6,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21,a22,a23,a24,a25,a26,a27,a28,a29,a30,a31,a32)</span><br></pre></td></tr></table></figure>
-<p>得到除中间一位的flag：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;e 65421110ba03099a1c039337&#125;</span><br></pre></td></tr></table></figure>
-<p>手动爆破一下，得到第7位是7.<br>flag:<del>flag{e165421110ba03099a1c039337}</del></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">randark@randark-VirtualBox:~/shared$ ./re</span><br><span class="line">input your flag:flag&#123;e165421110ba03099a1c039337&#125;</span><br><span class="line">Correct!</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<p>参考：<br>1.<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Mayfly-nymph/p/12655622.html">BUUCTF–[GUET-CTF2019]re</a></p>
 
       
     </div>
@@ -583,6 +461,210 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/09/04/FlareOn4-login/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
+      <meta itemprop="name" content="Randark">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橘墨的摸鱼现场">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/04/FlareOn4-login/" class="post-title-link" itemprop="url">login</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-09-04 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-04T00:00:00+08:00">2021-09-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-09 11:39:35" itemprop="dateModified" datetime="2021-11-09T11:39:35+08:00">2021-11-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/PHP%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">PHP代码审计</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Reverse/" itemprop="url" rel="index"><span itemprop="name">Reverse</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Challenge/" itemprop="url" rel="index"><span itemprop="name">Challenge</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Challenge/FlareOn4/" itemprop="url" rel="index"><span itemprop="name">FlareOn4</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#[FlareOn4]login">题目链接</a><br>附件下载，得到一个html和一个hint：<br><img src="/images/Writeup/20210904142948.png"><br>hint里面没啥提示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hint:本题解出相应字符串后请用flag&#123;&#125;包裹，形如：flag&#123;123456@flare-on.com&#125;</span><br></pre></td></tr></table></figure>
+<p>看一下html：<br><img src="/images/Writeup/20210904143026.png"><br>试了几个字符，看来是要看看源代码了：<br><img src="/images/Writeup/20210904143118.png"></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">Html</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>FLARE On 2017<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;flag&quot;</span> <span class="attr">id</span>=<span class="string">&quot;flag&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Enter the flag&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">id</span>=<span class="string">&quot;prompt&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Click to check the flag&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.getElementById(<span class="string">&quot;prompt&quot;</span>).onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> flag = <span class="built_in">document</span>.getElementById(<span class="string">&quot;flag&quot;</span>).value;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> rotFlag = flag.replace(<span class="regexp">/[a-zA-Z]/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">c</span>)</span>&#123;<span class="keyword">return</span> <span class="built_in">String</span>.fromCharCode((c &lt;= <span class="string">&quot;Z&quot;</span> ? <span class="number">90</span> : <span class="number">122</span>) &gt;= (c = c.charCodeAt(<span class="number">0</span>) + <span class="number">13</span>) ? c : c - <span class="number">26</span>);&#125;);</span></span><br><span class="line"><span class="javascript">                <span class="keyword">if</span> (<span class="string">&quot;PyvragFvqrYbtvafNerRnfl@syner-ba.pbz&quot;</span> == rotFlag) &#123;</span></span><br><span class="line"><span class="javascript">                    alert(<span class="string">&quot;Correct flag!&quot;</span>);</span></span><br><span class="line"><span class="javascript">                &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">                    alert(<span class="string">&quot;Incorrect flag, rot again&quot;</span>);</span></span><br><span class="line"><span class="javascript">                &#125;</span></span><br><span class="line"><span class="javascript">            &#125;</span></span><br><span class="line"><span class="javascript">        </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>试了一下直接提交PyvragFvqrYbtvafNerRnfl@syner-ba.pbz，没过，看来是要分析一下逻辑了。。<br>核心代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var rotFlag = flag.replace(/[a-zA-Z]/g, function (c) &#123; return String.fromCharCode((c &lt;= &quot;Z&quot; ? 90 : 122)&gt;= (c = c.charCodeAt(0) + 13) ? c : c - 26); &#125;);</span><br></pre></td></tr></table></figure>
+<p>借用网上大佬的脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">enc = <span class="string">&#x27;PyvragFvqrYbtvafNerRnfl@syner-ba.pbz&#x27;</span></span><br><span class="line">flag = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> enc:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">ord</span>(i) &gt;= <span class="number">65</span> <span class="keyword">and</span> <span class="built_in">ord</span>(i) &lt;= <span class="number">90</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">ord</span>(i) - <span class="number">13</span> &lt; <span class="number">65</span> :</span><br><span class="line">            flag += <span class="built_in">chr</span>(<span class="built_in">ord</span>(i) + <span class="number">13</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            flag += <span class="built_in">chr</span>(<span class="built_in">ord</span>(i) - <span class="number">13</span>)</span><br><span class="line">    <span class="keyword">elif</span> <span class="built_in">ord</span>(i) &gt;= <span class="number">97</span> <span class="keyword">and</span> <span class="built_in">ord</span>(i) &lt;= <span class="number">122</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">ord</span>(i) - <span class="number">13</span> &lt; <span class="number">97</span> :</span><br><span class="line">            flag += <span class="built_in">chr</span>(<span class="built_in">ord</span>(i) + <span class="number">13</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            flag += <span class="built_in">chr</span>(<span class="built_in">ord</span>(i) - <span class="number">13</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        flag += i</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ClientSideLoginsAreEasy@flare-on.com</span></span><br></pre></td></tr></table></figure>
+<p>flag:<del>flag{<a href="mailto:&#67;&#x6c;&#x69;&#x65;&#x6e;&#116;&#x53;&#105;&#100;&#x65;&#76;&#x6f;&#103;&#105;&#x6e;&#115;&#65;&#x72;&#101;&#69;&#97;&#115;&#121;&#64;&#102;&#x6c;&#x61;&#114;&#x65;&#x2d;&#x6f;&#110;&#46;&#99;&#111;&#109;">&#67;&#x6c;&#x69;&#x65;&#x6e;&#116;&#x53;&#105;&#100;&#x65;&#76;&#x6f;&#103;&#105;&#x6e;&#115;&#65;&#x72;&#101;&#69;&#97;&#115;&#121;&#64;&#102;&#x6c;&#x61;&#114;&#x65;&#x2d;&#x6f;&#110;&#46;&#99;&#111;&#109;</a>}</del></p>
+<hr>
+<p>参考：<br>1.<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43859686/article/details/112627046">[FlareOn4]login</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/09/04/GUET-CTF2019-re/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
+      <meta itemprop="name" content="Randark">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橘墨的摸鱼现场">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/04/GUET-CTF2019-re/" class="post-title-link" itemprop="url">re</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-09-04 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-04T00:00:00+08:00">2021-09-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-09 11:39:49" itemprop="dateModified" datetime="2021-11-09T11:39:49+08:00">2021-11-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Reverse/" itemprop="url" rel="index"><span itemprop="name">Reverse</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Challenge/" itemprop="url" rel="index"><span itemprop="name">Challenge</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Reverse/%E5%8A%A0%E5%A3%B3/" itemprop="url" rel="index"><span itemprop="name">加壳</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Challenge/GUET-CTF-2019/" itemprop="url" rel="index"><span itemprop="name">GUET-CTF 2019</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#[GUET-CTF2019]re">题目链接</a><br>附件下载得到程序，看一下信息：<br><img src="/images/Writeup/20210904070633.png"><br>看来是有UPX加壳的，先脱壳一下：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">D:\<span class="title">Downloads</span>\<span class="title">attachment</span>&gt;<span class="title">upx</span> -<span class="title">d</span> <span class="title">re</span></span></span><br><span class="line"><span class="function">                       <span class="title">Ultimate</span> <span class="title">Packer</span> <span class="title">for</span> <span class="title">eXecutables</span></span></span><br><span class="line"><span class="function">                          <span class="title">Copyright</span> (<span class="title">C</span>) 1996 - 2020</span></span><br><span class="line"><span class="function"><span class="title">UPX</span> 3.96<span class="title">w</span>       <span class="title">Markus</span> <span class="title">Oberhumer</span>, <span class="title">Laszlo</span> <span class="title">Molnar</span> &amp; <span class="title">John</span> <span class="title">Reiser</span>   <span class="title">Jan</span> 23<span class="title">rd</span> 2020</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">        <span class="title">File</span> <span class="title">size</span>         <span class="title">Ratio</span>      <span class="title">Format</span>      <span class="title">Name</span></span></span><br><span class="line"><span class="function">   --------------------   ------   -----------   -----------</span></span><br><span class="line"><span class="function">    840640 &lt;-    304524   36.23%   <span class="title">linux</span>/<span class="title">amd64</span>   <span class="title">re</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">Unpacked</span> 1 <span class="title">file</span>.</span></span><br></pre></td></tr></table></figure>
+<p>脱壳之后，拖进IDA分析一下代码，先看一下主函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// positive sp value has been detected, the output may be wrong!</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> __fastcall __noreturn <span class="title">start</span><span class="params">(__int64 a1, __int64 a2, <span class="keyword">int</span> a3)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  __int64 v3; <span class="comment">// rax</span></span><br><span class="line">  <span class="keyword">int</span> v4; <span class="comment">// esi</span></span><br><span class="line">  __int64 v5; <span class="comment">// [rsp-8h] [rbp-8h] BYREF</span></span><br><span class="line">  <span class="keyword">void</span> *retaddr; <span class="comment">// [rsp+0h] [rbp+0h] BYREF</span></span><br><span class="line"></span><br><span class="line">  v4 = v5;</span><br><span class="line">  v5 = v3;</span><br><span class="line">  sub_4016C0(</span><br><span class="line">    (<span class="keyword">unsigned</span> <span class="keyword">int</span>)sub_400E28,</span><br><span class="line">    v4,</span><br><span class="line">    (<span class="keyword">unsigned</span> <span class="keyword">int</span>)&amp;retaddr,</span><br><span class="line">    (<span class="keyword">unsigned</span> <span class="keyword">int</span>)sub_401B80,</span><br><span class="line">    (<span class="keyword">unsigned</span> <span class="keyword">int</span>)sub_401C10,</span><br><span class="line">    a3,</span><br><span class="line">    (__int64)&amp;v5);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>看了一下，应该核心函数是sub_400E28：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__int64 __fastcall <span class="title">sub_400E28</span><span class="params">(__int64 a1, <span class="keyword">int</span> a2, <span class="keyword">int</span> a3, <span class="keyword">int</span> a4, <span class="keyword">int</span> a5, <span class="keyword">int</span> a6)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> v6; <span class="comment">// edx</span></span><br><span class="line">  <span class="keyword">int</span> v7; <span class="comment">// ecx</span></span><br><span class="line">  <span class="keyword">int</span> v8; <span class="comment">// er8</span></span><br><span class="line">  <span class="keyword">int</span> v9; <span class="comment">// er9</span></span><br><span class="line">  __int64 result; <span class="comment">// rax</span></span><br><span class="line">  __int64 v11; <span class="comment">// [rsp+0h] [rbp-30h] BYREF</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v12; <span class="comment">// [rsp+28h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v12 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  sub_40F950((<span class="keyword">unsigned</span> <span class="keyword">int</span>)<span class="string">&quot;input your flag:&quot;</span>, a2, a3, a4, a5, a6, <span class="number">0LL</span>, <span class="number">0LL</span>, <span class="number">0LL</span>, <span class="number">0LL</span>); <span class="comment">//打印</span></span><br><span class="line">  sub_40FA80((<span class="keyword">unsigned</span> <span class="keyword">int</span>)<span class="string">&quot;%s&quot;</span>, (<span class="keyword">unsigned</span> <span class="keyword">int</span>)&amp;v11, v6, v7, v8, v9, v11); <span class="comment">//获取输入，储存到v11</span></span><br><span class="line">  <span class="keyword">if</span> ( (<span class="keyword">unsigned</span> <span class="keyword">int</span>)sub_4009AE(&amp;v11) ) <span class="comment">//字符串比较</span></span><br><span class="line">    sub_410350(<span class="string">&quot;Correct!&quot;</span>);</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    sub_410350(<span class="string">&quot;Wrong!&quot;</span>);</span><br><span class="line">  result = <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( __readfsqword(<span class="number">0x28</span>u) != v12 )</span><br><span class="line">    sub_443550();</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那么应该看一下sub_4009AE里面：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">_BOOL8 __fastcall <span class="title">sub_4009AE</span><span class="params">(<span class="keyword">char</span> *a1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">1629056</span> * *a1 != <span class="number">166163712</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">6771600</span> * a1[<span class="number">1</span>] != <span class="number">731332800</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">3682944</span> * a1[<span class="number">2</span>] != <span class="number">357245568</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">10431000</span> * a1[<span class="number">3</span>] != <span class="number">1074393000</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">3977328</span> * a1[<span class="number">4</span>] != <span class="number">489211344</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">5138336</span> * a1[<span class="number">5</span>] != <span class="number">518971936</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">7532250</span> * a1[<span class="number">7</span>] != <span class="number">406741500</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">5551632</span> * a1[<span class="number">8</span>] != <span class="number">294236496</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">3409728</span> * a1[<span class="number">9</span>] != <span class="number">177305856</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">13013670</span> * a1[<span class="number">10</span>] != <span class="number">650683500</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">6088797</span> * a1[<span class="number">11</span>] != <span class="number">298351053</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">7884663</span> * a1[<span class="number">12</span>] != <span class="number">386348487</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">8944053</span> * a1[<span class="number">13</span>] != <span class="number">438258597</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">5198490</span> * a1[<span class="number">14</span>] != <span class="number">249527520</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">4544518</span> * a1[<span class="number">15</span>] != <span class="number">445362764</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">3645600</span> * a1[<span class="number">17</span>] != <span class="number">174988800</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">10115280</span> * a1[<span class="number">16</span>] != <span class="number">981182160</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">9667504</span> * a1[<span class="number">18</span>] != <span class="number">493042704</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">5364450</span> * a1[<span class="number">19</span>] != <span class="number">257493600</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">13464540</span> * a1[<span class="number">20</span>] != <span class="number">767478780</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">5488432</span> * a1[<span class="number">21</span>] != <span class="number">312840624</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">14479500</span> * a1[<span class="number">22</span>] != <span class="number">1404511500</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">6451830</span> * a1[<span class="number">23</span>] != <span class="number">316139670</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">6252576</span> * a1[<span class="number">24</span>] != <span class="number">619005024</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">7763364</span> * a1[<span class="number">25</span>] != <span class="number">372641472</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">7327320</span> * a1[<span class="number">26</span>] != <span class="number">373693320</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">8741520</span> * a1[<span class="number">27</span>] != <span class="number">498266640</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">8871876</span> * a1[<span class="number">28</span>] != <span class="number">452465676</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">4086720</span> * a1[<span class="number">29</span>] != <span class="number">208422720</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">  <span class="keyword">if</span> ( <span class="number">9374400</span> * a1[<span class="number">30</span>] == <span class="number">515592000</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">5759124</span> * a1[<span class="number">31</span>] == <span class="number">719890500</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0LL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>就是简单地逐位校验，并且a1[6]不见了，打概率可以手动爆破一下，先写一下脚本看一下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line">a1 = <span class="built_in">chr</span>(<span class="number">166163712</span> // <span class="number">1629056</span>)</span><br><span class="line">a2 = <span class="built_in">chr</span>(<span class="number">731332800</span> // <span class="number">6771600</span>)</span><br><span class="line">a3 = <span class="built_in">chr</span>(<span class="number">357245568</span> // <span class="number">3682944</span>)</span><br><span class="line">a4 = <span class="built_in">chr</span>(<span class="number">1074393000</span> // <span class="number">10431000</span>)</span><br><span class="line">a5 = <span class="built_in">chr</span>(<span class="number">489211344</span> // <span class="number">3977328</span>)</span><br><span class="line">a6 = <span class="built_in">chr</span>(<span class="number">518971936</span> // <span class="number">5138336</span>)</span><br><span class="line">a8 = <span class="built_in">chr</span>(<span class="number">406741500</span> // <span class="number">7532250</span>)</span><br><span class="line">a9 = <span class="built_in">chr</span>(<span class="number">294236496</span> // <span class="number">5551632</span>)</span><br><span class="line">a10 = <span class="built_in">chr</span>(<span class="number">177305856</span> // <span class="number">3409728</span>)</span><br><span class="line">a11 = <span class="built_in">chr</span>(<span class="number">650683500</span> // <span class="number">13013670</span>)</span><br><span class="line">a12 = <span class="built_in">chr</span>(<span class="number">298351053</span> // <span class="number">6088797</span>)</span><br><span class="line">a13 = <span class="built_in">chr</span>(<span class="number">386348487</span> // <span class="number">7884663</span>)</span><br><span class="line">a14 = <span class="built_in">chr</span>(<span class="number">438258597</span> // <span class="number">8944053</span>)</span><br><span class="line">a15 = <span class="built_in">chr</span>(<span class="number">249527520</span> // <span class="number">5198490</span>)</span><br><span class="line">a16 = <span class="built_in">chr</span>(<span class="number">445362764</span> // <span class="number">4544518</span>)</span><br><span class="line">a17 = <span class="built_in">chr</span>(<span class="number">981182160</span> // <span class="number">10115280</span>)</span><br><span class="line">a18 = <span class="built_in">chr</span>(<span class="number">174988800</span> // <span class="number">3645600</span>)</span><br><span class="line">a19 = <span class="built_in">chr</span>(<span class="number">493042704</span> // <span class="number">9667504</span>)</span><br><span class="line">a20 = <span class="built_in">chr</span>(<span class="number">257493600</span> // <span class="number">5364450</span>)</span><br><span class="line">a21 = <span class="built_in">chr</span>(<span class="number">767478780</span> // <span class="number">13464540</span>)</span><br><span class="line">a22 = <span class="built_in">chr</span>(<span class="number">312840624</span> // <span class="number">5488432</span>)</span><br><span class="line">a23 = <span class="built_in">chr</span>(<span class="number">1404511500</span> // <span class="number">14479500</span>)</span><br><span class="line">a24 = <span class="built_in">chr</span>(<span class="number">316139670</span> // <span class="number">6451830</span>)</span><br><span class="line">a25 = <span class="built_in">chr</span>(<span class="number">619005024</span> // <span class="number">6252576</span>)</span><br><span class="line">a26 = <span class="built_in">chr</span>(<span class="number">372641472</span> // <span class="number">7763364</span>)</span><br><span class="line">a27 = <span class="built_in">chr</span>(<span class="number">373693320</span> // <span class="number">7327320</span>)</span><br><span class="line">a28 = <span class="built_in">chr</span>(<span class="number">498266640</span> // <span class="number">8741520</span>)</span><br><span class="line">a29 = <span class="built_in">chr</span>(<span class="number">452465676</span> // <span class="number">8871876</span>)</span><br><span class="line">a30 = <span class="built_in">chr</span>(<span class="number">208422720</span> // <span class="number">4086720</span>)</span><br><span class="line">a31 = <span class="built_in">chr</span>(<span class="number">515592000</span> // <span class="number">9374400</span>)</span><br><span class="line">a32 = <span class="built_in">chr</span>(<span class="number">719890500</span> // <span class="number">5759124</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> (a1,a2,a3,a4,a5,a6,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21,a22,a23,a24,a25,a26,a27,a28,a29,a30,a31,a32)</span><br></pre></td></tr></table></figure>
+<p>得到除中间一位的flag：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;e 65421110ba03099a1c039337&#125;</span><br></pre></td></tr></table></figure>
+<p>手动爆破一下，得到第7位是7.<br>flag:<del>flag{e165421110ba03099a1c039337}</del></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">randark@randark-VirtualBox:~/shared$ ./re</span><br><span class="line">input your flag:flag&#123;e165421110ba03099a1c039337&#125;</span><br><span class="line">Correct!</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<p>参考：<br>1.<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Mayfly-nymph/p/12655622.html">BUUCTF–[GUET-CTF2019]re</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://randark.site/2021/09/04/HDCTF2019-Maze/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -626,11 +708,11 @@
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Reverse/%E5%8A%A0%E5%A3%B3/" itemprop="url" rel="index"><span itemprop="name">加壳</span></a>
+                  <a href="/categories/Challenge/" itemprop="url" rel="index"><span itemprop="name">Challenge</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Challenge/" itemprop="url" rel="index"><span itemprop="name">Challenge</span></a>
+                  <a href="/categories/Reverse/%E5%8A%A0%E5%A3%B3/" itemprop="url" rel="index"><span itemprop="name">加壳</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -718,11 +800,11 @@
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Reverse/UPX/" itemprop="url" rel="index"><span itemprop="name">UPX</span></a>
+                  <a href="/categories/Challenge/" itemprop="url" rel="index"><span itemprop="name">Challenge</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Challenge/" itemprop="url" rel="index"><span itemprop="name">Challenge</span></a>
+                  <a href="/categories/Reverse/UPX/" itemprop="url" rel="index"><span itemprop="name">UPX</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1008,88 +1090,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/09/02/SWPU2019-%E6%88%91%E6%9C%89%E4%B8%80%E5%8F%AA%E9%A9%AC%E9%87%8C%E5%A5%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
-      <meta itemprop="name" content="Randark">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橘墨的摸鱼现场">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/02/SWPU2019-%E6%88%91%E6%9C%89%E4%B8%80%E5%8F%AA%E9%A9%AC%E9%87%8C%E5%A5%A5/" class="post-title-link" itemprop="url">我有一只马里奥</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-09-02 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-02T00:00:00+08:00">2021-09-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-09 10:58:33" itemprop="dateModified" datetime="2021-11-09T10:58:33+08:00">2021-11-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/" itemprop="url" rel="index"><span itemprop="name">Misc</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/NTFS%E6%95%B0%E6%8D%AE%E6%B5%81/" itemprop="url" rel="index"><span itemprop="name">NTFS数据流</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="https://buuoj.cn/challenges#[SWPU2019]%E6%88%91%E6%9C%89%E4%B8%80%E5%8F%AA%E9%A9%AC%E9%87%8C%E5%A5%A5">题目链接</a><br>附件是一个exe程序，运行程序只在同级目录下生成了一个txt文件，怀疑exe文件是打包好的rar自释放程序：<br><img src="/images/Writeup/20210902150421.png"><br>用NTFS流分析程序扫描：<br><img src="/images/Writeup/20210902150607.png"><br>确实发现了一个flag.txt文件，打开文件：<br><img src="/images/Writeup/20210902150634.png"><br>flag:<del>swupctf{ddg_is_cute}</del><br><em>记得改提交格式</em></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/default-index/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/default-index/">1</a><span class="space">&hellip;</span><a class="page-number" href="/default-index/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/default-index/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/default-index/page/13/">13</a><a class="extend next" rel="next" href="/default-index/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/default-index/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/default-index/">1</a><span class="space">&hellip;</span><a class="page-number" href="/default-index/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/default-index/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/default-index/page/14/">14</a><a class="extend next" rel="next" href="/default-index/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1157,7 +1161,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">130</span>
+          <span class="site-state-item-count">131</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
