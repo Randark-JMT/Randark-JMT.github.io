@@ -23,13 +23,13 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="橘墨的摸鱼现场">
-<meta property="og:url" content="https://randark.site/categories/Reverse/Pyc/index.html">
+<meta property="og:url" content="https://randark.site/categories/Reverse/pyc/index.html">
 <meta property="og:site_name" content="橘墨的摸鱼现场">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Randark">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://randark.site/categories/Reverse/Pyc/">
+<link rel="canonical" href="https://randark.site/categories/Reverse/pyc/">
 
 
 <script id="page-configurations">
@@ -42,7 +42,7 @@
   };
 </script>
 
-  <title>分类: Pyc | 橘墨的摸鱼现场</title>
+  <title>分类: pyc | 橘墨的摸鱼现场</title>
   
 
 
@@ -122,11 +122,6 @@
     <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
-
-  </li>
         <li class="menu-item menu-item-categories">
 
     <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
@@ -191,7 +186,7 @@
   <div class="post-block">
     <div class="posts-collapse">
       <div class="collection-title">
-        <h2 class="collection-header">Pyc
+        <h2 class="collection-header">pyc
           <small>分类</small>
         </h2>
       </div>
@@ -206,35 +201,15 @@
 
       <div class="post-meta">
         <time itemprop="dateCreated"
-              datetime="2021-11-11T10:23:16+08:00"
-              content="2021-11-11">
-          11-11
+              datetime="2021-09-07T00:00:00+08:00"
+              content="2021-09-07">
+          09-07
         </time>
       </div>
 
       <div class="post-title">
-          <a class="post-title-link" href="/2021/11/11/FindKey/" itemprop="url">
-            <span itemprop="name">FindKey</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-09-04T00:00:00+08:00"
-              content="2021-09-04">
-          09-04
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/09/04/GWCTF%202019-pyre/" itemprop="url">
-            <span itemprop="name">pyre</span>
+          <a class="post-title-link" href="/2021/09/07/%E5%96%B5%E5%96%B5%E5%96%B5/" itemprop="url">
+            <span itemprop="name">喵喵喵</span>
           </a>
       </div>
 
@@ -314,7 +289,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">138</span>
+          <span class="site-state-item-count">141</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -468,6 +443,51 @@ window.addEventListener('pjax:success', () => {
 		//Find the last canonical URL
 		if(x.length > 0){
 			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+    </div>
+</body>
+</html>
+ength;i++){
 				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
 					canonicalURL=x[i].href;
 				}

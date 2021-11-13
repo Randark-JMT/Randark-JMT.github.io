@@ -122,11 +122,6 @@
     <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
-
-  </li>
         <li class="menu-item menu-item-categories">
 
     <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
@@ -184,6 +179,271 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/28/MRCTF2020-Transform/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
+      <meta itemprop="name" content="Randark">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橘墨的摸鱼现场">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/28/MRCTF2020-Transform/" class="post-title-link" itemprop="url">Transform</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-28 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-28T00:00:00+08:00">2021-08-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-09 11:39:54" itemprop="dateModified" datetime="2021-11-09T11:39:54+08:00">2021-11-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Reverse/" itemprop="url" rel="index"><span itemprop="name">Reverse</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Challenge/" itemprop="url" rel="index"><span itemprop="name">Challenge</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Challenge/MRCTF-2020/" itemprop="url" rel="index"><span itemprop="name">MRCTF 2020</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><span class="exturl" data-url="aHR0cHM6Ly9idXVvai5jbi9jaGFsbGVuZ2VzI1tNUkNURjIwMjBdVHJhbnNmb3Jt">题目链接<i class="fa fa-external-link-alt"></i></span><br>附件下载得到程序，看一下信息：<br><img src="/images/Writeup/20210828144512.png"><br>IDA看一下主函数：<br><img src="/images/Writeup/20210828144537.png"><br>F5逆向一下：<br><img src="/images/Writeup/20210828144600.png"><br>核心函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">sub_40E640(<span class="string">&quot;Give me your code:\n&quot;</span>);  <span class="comment">//打印欢迎信息</span></span><br><span class="line">sub_40E5F0(<span class="string">&quot;%s&quot;</span>, Str);  <span class="comment">//读取用户输入</span></span><br><span class="line"><span class="keyword">if</span> ( <span class="built_in">strlen</span>(Str) != <span class="number">33</span> )  <span class="comment">//判断用户输入的数据长度</span></span><br><span class="line">&#123;</span><br><span class="line">    sub_40E640(<span class="string">&quot;Wrong!\n&quot;</span>);</span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//下面就是flag数据的所在</span></span><br><span class="line"><span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="number">32</span>; ++i )</span><br><span class="line">&#123;</span><br><span class="line">    byte_414040[i] = Str[dword_40F040[i);</span><br><span class="line">    byte_414040[i] ^= LOBYTE(dword_40F040[i]);  <span class="comment">//异或，加密</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> ( j = <span class="number">0</span>; j &lt;= <span class="number">32</span>; ++j )</span><br><span class="line">&#123;  </span><br><span class="line">    <span class="keyword">if</span> ( byte_40F0E0[j] != byte_414040[j] ) <span class="comment">//判断flag数据与用户输入是否匹配</span></span><br><span class="line">    &#123;</span><br><span class="line">    	sub_40E640(<span class="string">&quot;Wrong!\n&quot;</span>);</span><br><span class="line">    	system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">    	<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;   </span><br><span class="line">&#125;</span><br><span class="line">sub_40E640(<span class="string">&quot;Right!Good Job!\n&quot;</span>);</span><br><span class="line">sub_40E640(<span class="string">&quot;Here is your flag: %s\n&quot;</span>, Str);</span><br><span class="line">system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<p>也就是先将输入的flag使用dword_40F040数组作为索引，打乱顺序，再将打乱后的flag数组，与dword_40F040数组异或，得到byte_40F0E0<br><img src="/images/Writeup/20210828145701.png"><br>对应写一个脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">model = [<span class="number">0x9</span>, <span class="number">0x0A</span>, <span class="number">0x0F</span>, <span class="number">0x17</span>, <span class="number">0x7</span>, <span class="number">0x18</span>, <span class="number">0x0C</span>, <span class="number">0x6</span>, <span class="number">0x1</span>, <span class="number">0x10</span>, <span class="number">0x3</span>, <span class="number">0x11</span>, <span class="number">0x20</span>, <span class="number">0x1D</span>, <span class="number">0x0B</span>, <span class="number">0x1E</span>, <span class="number">0x1B</span>, <span class="number">0x16</span>, <span class="number">0x4</span>, <span class="number">0x0D</span>, <span class="number">0x13</span>, <span class="number">0x14</span>, <span class="number">0x15</span>, <span class="number">0x2</span>, <span class="number">0x19</span>, <span class="number">0x5</span>, <span class="number">0x1F</span>, <span class="number">0x8</span>, <span class="number">0x12</span>, <span class="number">0x1A</span>, <span class="number">0x1C</span>, <span class="number">0x0E</span>, <span class="number">0</span>]</span><br><span class="line">model1 = [<span class="number">0x67</span>, <span class="number">0x79</span>, <span class="number">0x7B</span>, <span class="number">0x7F</span>, <span class="number">0x75</span>, <span class="number">0x2B</span>, <span class="number">0x3C</span>, <span class="number">0x52</span>, <span class="number">0x53</span>, <span class="number">0x79</span>, <span class="number">0x57</span>, <span class="number">0x5E</span>, <span class="number">0x5D</span>, <span class="number">0x42</span>, <span class="number">0x7B</span>, <span class="number">0x2D</span>, <span class="number">0x2A</span>, <span class="number">0x66</span>, <span class="number">0x42</span>, <span class="number">0x7E</span>, <span class="number">0x4C</span>, <span class="number">0x57</span>, <span class="number">0x79</span>, <span class="number">0x41</span>, <span class="number">0x6B</span>, <span class="number">0x7E</span>, <span class="number">0x65</span>, <span class="number">0x3C</span>, <span class="number">0x5C</span>, <span class="number">0x45</span>, <span class="number">0x6F</span>, <span class="number">0x62</span>, <span class="number">0x4D</span>]</span><br><span class="line"></span><br><span class="line">flag = [<span class="number">0</span>]*<span class="number">33</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(model)):</span><br><span class="line">    model1[i] ^= model[i]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(model)):</span><br><span class="line">    flag[model[i) = model1[i]</span><br><span class="line"><span class="built_in">print</span> (<span class="string">&#x27;&#x27;</span>.join([<span class="built_in">chr</span>(x) <span class="keyword">for</span> x <span class="keyword">in</span> flag]))</span><br></pre></td></tr></table></figure>
+<p>flag:<del>MRCTF{Tr4nsp0sltiON_Clph3r_1s_3z}</del><br><em>记得改提交格式</em></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/28/%E8%8F%9C%E5%88%80666/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
+      <meta itemprop="name" content="Randark">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橘墨的摸鱼现场">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/28/%E8%8F%9C%E5%88%80666/" class="post-title-link" itemprop="url">菜刀666</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-28 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-28T00:00:00+08:00">2021-08-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-07 22:02:12" itemprop="dateModified" datetime="2021-11-07T22:02:12+08:00">2021-11-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Misc/" itemprop="url" rel="index"><span itemprop="name">Misc</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Misc/%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">流量分析</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><span class="exturl" data-url="aHR0cHM6Ly9idXVvai5jbi9jaGFsbGVuZ2VzIyVFOCU4RiU5QyVFNSU4OCU4MDY2Ng==">题目链接<i class="fa fa-external-link-alt"></i></span><br>附件是一个流量包，[[工具/Misc/Wireshark|Wireshark)打开来看一下：<br><img src="/images/Writeup/20210829065909.png"><br>发现全部都是TCP连接的流量，追踪流看看：<br>流1发现flag痕迹：<br><img src="/images/Writeup/20210829070038.png"><br>流4：<br><img src="/images/Writeup/20210829070106.png"><br>流7：<br><img src="/images/Writeup/20210829070206.png"><br>流9：<br><img src="/images/Writeup/20210829070231.png"><br>看来是传输了一个包含flag文件压缩包，用[[Binwalk)提取一下看一下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">randark@randark-VirtualBox:~/CTF$ binwalk 666666.pcapng</span><br><span class="line"></span><br><span class="line">DECIMAL       HEXADECIMAL     DESCRIPTION</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">663085        0xA1E2D         xz compressed data</span><br><span class="line">664045        0xA21ED         xz compressed data</span><br><span class="line">812025        0xC63F9         xz compressed data</span><br><span class="line">814001        0xC6BB1         xz compressed data</span><br><span class="line">1238637       0x12E66D        xz compressed data</span><br><span class="line">1240937       0x12EF69        xz compressed data</span><br><span class="line">1391563       0x153BCB        xz compressed data</span><br><span class="line">1393067       0x1541AB        xz compressed data</span><br><span class="line">1406647       0x1576B7        xz compressed data</span><br><span class="line">1412887       0x158F17        xz compressed data</span><br><span class="line">1422689       0x15B561        Zip archive data, encrypted at least v2.0 to extract, compressed size: 52, uncompressed size: 40, name: flag.txt</span><br></pre></td></tr></table></figure>
+<p>看来是不大行，用[[Foremost)看一下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">randark@randark-VirtualBox:~/CTF$ foremost 666666.pcapng</span><br><span class="line">Processing: 666666.pcapng</span><br><span class="line">|foundat=flag.txtC����cS���J��Ea�v�</span><br><span class="line">                                   ��&amp;e$K��2%�$��,�=�J��1p��p46PK?</span><br><span class="line">*|</span><br></pre></td></tr></table></figure>
+<p>得到了一个zip，解压的时候提示需要密码，用[[ARCHPR)枚举一下，发现返回找不到口令，怀疑是伪加密，用[[010Editor)或者Winrar手动修一下，发现还是需要密码，那么说明密码还在流量包里面，果然，在流7：<br><img src="/images/Writeup/20210829071109.png"><br>提取出两个文件：<br><img src="/images/Writeup/20210829071311.png"><br><img src="/images/Writeup/20210829071317.png"><br>第二张图片看来就是压缩包的密码，解压，就得到了flag。<br>flag:<del>flag{3OpWdJ-JP6FzK-koCMAK-VkfWBq-75Un2z}</del></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/27/ACTF2020%20%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
+      <meta itemprop="name" content="Randark">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橘墨的摸鱼现场">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/27/ACTF2020%20%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/" class="post-title-link" itemprop="url">Upload</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-27 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-27T00:00:00+08:00">2021-08-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-09 11:30:54" itemprop="dateModified" datetime="2021-11-09T11:30:54+08:00">2021-11-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" itemprop="url" rel="index"><span itemprop="name">文件上传</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/PHP%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">PHP代码审计</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Challenge/" itemprop="url" rel="index"><span itemprop="name">Challenge</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Challenge/ACTF-2020-%E6%96%B0%E7%94%9F%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">ACTF 2020-新生赛</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><span class="exturl" data-url="aHR0cHM6Ly9idXVvai5jbi9jaGFsbGVuZ2VzI1tBQ1RGMjAyMCUyMCVFNiU5NiVCMCVFNyU5NCU5RiVFOCVCNSU5Ql1VcGxvYWQ=">题目链接<i class="fa fa-external-link-alt"></i></span></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/08/27/ACTF2020%20%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -348,91 +608,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/26/Alice%E4%B8%8EBob/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
-      <meta itemprop="name" content="Randark">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橘墨的摸鱼现场">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/26/Alice%E4%B8%8EBob/" class="post-title-link" itemprop="url">Alice与Bob</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-26T00:00:00+08:00">2021-08-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-17 20:49:54" itemprop="dateModified" datetime="2021-09-17T20:49:54+08:00">2021-09-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Crypto/" itemprop="url" rel="index"><span itemprop="name">Crypto</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Crypto/Base/" itemprop="url" rel="index"><span itemprop="name">Base</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><span class="exturl" data-url="aHR0cHM6Ly9idXVvai5jbi9jaGFsbGVuZ2VzI0FsaWNlJUU0JUI4JThFQm9i">题目链接<i class="fa fa-external-link-alt"></i></span></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/26/Alice%E4%B8%8EBob/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/26/AFCTF2018-Morse/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -507,6 +682,91 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/08/26/AFCTF2018-Morse/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/26/Alice%E4%B8%8EBob/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
+      <meta itemprop="name" content="Randark">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橘墨的摸鱼现场">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/26/Alice%E4%B8%8EBob/" class="post-title-link" itemprop="url">Alice与Bob</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-26T00:00:00+08:00">2021-08-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-09-17 20:49:54" itemprop="dateModified" datetime="2021-09-17T20:49:54+08:00">2021-09-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Crypto/" itemprop="url" rel="index"><span itemprop="name">Crypto</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Crypto/Base/" itemprop="url" rel="index"><span itemprop="name">Base</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><span class="exturl" data-url="aHR0cHM6Ly9idXVvai5jbi9jaGFsbGVuZ2VzI0FsaWNlJUU0JUI4JThFQm9i">题目链接<i class="fa fa-external-link-alt"></i></span></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/08/26/Alice%E4%B8%8EBob/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -786,243 +1046,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/26/easyre/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
-      <meta itemprop="name" content="Randark">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橘墨的摸鱼现场">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/26/easyre/" class="post-title-link" itemprop="url">easyre</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-26T00:00:00+08:00">2021-08-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-09 11:39:39" itemprop="dateModified" datetime="2021-11-09T11:39:39+08:00">2021-11-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Reverse/" itemprop="url" rel="index"><span itemprop="name">Reverse</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><span class="exturl" data-url="aHR0cHM6Ly9idXVvai5jbi9jaGFsbGVuZ2VzI2Vhc3lyZQ==">题目链接<i class="fa fa-external-link-alt"></i></span><br>拖进IDA分析一下：<br><img src="/images/Writeup/20210826162227.png"><br>其实这时候就能看到flag了，但是仍然要研究一下程序逻辑：<br><img src="/images/Writeup/20210826162324.png"></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;a, &amp;b);</span><br><span class="line"><span class="keyword">if</span> ( a == b )</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;flag&#123;this_Is_a_EaSyRe&#125;&quot;</span>);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;sorry,you can&#x27;t get flag&quot;</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
-<p>由此可以看出只要输入两个相等的值就可以输出flag：<br><img src="/images/Writeup/20210826162504.png"><br>flag:<del>flag{this_Is_a_EaSyRe}</del></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/26/reverse1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
-      <meta itemprop="name" content="Randark">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橘墨的摸鱼现场">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/26/reverse1/" class="post-title-link" itemprop="url">reverse1</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-26T00:00:00+08:00">2021-08-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-09 11:39:58" itemprop="dateModified" datetime="2021-11-09T11:39:58+08:00">2021-11-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Reverse/" itemprop="url" rel="index"><span itemprop="name">Reverse</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><span class="exturl" data-url="aHR0cHM6Ly9idXVvai5jbi9jaGFsbGVuZ2VzI3JldmVyc2Ux">题目链接<i class="fa fa-external-link-alt"></i></span><br>拖进IDA分析一下，看一下主函数：<br><img src="/images/Writeup/20210826162729.png"><br>一路跟进下去，发现难度实在太大，换一下，看一下字符列表：<br><img src="/images/Writeup/20210826163344.png"><br>发现了存在flag数据的痕迹，跟进一下：<br><img src="/images/Writeup/20210826163526.png"><br>跟进一下sub_1400118C0函数：<br><img src="/images/Writeup/20210826163557.png"><br><img src="/images/Writeup/20210826163622.png"><br>可以看到这里有一个字符串比较函数，看来是拿输入字符串与Str2作了比较：<br><img src="/images/Writeup/20210826163904.png"><br>跟踪Str2的数据，看见了flag：<br><img src="/images/Writeup/20210826163939.png"><br>flag:<del>flag{hello_world}</del><br>但是，真的结束了吗？将flag数据提交上去，发现系统返回flag不对，再返回看一下Str2的处理过程，发现做了字符替换：<br><img src="/images/Writeup/20210826164134.png"></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ( j = <span class="number">0</span>; ; ++j )</span><br><span class="line">&#123;</span><br><span class="line">	v8 = j;</span><br><span class="line">	v2 = j_strlen(Str2);</span><br><span class="line">	<span class="keyword">if</span> ( v8 &gt; v2 )</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">if</span> ( Str2[j] == <span class="number">111</span> )</span><br><span class="line">		Str2[j] = <span class="number">48</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>转换一下ASCII编码显示一下字符：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ( j = <span class="number">0</span>; ; ++j )</span><br><span class="line">&#123;</span><br><span class="line">	v8 = j;</span><br><span class="line">	v2 = j_strlen(Str2);</span><br><span class="line">	<span class="keyword">if</span> ( v8 &gt; v2 )</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">if</span> ( Str2[j] == <span class="string">&#x27;o&#x27;</span> )</span><br><span class="line">		Str2[j] = <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>看来是将Str2里面的“o”替换成了”0”，于是得到了最终flag<br>flag:<del>flag{hell0_w0rld}</del></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/26/reverse2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
-      <meta itemprop="name" content="Randark">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橘墨的摸鱼现场">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/26/reverse2/" class="post-title-link" itemprop="url">reverse2</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-26T00:00:00+08:00">2021-08-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-09 11:40:05" itemprop="dateModified" datetime="2021-11-09T11:40:05+08:00">2021-11-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Reverse/" itemprop="url" rel="index"><span itemprop="name">Reverse</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><span class="exturl" data-url="aHR0cHM6Ly9idXVvai5jbi9jaGFsbGVuZ2VzI3JldmVyc2Uy">题目链接<i class="fa fa-external-link-alt"></i></span><br>拖进IDA分析一下：<br><img src="/images/Writeup/20210826204912.png"><br>吐槽一下，这个还比[[reverse1)简单，这个在主函数就看到了flag的影子，[[reverse1)还要去字符库里面找。。<br>逆向编译一下，看看有关flag的操作：<br><img src="/images/Writeup/20210826205058.png"></p>
-<p>核心代码： ^199370</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( pid )</span><br><span class="line">&#123;</span><br><span class="line">	waitpid(pid, &amp;stat_loc, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="built_in">strlen</span>(&amp;flag); ++i )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> ( *(&amp;flag + i) == <span class="number">105</span> || *(&amp;flag + i) == <span class="number">114</span> )</span><br><span class="line">			*(&amp;flag + i) = <span class="number">49</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;input the flag:&quot;</span>);</span><br><span class="line">__isoc99_scanf(<span class="string">&quot;%20s&quot;</span>, s2);</span><br><span class="line"><span class="keyword">if</span> ( !<span class="built_in">strcmp</span>(&amp;flag, s2) )</span><br><span class="line">	result = <span class="built_in">puts</span>(<span class="string">&quot;this is the right flag!&quot;</span>);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	result = <span class="built_in">puts</span>(<span class="string">&quot;wrong flag!&quot;</span>);</span><br><span class="line"><span class="keyword">return</span> result;</span><br></pre></td></tr></table></figure>
-<p>看来是用户输入了s2，然后比较$flag的值与s2。那么s2就代表着flag，即去追踪&amp;flag的数据：<br><img src="/images/Writeup/20210826205424.png"><br>找到了，ASCII码转换一下：<br><img src="/images/Writeup/20210826205454.png"><br>那么<del>flag{hacking_for_fun}</del>就是最终flag的数据？并不是，在[[reverse2#^199370|核心代码)里面可以看见&amp;flag的数值做出了改变，ASCII转换一下看一下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( pid )</span><br><span class="line">&#123;</span><br><span class="line">	waitpid(pid, &amp;stat_loc, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt;= <span class="built_in">strlen</span>(&amp;flag); ++i )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> ( *(&amp;flag + i) == <span class="string">&quot;i&quot;</span> || *(&amp;flag + i) == <span class="string">&quot;r&quot;</span> )</span><br><span class="line">			*(&amp;flag + i) = <span class="string">&quot;1&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;input the flag:&quot;</span>);</span><br><span class="line">__isoc99_scanf(<span class="string">&quot;%20s&quot;</span>, s2);</span><br><span class="line"><span class="keyword">if</span> ( !<span class="built_in">strcmp</span>(&amp;flag, s2) )</span><br><span class="line">	result = <span class="built_in">puts</span>(<span class="string">&quot;this is the right flag!&quot;</span>);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	result = <span class="built_in">puts</span>(<span class="string">&quot;wrong flag!&quot;</span>);</span><br><span class="line"><span class="keyword">return</span> result;</span><br></pre></td></tr></table></figure>
-<p>替换一下字符，便得到了最终正确的flag。<br>flag:<del>flag{hack1ng_fo1_fun}</del></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/default-index/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/default-index/">1</a><span class="space">&hellip;</span><a class="page-number" href="/default-index/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/default-index/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/default-index/page/14/">14</a><a class="extend next" rel="next" href="/default-index/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/default-index/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/default-index/">1</a><span class="space">&hellip;</span><a class="page-number" href="/default-index/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/default-index/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/default-index/page/15/">15</a><a class="extend next" rel="next" href="/default-index/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1090,7 +1117,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">138</span>
+          <span class="site-state-item-count">141</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
