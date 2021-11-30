@@ -21,22 +21,19 @@
     var CONFIG = {"hostname":"randark.site","root":"/","scheme":"Pisces","version":"7.8.0","exturl":true,"sidebar":{"position":"left","width":300,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":false,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="题目链接附件下载得到程序，看一下信息：upx脱壳一下： 12345678910D:\Downloads&gt;upx -d  attachment                       Ultimate Packer for eXecutables                          Copyright (C) 1996 - 2020UPX 3.96w       Markus">
+  <meta name="description" content="题目链接">
 <meta property="og:type" content="article">
-<meta property="og:title" content="level2">
-<meta property="og:url" content="https://randark.site/2021/09/04/WUSTCTF2020-level2/index.html">
+<meta property="og:title" content="Baby&#39;s Crack">
+<meta property="og:url" content="https://randark.site/2021/11/30/Baby-s-Crack/index.html">
 <meta property="og:site_name" content="橘墨的摸鱼现场">
-<meta property="og:description" content="题目链接附件下载得到程序，看一下信息：upx脱壳一下： 12345678910D:\Downloads&gt;upx -d  attachment                       Ultimate Packer for eXecutables                          Copyright (C) 1996 - 2020UPX 3.96w       Markus">
+<meta property="og:description" content="题目链接">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://randark.site/images/Writeup/20210904141401.png">
-<meta property="og:image" content="https://randark.site/images/Writeup/20210904141547.png">
-<meta property="article:published_time" content="2021-09-03T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-11-09T03:40:24.198Z">
+<meta property="article:published_time" content="2021-11-30T15:05:23.000Z">
+<meta property="article:modified_time" content="2021-11-30T15:10:06.325Z">
 <meta property="article:author" content="Randark">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://randark.site/images/Writeup/20210904141401.png">
 
-<link rel="canonical" href="https://randark.site/2021/09/04/WUSTCTF2020-level2/">
+<link rel="canonical" href="https://randark.site/2021/11/30/Baby-s-Crack/">
 
 
 <script id="page-configurations">
@@ -49,7 +46,7 @@
   };
 </script>
 
-  <title>level2 | 橘墨的摸鱼现场</title>
+  <title>Baby's Crack | 橘墨的摸鱼现场</title>
   
 
 
@@ -191,7 +188,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/09/04/WUSTCTF2020-level2/">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/11/30/Baby-s-Crack/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
@@ -204,7 +201,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          level2
+          Baby's Crack
         </h1>
 
         <div class="post-meta">
@@ -213,16 +210,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-09-04 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-04T00:00:00+08:00">2021-09-04</time>
+              <time title="创建时间：2021-11-30 23:05:23 / 修改时间：23:10:06" itemprop="dateCreated datePublished" datetime="2021-11-30T23:05:23+08:00">2021-11-30</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-09 11:40:24" itemprop="dateModified" datetime="2021-11-09T11:40:24+08:00">2021-11-09</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -230,18 +221,6 @@
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Reverse/" itemprop="url" rel="index"><span itemprop="name">Reverse</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Challenge/" itemprop="url" rel="index"><span itemprop="name">Challenge</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Reverse/UPX/" itemprop="url" rel="index"><span itemprop="name">UPX</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Challenge/WUSTCTF-2020/" itemprop="url" rel="index"><span itemprop="name">WUSTCTF 2020</span></a>
                 </span>
             </span>
 
@@ -256,9 +235,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><span class="exturl" data-url="aHR0cHM6Ly9idXVvai5jbi9jaGFsbGVuZ2VzI1tXVVNUQ1RGMjAyMF1sZXZlbDI=">题目链接<i class="fa fa-external-link-alt"></i></span><br>附件下载得到程序，看一下信息：<br><img src="/images/Writeup/20210904141401.png"><br>upx脱壳一下：</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">D:\<span class="title">Downloads</span>&gt;<span class="title">upx</span> -<span class="title">d</span>  <span class="title">attachment</span></span></span><br><span class="line"><span class="function">                       <span class="title">Ultimate</span> <span class="title">Packer</span> <span class="title">for</span> <span class="title">eXecutables</span></span></span><br><span class="line"><span class="function">                          <span class="title">Copyright</span> (<span class="title">C</span>) 1996 - 2020</span></span><br><span class="line"><span class="function"><span class="title">UPX</span> 3.96<span class="title">w</span>       <span class="title">Markus</span> <span class="title">Oberhumer</span>, <span class="title">Laszlo</span> <span class="title">Molnar</span> &amp; <span class="title">John</span> <span class="title">Reiser</span>   <span class="title">Jan</span> 23<span class="title">rd</span> 2020</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">        <span class="title">File</span> <span class="title">size</span>         <span class="title">Ratio</span>      <span class="title">Format</span>      <span class="title">Name</span></span></span><br><span class="line"><span class="function">   --------------------   ------   -----------   -----------</span></span><br><span class="line"><span class="function">    725344 &lt;-    293476   40.46%   <span class="title">linux</span>/<span class="title">i386</span>    <span class="title">attachment</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">Unpacked</span> 1 <span class="title">file</span>.</span></span><br></pre></td></tr></table></figure>
-<p>然后拖进IDA看一下主函数：<br><img src="/images/Writeup/20210904141547.png"><br>这不就看到flag了。。<br>flag:<del>wctf2020{Just_upx_-d}</del><br><em>确实，flag里面也说了，只要upx脱壳一下就好了</em></p>
+        <p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamFydmlzb2ouY29tL2NoYWxsZW5nZXM=">题目链接<i class="fa fa-external-link-alt"></i></span></p>
+<span id="more"></span>
+
+<p>这题还是比较简单的，先直接进IDA看一下主函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> __cdecl <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> **argv, <span class="keyword">const</span> <span class="keyword">char</span> **envp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> result; <span class="comment">// eax</span></span><br><span class="line">  <span class="keyword">char</span> Buffer[<span class="number">104</span>]; <span class="comment">// [rsp+20h] [rbp-80h] BYREF</span></span><br><span class="line">  FILE *v5; <span class="comment">// [rsp+88h] [rbp-18h]</span></span><br><span class="line">  FILE *Stream; <span class="comment">// [rsp+90h] [rbp-10h]</span></span><br><span class="line">  <span class="keyword">char</span> v7; <span class="comment">// [rsp+9Fh] [rbp-1h]</span></span><br><span class="line"></span><br><span class="line">  _main();</span><br><span class="line">  <span class="keyword">if</span> ( argc &lt;= <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Usage: %s [FileName]\n&quot;</span>, *argv);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;FileName是待加密的文件&quot;</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  Stream = fopen(argv[<span class="number">1</span>], <span class="string">&quot;rb+&quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> ( Stream )</span><br><span class="line">  &#123;</span><br><span class="line">    v5 = fopen(<span class="string">&quot;tmp&quot;</span>, <span class="string">&quot;wb+&quot;</span>);</span><br><span class="line">    <span class="keyword">while</span> ( !feof(Stream) )</span><br><span class="line">    &#123;</span><br><span class="line">      v7 = fgetc(Stream);</span><br><span class="line">      <span class="keyword">if</span> ( v7 != <span class="number">-1</span> &amp;&amp; v7 )</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> ( v7 &gt; <span class="number">47</span> &amp;&amp; v7 &lt;= <span class="number">96</span> )</span><br><span class="line">        &#123;</span><br><span class="line">          v7 += <span class="number">53</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> ( v7 &lt;= <span class="number">46</span> )</span><br><span class="line">        &#123;</span><br><span class="line">          v7 += v7 % <span class="number">11</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">          v7 -= v7 % <span class="number">61</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        fputc(v7, v5);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    fclose(v5);</span><br><span class="line">    fclose(Stream);</span><br><span class="line">    <span class="built_in">sprintf</span>(Buffer, <span class="string">&quot;del %s&quot;</span>, argv[<span class="number">1</span>]);</span><br><span class="line">    system(Buffer);</span><br><span class="line">    <span class="built_in">sprintf</span>(Buffer, <span class="string">&quot;ren tmp %s&quot;</span>, argv[<span class="number">1</span>]);</span><br><span class="line">    system(Buffer);</span><br><span class="line">    result = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;无法打开文件%s\n&quot;</span>, argv[<span class="number">1</span>]);</span><br><span class="line">    result = <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>顺便看一下加密后的密文：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jeihjiiklwjnk&#123;ljj&#123;kflghhj&#123;ilk&#123;k&#123;kij&#123;ihlgkfkhkwhhjgly</span><br></pre></td></tr></table></figure>
+
+<p>那这结构还是比较简单的，除了%除法比较绕一点，其它都可以直接逆逻辑：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line">Chiper_Text=<span class="string">&quot;jeihjiiklwjnk&#123;ljj&#123;kflghhj&#123;ilk&#123;k&#123;kij&#123;ihlgkfkhkwhhjgly&quot;</span></span><br><span class="line">CHiper_Data=[]</span><br><span class="line"><span class="keyword">for</span> letter <span class="keyword">in</span> Chiper_Text:</span><br><span class="line">    CHiper_Data.append(<span class="built_in">ord</span>(letter))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(Chiper_Text)):</span><br><span class="line">    <span class="keyword">if</span> CHiper_Data[i]&gt;<span class="number">100</span> <span class="keyword">and</span> CHiper_Data[i]&lt;=<span class="number">149</span>:</span><br><span class="line">        CHiper_Data[i]-=<span class="number">53</span></span><br><span class="line">    <span class="keyword">elif</span> CHiper_Data[i]&lt;=<span class="number">99</span>:</span><br><span class="line">        a=CHiper_Data[i]//<span class="number">11</span></span><br><span class="line">        CHiper_Data[i]-=(CHiper_Data[i]-a*<span class="number">11</span>)/<span class="number">2</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        a=CHiper_Data[i]//<span class="number">61</span></span><br><span class="line">        CHiper_Data[i]+=(CHiper_Data[i]-a*<span class="number">61</span>)/<span class="number">2</span></span><br><span class="line">a=<span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> letter <span class="keyword">in</span> CHiper_Data:</span><br><span class="line">    a+=<span class="built_in">chr</span>(letter)</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="built_in">print</span>(binascii.unhexlify(a).decode())</span><br></pre></td></tr></table></figure>
+
+<p>得到的输出就是flag：<del>PCTF{You_ar3_Good_Crack3R}</del></p>
 
     </div>
 
@@ -274,7 +263,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://randark.site/2021/09/04/WUSTCTF2020-level2/" title="level2">https://randark.site/2021/09/04/WUSTCTF2020-level2/</a>
+    <a href="https://randark.site/2021/11/30/Baby-s-Crack/" title="Baby&#39;s Crack">https://randark.site/2021/11/30/Baby-s-Crack/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -291,13 +280,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/09/03/UTCTF2020-dns-shell/" rel="prev" title="dns-shell">
-      <i class="fa fa-chevron-left"></i> dns-shell
+    <a href="/2021/11/30/AreYouRich/" rel="prev" title="AreYouRich">
+      <i class="fa fa-chevron-left"></i> AreYouRich
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/09/04/HDCTF2019-Maze/" rel="next" title="Maze">
-      Maze <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
