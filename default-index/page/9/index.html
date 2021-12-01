@@ -183,6 +183,86 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/09/02/%E8%B0%81%E8%B5%A2%E4%BA%86%E6%AF%94%E8%B5%9B%EF%BC%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
+      <meta itemprop="name" content="Randark">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橘墨的摸鱼现场">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/02/%E8%B0%81%E8%B5%A2%E4%BA%86%E6%AF%94%E8%B5%9B%EF%BC%9F/" class="post-title-link" itemprop="url">谁赢了比赛？</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-09-02 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-02T00:00:00+08:00">2021-09-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-10-26 23:17:51" itemprop="dateModified" datetime="2021-10-26T23:17:51+08:00">2021-10-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Misc/" itemprop="url" rel="index"><span itemprop="name">Misc</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Misc/%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99/" itemprop="url" rel="index"><span itemprop="name">图片隐写</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><span class="exturl" data-url="aHR0cHM6Ly9idXVvai5jbi9jaGFsbGVuZ2VzIyVFOCVCMCU4MSVFOCVCNSVBMiVFNCVCQSU4NiVFNiVBRiU5NCVFOCVCNSU5QiVFRiVCQyU5Rg==">题目链接<i class="fa fa-external-link-alt"></i></span><br>附件下载解压，得到一张png：<br>![](/images/Writeup/20210902152549.png]<br>检查了一遍，感觉信息不在图片本身，用[[Binwalk]分析一下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">randark@randark-VirtualBox:~/CTF$ binwalk -e who_won_the_game.png</span><br><span class="line"></span><br><span class="line">DECIMAL       HEXADECIMAL     DESCRIPTION</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">0             0x0             PNG image, 10000 x 10000, 8-bit/color RGB, non-interlaced</span><br><span class="line"></span><br><span class="line">WARNING: Extractor.execute failed to run external extractor &#x27;unrar e &#x27;%e&#x27;&#x27;: [Errno 2] No such file or directory: &#x27;unrar&#x27;, &#x27;unrar e &#x27;%e&#x27;&#x27; might not be installed correctly</span><br><span class="line"></span><br><span class="line">WARNING: Extractor.execute failed to run external extractor &#x27;unrar -x &#x27;%e&#x27;&#x27;: [Errno 2] No such file or directory: &#x27;unrar&#x27;, &#x27;unrar -x &#x27;%e&#x27;&#x27; might not be installed correctly</span><br><span class="line">1430236       0x15D2DC        RAR archive data, version 4.x, first volume type: MAIN_HEAD</span><br></pre></td></tr></table></figure>
+<p>得到了一个rar文件，并且压缩包存在密码：<br>![](/images/Writeup/20210902154841.png]<br>尝试使用[[ARCHPR]暴力枚举：<br>![](/images/Writeup/20210902154902.png]<br>得到以下文件：<br>![](/images/Writeup/20210902154931.png]<br>txt文件里面没有关键信息，gif文件用[[Stegsolve]提取全部动画帧，得到：<br>![](/images/Writeup/20210902162526.png]<br>在其中发现特殊帧：<br>![](/images/Writeup/20210902162554.png]<br>用[[Stegsolve]检查此文件信息，发现在Red plane0发现隐藏图像：<br>![](/images/Writeup/20210902163047.png]<br>![](/images/Writeup/20210902163058.png]<br>flag:<del>flag{shanxiajingwu_won_the_game}</del></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://randark.site/2021/09/01/BJDCTF2020-The%20mystery%20of%20ip/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1009,102 +1089,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/31/WMCTF2020-%E8%A1%8C%E4%B8%BA%E8%89%BA%E6%9C%AF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
-      <meta itemprop="name" content="Randark">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橘墨的摸鱼现场">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/31/WMCTF2020-%E8%A1%8C%E4%B8%BA%E8%89%BA%E6%9C%AF/" class="post-title-link" itemprop="url">行为艺术</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-31 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-31T00:00:00+08:00">2021-08-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-09 11:34:32" itemprop="dateModified" datetime="2021-11-09T11:34:32+08:00">2021-11-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/" itemprop="url" rel="index"><span itemprop="name">Misc</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Challenge/" itemprop="url" rel="index"><span itemprop="name">Challenge</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Challenge/WMCTF-2020/" itemprop="url" rel="index"><span itemprop="name">WMCTF 2020</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/%E5%8E%8B%E7%BC%A9%E5%8C%85%E7%A0%B4%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">压缩包破解</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="0x01-图片CRC恢复"><a href="#0x01-图片CRC恢复" class="headerlink" title="0x01 图片CRC恢复"></a>0x01 图片CRC恢复</h2><p><span class="exturl" data-url="aHR0cHM6Ly9idXVvai5jbi9jaGFsbGVuZ2VzI1tXTUNURjIwMjBdJUU4JUExJThDJUU0JUI4JUJBJUU4JTg5JUJBJUU2JTlDJUFG">题目链接<i class="fa fa-external-link-alt"></i></span><br>附件下载解压，得到：<br><img src="/images/Writeup/20210831102439.png"><br>png打不开，于是怀疑是CRC校验错误，用[[010Editor)打开，发现确实CRC错误，怀疑是图片高度被修改：<br><img src="/images/Writeup/20210831102602.png"><br>上脚本计算图片高度：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"></span><br><span class="line">misc = <span class="built_in">open</span>(<span class="string">&quot;attachment.png&quot;</span>,<span class="string">&quot;rb&quot;</span>).read()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1024</span>):</span><br><span class="line">    data = misc[<span class="number">12</span>:<span class="number">20</span>] +struct.pack(<span class="string">&#x27;&gt;i&#x27;</span>,i)+ misc[<span class="number">24</span>:<span class="number">29</span>]</span><br><span class="line">    crc32 = binascii.crc32(data) &amp; <span class="number">0xffffffff</span></span><br><span class="line">    <span class="keyword">if</span> crc32 == <span class="number">0x73b90b29</span>:</span><br><span class="line">        <span class="built_in">print</span> (i)</span><br></pre></td></tr></table></figure>
-<p>得到正确的高度为644，修改后正确打开：<br><img src="/images/Writeup/20210831102733.png"></p>
-<h2 id="0x02-数据提取"><a href="#0x02-数据提取" class="headerlink" title="0x02 数据提取"></a>0x02 数据提取</h2><p>怀疑是人工智能识别，但是手撸不是不行XD</p>
-<h2 id="0x03-数据解码"><a href="#0x03-数据解码" class="headerlink" title="0x03 数据解码"></a>0x03 数据解码</h2><p>数据处理后得到压缩包，去掉伪加密之后解压：<br><img src="/images/Writeup/20210831102839.png"><br>打开，得到一串Brainfuck代码：</p>
-<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">++<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span> ++<span class="literal">+</span><span class="literal">+</span><span class="title">[</span> <span class="literal">-</span>&gt;++<span class="literal">+</span> ++<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span> <span class="literal">+</span>&lt;<span class="title">]</span>&gt;<span class="literal">+</span> ++<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span> <span class="string">.</span>&lt;++<span class="literal">+</span> <span class="title">[</span><span class="literal">-</span>&gt;-- <span class="literal">-</span>&lt;<span class="title">]</span>&gt;<span class="literal">-</span> <span class="string">.</span>&lt;++<span class="literal">+</span> <span class="title">[</span><span class="literal">-</span>&gt;-- <span class="literal">-</span>&lt;<span class="title">]</span>&gt;<span class="literal">-</span><span class="string">.</span>&lt;++<span class="literal">+</span> <span class="literal">+</span><span class="title">[</span><span class="literal">-</span>&gt;<span class="literal">+</span> ++<span class="literal">+</span>&lt;<span class="title">]</span> &gt;<span class="literal">+</span><span class="string">.</span>&lt;<span class="literal">+</span> ++<span class="title">[</span><span class="literal">-</span>&gt; --<span class="literal">-</span>&lt;<span class="title">]</span> &gt;--<span class="literal">-</span><span class="literal">-</span> <span class="literal">-</span><span class="string">.</span>&lt;++ ++<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span> <span class="title">[</span><span class="literal">-</span>&gt;++ ++<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span> &lt;<span class="title">]</span>&gt;++<span class="literal">+</span><span class="literal">+</span><span class="string">.</span>-- --<span class="string">.</span>&lt;<span class="literal">+</span> ++<span class="literal">+</span><span class="title">[</span><span class="literal">-</span> &gt;--<span class="literal">-</span><span class="literal">-</span> &lt;<span class="title">]</span>&gt;-- --<span class="literal">-</span><span class="literal">-</span><span class="string">.</span> ++<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span> ++<span class="literal">+</span><span class="string">.</span>&lt; ++<span class="literal">+</span><span class="title">[</span><span class="literal">-</span> &gt;--<span class="literal">-</span>&lt; <span class="title">]</span>&gt;<span class="literal">-</span><span class="string">.</span><span class="literal">+</span> ++<span class="string">.</span>++<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span> <span class="string">.</span>&lt;++<span class="literal">+</span> <span class="title">[</span><span class="literal">-</span>&gt;-- <span class="literal">-</span>&lt;<span class="title">]</span>&gt;<span class="literal">-</span> <span class="string">.</span>++<span class="literal">+</span><span class="string">.</span> <span class="literal">-</span><span class="string">.</span><span class="string">.</span><span class="string">.</span><span class="string">.</span> --<span class="string">.</span>++ <span class="literal">+</span><span class="string">.</span>&lt;++ <span class="literal">+</span><span class="title">[</span><span class="literal">-</span>&gt;<span class="literal">+</span> ++&lt;<span class="title">]</span>&gt; ++<span class="literal">+</span><span class="literal">+</span><span class="string">.</span> &lt;++<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="title">[</span> <span class="literal">-</span>&gt;--<span class="literal">-</span> --<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span> &lt;<span class="title">]</span>&gt;-- --<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span> --<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span> --<span class="string">.</span>&lt;<span class="literal">+</span> ++<span class="literal">+</span><span class="title">[</span><span class="literal">-</span> &gt;++<span class="literal">+</span><span class="literal">+</span> &lt;<span class="title">]</span>&gt;<span class="literal">+</span><span class="string">.</span> <span class="literal">+</span><span class="string">.</span><span class="string">.</span><span class="string">.</span>&lt; ++<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="title">[</span><span class="literal">-</span> &gt;++<span class="literal">+</span><span class="literal">+</span> ++<span class="literal">+</span><span class="literal">+</span>&lt; <span class="title">]</span>&gt;++<span class="literal">+</span> ++<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span> ++<span class="literal">+</span><span class="string">.</span><span class="string">.</span> <span class="string">.</span><span class="literal">-</span><span class="string">.</span>&lt;</span><br></pre></td></tr></table></figure>
-<p><span class="exturl" data-url="aHR0cDovL2JmLmRvbGVjemVrLnBsLw==">在线工具<i class="fa fa-external-link-alt"></i></span>或者使用txt里面附带的链接进行解码，得到flag：<br>flag:<del>WMCTF{wai_bi_baaaa_bo!2333~~~}</del><br><em>记得改提交格式</em></p>
-<hr>
-<blockquote>
-<p>参考：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dtLXRlYW0vV01DVEYyMDIwLVdyaXRlVXAvYmxvYi9tYXN0ZXIvV01DVEZfMjAyMCVFNSVBRSU5OCVFNiU5NiVCOVdyaXRlVXAucGRm">官方wp<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1176,14 +1160,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">157</span>
+          <span class="site-state-item-count">158</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">82</span>
+        <span class="site-state-item-count">83</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
