@@ -73,7 +73,7 @@
   </style>
 </noscript>
 
-</head>
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <link rel="stylesheet" href="/dist/APlayer.min.css">
@@ -179,6 +179,106 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/09/04/FlareOn4-login/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
+      <meta itemprop="name" content="Randark">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橘墨的摸鱼现场">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/04/FlareOn4-login/" class="post-title-link" itemprop="url">login</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-09-04 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-04T00:00:00+08:00">2021-09-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-09 11:39:35" itemprop="dateModified" datetime="2021-11-09T11:39:35+08:00">2021-11-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Reverse/" itemprop="url" rel="index"><span itemprop="name">Reverse</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/PHP%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">PHP代码审计</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Challenge/" itemprop="url" rel="index"><span itemprop="name">Challenge</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Challenge/FlareOn4/" itemprop="url" rel="index"><span itemprop="name">FlareOn4</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><span class="exturl" data-url="aHR0cHM6Ly9idXVvai5jbi9jaGFsbGVuZ2VzI1tGbGFyZU9uNF1sb2dpbg==">题目链接<i class="fa fa-external-link-alt"></i></span><br>附件下载，得到一个html和一个hint：<br><img src="/images/Writeup/20210904142948.png"><br>hint里面没啥提示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hint:本题解出相应字符串后请用flag&#123;&#125;包裹，形如：flag&#123;123456@flare-on.com&#125;</span><br></pre></td></tr></table></figure>
+<p>看一下html：<br><img src="/images/Writeup/20210904143026.png"><br>试了几个字符，看来是要看看源代码了：<br><img src="/images/Writeup/20210904143118.png"></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">Html</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>FLARE On 2017<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;flag&quot;</span> <span class="attr">id</span>=<span class="string">&quot;flag&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Enter the flag&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">id</span>=<span class="string">&quot;prompt&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Click to check the flag&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.getElementById(<span class="string">&quot;prompt&quot;</span>).onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> flag = <span class="built_in">document</span>.getElementById(<span class="string">&quot;flag&quot;</span>).value;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> rotFlag = flag.replace(<span class="regexp">/[a-zA-Z]/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">c</span>)</span>&#123;<span class="keyword">return</span> <span class="built_in">String</span>.fromCharCode((c &lt;= <span class="string">&quot;Z&quot;</span> ? <span class="number">90</span> : <span class="number">122</span>) &gt;= (c = c.charCodeAt(<span class="number">0</span>) + <span class="number">13</span>) ? c : c - <span class="number">26</span>);&#125;);</span></span><br><span class="line"><span class="javascript">                <span class="keyword">if</span> (<span class="string">&quot;PyvragFvqrYbtvafNerRnfl@syner-ba.pbz&quot;</span> == rotFlag) &#123;</span></span><br><span class="line"><span class="javascript">                    alert(<span class="string">&quot;Correct flag!&quot;</span>);</span></span><br><span class="line"><span class="javascript">                &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">                    alert(<span class="string">&quot;Incorrect flag, rot again&quot;</span>);</span></span><br><span class="line"><span class="javascript">                &#125;</span></span><br><span class="line"><span class="javascript">            &#125;</span></span><br><span class="line"><span class="javascript">        </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>试了一下直接提交PyvragFvqrYbtvafNerRnfl@syner-ba.pbz，没过，看来是要分析一下逻辑了。。<br>核心代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var rotFlag = flag.replace(/[a-zA-Z]/g, function (c) &#123; return String.fromCharCode((c &lt;= &quot;Z&quot; ? 90 : 122)&gt;= (c = c.charCodeAt(0) + 13) ? c : c - 26); &#125;);</span><br></pre></td></tr></table></figure>
+<p>借用网上大佬的脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">enc = <span class="string">&#x27;PyvragFvqrYbtvafNerRnfl@syner-ba.pbz&#x27;</span></span><br><span class="line">flag = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> enc:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">ord</span>(i) &gt;= <span class="number">65</span> <span class="keyword">and</span> <span class="built_in">ord</span>(i) &lt;= <span class="number">90</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">ord</span>(i) - <span class="number">13</span> &lt; <span class="number">65</span> :</span><br><span class="line">            flag += <span class="built_in">chr</span>(<span class="built_in">ord</span>(i) + <span class="number">13</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            flag += <span class="built_in">chr</span>(<span class="built_in">ord</span>(i) - <span class="number">13</span>)</span><br><span class="line">    <span class="keyword">elif</span> <span class="built_in">ord</span>(i) &gt;= <span class="number">97</span> <span class="keyword">and</span> <span class="built_in">ord</span>(i) &lt;= <span class="number">122</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">ord</span>(i) - <span class="number">13</span> &lt; <span class="number">97</span> :</span><br><span class="line">            flag += <span class="built_in">chr</span>(<span class="built_in">ord</span>(i) + <span class="number">13</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            flag += <span class="built_in">chr</span>(<span class="built_in">ord</span>(i) - <span class="number">13</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        flag += i</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ClientSideLoginsAreEasy@flare-on.com</span></span><br></pre></td></tr></table></figure>
+<p>flag:<del>flag{<span class="exturl" data-url="bWFpbHRvOiYjeDQzOyYjMTA4OyYjeDY5OyYjeDY1OyYjMTEwOyYjeDc0OyYjeDUzOyYjMTA1OyYjeDY0OyYjeDY1OyYjeDRjOyYjeDZmOyYjMTAzOyYjMTA1OyYjeDZlOyYjMTE1OyYjNjU7JiMxMTQ7JiN4NjU7JiN4NDU7JiN4NjE7JiMxMTU7JiN4Nzk7JiM2NDsmIzEwMjsmIzEwODsmI3g2MTsmI3g3MjsmIzEwMTsmI3gyZDsmIzExMTsmIzExMDsmI3gyZTsmI3g2MzsmIzExMTsmIzEwOTs=">&#x43;&#108;&#x69;&#x65;&#110;&#x74;&#x53;&#105;&#x64;&#x65;&#x4c;&#x6f;&#103;&#105;&#x6e;&#115;&#65;&#114;&#x65;&#x45;&#x61;&#115;&#x79;&#64;&#102;&#108;&#x61;&#x72;&#101;&#x2d;&#111;&#110;&#x2e;&#x63;&#111;&#109;<i class="fa fa-external-link-alt"></i></span>}</del></p>
+<hr>
+<p>参考：<br>1.<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzg1OTY4Ni9hcnRpY2xlL2RldGFpbHMvMTEyNjI3MDQ2">[FlareOn4]login<i class="fa fa-external-link-alt"></i></span></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -975,90 +1075,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/09/02/%E7%A9%BF%E8%B6%8A%E6%97%B6%E7%A9%BA%E7%9A%84%E6%80%9D%E5%BF%B5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
-      <meta itemprop="name" content="Randark">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橘墨的摸鱼现场">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/02/%E7%A9%BF%E8%B6%8A%E6%97%B6%E7%A9%BA%E7%9A%84%E6%80%9D%E5%BF%B5/" class="post-title-link" itemprop="url">穿越时空的思念</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-09-02 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-02T00:00:00+08:00">2021-09-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-07 22:01:57" itemprop="dateModified" datetime="2021-11-07T22:01:57+08:00">2021-11-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/" itemprop="url" rel="index"><span itemprop="name">Misc</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/%E7%BC%96%E7%A0%81%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">编码分析</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><span class="exturl" data-url="aHR0cHM6Ly9idXVvai5jbi9jaGFsbGVuZ2VzIyVFNyVBOSVCRiVFOCVCNiU4QSVFNiU5NyVCNiVFNyVBOSVCQSVFNyU5QSU4NCVFNiU4MCU5RCVFNSVCRiVCNQ==">题目链接<i class="fa fa-external-link-alt"></i></span><br>附件是一个mp3音频，用[[Goldwave)或者[[Audacity)打开看一下：<br><img src="/images/Writeup/20210902111255.png"><br>看来flag信息以摩斯电码的形式写在了右声道：<br>第一段：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">..-. ----- ..--- ----. -... -.. -.... ..-. ..... ..... .---- .---- ...-- ----. . . -.. . -... ---.. . ....- ..... .- .---- --... ..... -... ----- --... ---.. -....</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">F029BD6F551139EEDEB8E45A175B0786</span><br></pre></td></tr></table></figure>
-<p>第二段：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">..-. ----- ..--- ----. -... -.. -.... ..-. .....</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">F029BD6F5</span><br></pre></td></tr></table></figure>
-<p>看了一下，第二段的内容跟第一段一样，应该是相同的。数据改一下小写就是flag了。<br>flag:<del>flag{f029bd6f551139eedeb8e45a175b0786}</del></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1130,7 +1146,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">158</span>
+          <span class="site-state-item-count">159</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1172,7 +1188,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

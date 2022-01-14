@@ -73,7 +73,7 @@
   </style>
 </noscript>
 
-</head>
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <link rel="stylesheet" href="/dist/APlayer.min.css">
@@ -179,6 +179,90 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/25/WUSTCTF2020-%E7%88%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
+      <meta itemprop="name" content="Randark">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橘墨的摸鱼现场">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/25/WUSTCTF2020-%E7%88%AC/" class="post-title-link" itemprop="url">爬</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-25 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-25T00:00:00+08:00">2021-08-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-09 11:35:00" itemprop="dateModified" datetime="2021-11-09T11:35:00+08:00">2021-11-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Misc/" itemprop="url" rel="index"><span itemprop="name">Misc</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Challenge/" itemprop="url" rel="index"><span itemprop="name">Challenge</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Challenge/WUSTCTF-2020/" itemprop="url" rel="index"><span itemprop="name">WUSTCTF 2020</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><span class="exturl" data-url="aHR0cHM6Ly9idXVvai5jbi9jaGFsbGVuZ2VzI1tXVVNUQ1RGMjAyMF0lRTclODglQUM=">题目链接<i class="fa fa-external-link-alt"></i></span><br>附件下载解压，得到一个pdf文件：<br><img src="/images/Writeup/20210908114046.png"><br>直接专业对口，Calibre解包：<br><img src="/images/Writeup/20210908114114.png"><br>看一下index.html，看一下页面数据：<br><img src="/images/Writeup/20210908114147.png"><br>看起来flag数据应该在index-1_1.png文件里面：<br><img src="/images/Writeup/20210908114227.png"><br><img src="/images/Writeup/20210908114308.png"><br>OCR读取字符串：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x77637466323032307b746831735f31735f405f7064665f616e645f7930755f63616e5f7573655f70686f7430736830707d</span><br></pre></td></tr></table></figure>
+<p>十六进制转换一下，边得到了flag。<br><span class="exturl" data-url="aHR0cHM6Ly93d3cuYmVqc29uLmNvbS9jb252ZXJ0L294MnN0ci8=">16进制到文本字符串<i class="fa fa-external-link-alt"></i></span><br>flag:<del>wctf2020{th1s_1s_@_pdf_and_y0u_can_use_phot0sh0p}</del></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -894,86 +978,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/08/25/%E5%A4%A7%E7%99%BD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
-      <meta itemprop="name" content="Randark">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橘墨的摸鱼现场">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/25/%E5%A4%A7%E7%99%BD/" class="post-title-link" itemprop="url">大白</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-25 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-25T00:00:00+08:00">2021-08-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-07 22:01:16" itemprop="dateModified" datetime="2021-11-07T22:01:16+08:00">2021-11-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/" itemprop="url" rel="index"><span itemprop="name">Misc</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99/" itemprop="url" rel="index"><span itemprop="name">图片隐写</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><span class="exturl" data-url="aHR0cHM6Ly9idXVvai5jbi9jaGFsbGVuZ2VzIyVFNSVBNCVBNyVFNyU5OSVCRA==">题目链接<i class="fa fa-external-link-alt"></i></span><br>附件下载解压，得到的是dabai.png，看着没啥毛病，用[[Stegsolve)看看<br><img src="/images/Writeup/20210825113746.png"><br>然后用[[010Editor)打开的时候，下面提示文件的CRC校验出错<br><img src="/images/Writeup/20210825114040.png"><br>那看来是文件的数据被改了，而且大概率是长宽被改，用大佬的脚本计算一下正确的长宽高：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">misc = <span class="built_in">open</span>(<span class="string">&quot;dabai.png&quot;</span>,<span class="string">&quot;rb&quot;</span>).read()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1024</span>):</span><br><span class="line">    data = misc[<span class="number">12</span>:<span class="number">20</span>] +struct.pack(<span class="string">&#x27;&gt;i&#x27;</span>,i)+ misc[<span class="number">24</span>:<span class="number">29</span>]</span><br><span class="line">    crc32 = binascii.crc32(data) &amp; <span class="number">0xffffffff</span></span><br><span class="line">    <span class="keyword">if</span> crc32 == <span class="number">0x6d7c7135</span>:</span><br><span class="line">        <span class="built_in">print</span> (i)</span><br></pre></td></tr></table></figure>
-<p>计算得出原本文件的高是479，修改文件的数据再打开<br><img src="/images/Writeup/20210825114759.png"><br>便可以得到flag：<br>flag{He1l0_d4_ba1}</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1045,7 +1049,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">158</span>
+          <span class="site-state-item-count">159</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1087,7 +1091,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
