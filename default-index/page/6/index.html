@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/09/09/UTCTF2020-docx/">
+    <link itemprop="mainEntityOfPage" href="https://randark.site/2021/09/09/WUSTCTF2020-alison_likes_jojo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/logo/IMG_0004.jpg">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/09/09/UTCTF2020-docx/" class="post-title-link" itemprop="url">docx</a>
+            <a href="/2021/09/09/WUSTCTF2020-alison_likes_jojo/" class="post-title-link" itemprop="url">alison_likes_jojo</a>
         </h2>
 
         <div class="post-meta">
@@ -214,7 +214,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-09 11:34:20" itemprop="dateModified" datetime="2021-11-09T11:34:20+08:00">2021-11-09</time>
+                <time title="修改时间：2021-11-09 11:34:51" itemprop="dateModified" datetime="2021-11-09T11:34:51+08:00">2021-11-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -230,7 +230,11 @@
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Challenge/UTCTF-2020/" itemprop="url" rel="index"><span itemprop="name">UTCTF 2020</span></a>
+                  <a href="/categories/Misc/%E5%8E%8B%E7%BC%A9%E5%8C%85%E7%A0%B4%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">压缩包破解</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Challenge/WUSTCTF-2020/" itemprop="url" rel="index"><span itemprop="name">WUSTCTF 2020</span></a>
                 </span>
             </span>
 
@@ -245,7 +249,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><span class="exturl" data-url="aHR0cHM6Ly9idXVvai5jbi9jaGFsbGVuZ2VzI1tVVENURjIwMjBdZG9jeA==">题目链接<i class="fa fa-external-link-alt"></i></span><br>附件下载下来，是一个docx文件：<br><img src="/images/Writeup/20210909211742.png"><br>尝试了一下隐藏字符，发现没有什么特殊信息，尝试提取全部文件（毕竟是docx）：<br><img src="/images/Writeup/20210909211833.png"><br>查看media文件夹，看看文件里面的图片有没有什么猫腻：<br><img src="/images/Writeup/20210909211913.png"><br>就得到了flag。<br>flag:<del>utflag{unz1p_3v3ryth1ng}</del></p>
+          <p><span class="exturl" data-url="aHR0cHM6Ly9idXVvai5jbi9jaGFsbGVuZ2VzI1tXVVNUQ1RGMjAyMF1hbGlzb25fbGlrZXNfam9qbw==">题目链接<i class="fa fa-external-link-alt"></i></span><br>附件下载解压，得到一个压缩包和一个txt文件：<br><img src="/images/Writeup/20210909194227.png"><br>压缩包解压，得到两张jpg文件：<br><img src="/images/Writeup/20210909194250.png"><br>对boki.jpg文件使用<code>Stegsolve</code>分析，发现文件十六进制数据中存在PK的zip文件头，用binwalk提取一下文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">randark@randark-VirtualBox:~/shared$ binwalk -e boki.jpg</span><br><span class="line"></span><br><span class="line">DECIMAL       HEXADECIMAL     DESCRIPTION</span><br><span class="line">--------------------------------------------------------------------------------</span><br><span class="line">0             0x0             JPEG image data, JFIF standard 1.01</span><br><span class="line"></span><br><span class="line">WARNING: Extractor.execute failed to run external extractor &#x27;7z x -y &#x27;%e&#x27; -p &#x27;&#x27;&#x27;: [Errno 2] No such file or directory: &#x27;7z&#x27;, &#x27;7z x -y &#x27;%e&#x27; -p &#x27;&#x27;&#x27; might not be installed correctly</span><br><span class="line">177115        0x2B3DB         Zip archive data, encrypted at least v2.0 to extract, compressed size: 44, uncompressed size: 32, name: beisi.txt</span><br><span class="line">177289        0x2B489         End of Zip archive, footer length: 22</span><br></pre></td></tr></table></figure>
+<p>得到一个压缩包文件，尝试打开的时候发现有密码，尝试使用<code>ARCHPR</code>暴力破解一下：<br><img src="/images/Writeup/20210909194746.png"><br>888866成功解压，得到一个beisi.txt：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WVRKc2MySkhWbmxqV0Zac1dsYzBQUT09</span><br></pre></td></tr></table></figure>
+<p>根据文件名信息，尝试使用base64解码一下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">YTJsc2JHVnljWFZsWlc0PQ==</span><br></pre></td></tr></table></figure>
+<p>尝试再base64解码一次：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a2lsbGVycXVlZW4=</span><br></pre></td></tr></table></figure>
+<p>再解码一次：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">killerqueen</span><br></pre></td></tr></table></figure>
+<p>然后尝试使用<code>Outguess</code>用killerqueen解码一下jily.jpg:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">randark@randark-VirtualBox:~/shared$ outguess -k &#x27;killerqueen&#x27; -r jljy.jpg output.txt</span><br><span class="line">Reading jljy.jpg....</span><br><span class="line">Extracting usable bits:   5580 bits</span><br><span class="line">Steg retrieve: seed: 127, len: 40</span><br></pre></td></tr></table></figure>
+<p>得到其中的数据，便是flag。<br>flag:<del>wctf2020{pretty_girl_alison_likes_jojo}</del></p>
 
       
     </div>
@@ -575,11 +591,11 @@
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99/" itemprop="url" rel="index"><span itemprop="name">图片隐写</span></a>
+                  <a href="/categories/Misc/%E5%8E%8B%E7%BC%A9%E5%8C%85%E7%A0%B4%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">压缩包破解</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/%E5%8E%8B%E7%BC%A9%E5%8C%85%E7%A0%B4%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">压缩包破解</span></a>
+                  <a href="/categories/Misc/%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99/" itemprop="url" rel="index"><span itemprop="name">图片隐写</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
